@@ -74,6 +74,7 @@ public class Player {
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
+    //REFACTOR: change movRight() to moveRight()
     public void moveRight(){
         moveAmount = DEF_MOVE_AMOUNT;
     }

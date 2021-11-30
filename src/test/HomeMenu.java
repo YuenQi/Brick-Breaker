@@ -30,11 +30,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private static final String GREETINGS = "Welcome to:";
     private static final String GAME_TITLE = "Brick Destroy";
-    private static final String CREDITS = "Version 0.1";
+    private static final String CREDITS = "Version 2.0";
     private static final String START_TEXT = "Start";
     private static final String MENU_TEXT = "Exit";
 
-    private static final Color BACKGROUND_COLOR = Color.GREEN.darker();
+    private static final Color BACKGROUND_COLOR = Color.GREEN.darker(); //REFACTOR: change BG_COLOR to BACKGROUND_COLOR
     private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
     private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
     private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
@@ -45,11 +45,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private Rectangle menuFace;
     private Rectangle startButton;
-    private Rectangle exitButton;
+    private Rectangle exitButton;//REFACTOR: change menuButton to exitButton
 
 
-    private BasicStroke borderStroke;
-    private BasicStroke borderStroke_noDashes;
+    private BasicStroke borderStroke; //REFACTOR: change borderStoke to borderStroke
+    private BasicStroke borderStroke_noDashes;//REFACTOR: change borderStoke_noDashes to borderStroke_noDashes
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -59,7 +59,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private GameFrame owner;
 
     private boolean startClicked;
-    private boolean exitClicked;
+    private boolean exitClicked;//REFACTOR: change menuClicked to exitClicked
 
 
     public HomeMenu(GameFrame owner,Dimension area){
