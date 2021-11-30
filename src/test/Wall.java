@@ -78,7 +78,7 @@ public class Wall {
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
-          multiple of lineCount smaller then brickCount
+          multiple of lineCount smaller than brickCount
          */
         brickCnt -= brickCnt % lineCnt;
 
@@ -118,7 +118,7 @@ public class Wall {
     private Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
-          multiple of lineCount smaller then brickCount
+          multiple of lineCount smaller than brickCount
          */
         brickCnt -= brickCnt % lineCnt;
 
@@ -179,21 +179,44 @@ public class Wall {
     }
 
     public void findImpacts(){
+
+        /*
+          If ball touches player, reverse direction of speedY
+          if speedY is positive: ball goes down
+          if speedY is negative: ball goes up
+         */
         if(player.impact(ball)){
             ball.reverseY();
         }
         else if(impactWall()){
-            /*for efficiency reverse is done into method impactWall
-            * because for every brick program checks for horizontal and vertical impacts
+            /*
+              for efficiency reverse is done into method impactWall
+              because for every brick program checks for horizontal and vertical impacts
             */
             brickCount--;
         }
+
+        /*
+          if the ball hits the border, reverse direction of speedX
+          if speedX is positive, ball goes right
+          if speedX is negative, ball goes left
+         */
         else if(impactBorder()) {
             ball.reverseX();
         }
+
+        /*
+          area.getY() is always 0
+          if y-coordinate of center of ball < 0, reverse direction of speedY
+         */
         else if(ball.getPosition().getY() < area.getY()){
             ball.reverseY();
         }
+
+        /*
+          area.getY() is always 0, area.getHeight() is always 450
+          if y-coordinate of center of ball > 450, decrement ballCount and set ballLost to true
+         */
         else if(ball.getPosition().getY() > area.getY() + area.getHeight()){
             ballCount--;
             ballLost = true;
@@ -224,7 +247,9 @@ public class Wall {
     }
 
     private boolean impactBorder(){
-        Point2D p = ball.getPosition();
+        Point2D p = ball.getPosition();//get position of center of ball
+        //area refers to drawArea, area.getX() is always 0, area.getWidth() is always 600
+        //if x-coordinate of center of ball is < 0 or > 600, return true
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 

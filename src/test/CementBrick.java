@@ -30,9 +30,12 @@ public class CementBrick extends Brick {
 
     @Override
     public boolean setImpact(Point2D point, int dir) {
+        //if brick in super is broken, return false
         if(super.isBroken())
             return false;
         super.impact();
+
+        //if brick in super is not broken, make crack
         if(!super.isBroken()){
             crack.makeCrack(point,dir);
             updateBrick();
@@ -47,6 +50,9 @@ public class CementBrick extends Brick {
         return brickFace;
     }
 
+    /**
+     * This method is to update brick with a crack on it
+     */
     private void updateBrick(){
         if(!super.isBroken()){
             GeneralPath gp = crack.draw();

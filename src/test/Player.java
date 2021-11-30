@@ -51,6 +51,13 @@ public class Player {
         return  new Rectangle(p,new Dimension(width,height));
     }
 
+    /**
+     * This method returns true if the ball touches the player, i.e.
+     * the bottom of the ball and the centre of the ball touches the player.
+     *
+     * @param b ball object
+     * @return true is returned if the centre and bottom of the ball touches the player
+     */
     public boolean impact(Ball b){
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
     }
@@ -79,6 +86,12 @@ public class Player {
         return  playerFace;
     }
 
+    /**
+     * This method is to move the ball to a particular point specified
+     * by the parameter passed to this method.
+     *
+     * @param p point to move the ball to
+     */
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);

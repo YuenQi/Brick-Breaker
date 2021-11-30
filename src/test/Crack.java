@@ -88,7 +88,7 @@ public class Crack{
 
         GeneralPath path = new GeneralPath();
 
-
+        //Adds a point to the path by moving to the specified coordinates specified in float precision.
         path.moveTo(start.x,start.y);
 
         double w = (end.x - start.x) / (double)steps;
@@ -107,6 +107,10 @@ public class Crack{
             if(inMiddle(i,CRACK_SECTIONS,steps))
                 y += jumps(jump,JUMP_PROBABILITY);
 
+            /*
+              Adds a point to the path by drawing a straight line from the
+              current coordinates to the new specified coordinates specified in double precision.
+            */
             path.lineTo(x,y);
 
         }

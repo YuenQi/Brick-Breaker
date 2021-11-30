@@ -199,6 +199,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Composite tmp = g2d.getComposite();
         Color tmpColor = g2d.getColor();
 
+        //set transparency
         AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.55f);
         g2d.setComposite(ac);
 

@@ -61,7 +61,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
     public void enableGameBoard(){
-        this.dispose();
+        this.dispose();//when click on startButton, dispose GameFrame screen
         this.remove(homeMenu);
         this.add(gameBoard,BorderLayout.CENTER);
         this.setUndecorated(false);
@@ -71,6 +71,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * This method will auto locate the scene (HomeMenu / GameBoard)
+     * in the middle of the frame
+     */
     private void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
