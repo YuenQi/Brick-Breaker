@@ -32,7 +32,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String GAME_TITLE = "Brick Destroy";
     private static final String CREDITS = "Version 2.0";
     private static final String START_TEXT = "Start";
-    private static final String MENU_TEXT = "Exit";
+    private static final String EXIT_TEXT = "Exit"; //REFACTOR: change MENU_TEXT to EXIT_TEXT
 
     private static final Color BACKGROUND_COLOR = Color.GREEN.darker(); //REFACTOR: change BG_COLOR to BACKGROUND_COLOR
     private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
@@ -185,7 +185,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         FontRenderContext frc = g2d.getFontRenderContext();
 
         Rectangle2D txtRect = buttonFont.getStringBounds(START_TEXT,frc);
-        Rectangle2D mTxtRect = buttonFont.getStringBounds(MENU_TEXT,frc);
+        Rectangle2D mTxtRect = buttonFont.getStringBounds(EXIT_TEXT,frc);
 
         g2d.setFont(buttonFont);
 
@@ -238,12 +238,12 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             g2d.setColor(CLICKED_BUTTON_COLOR);
             g2d.draw(exitButton);
             g2d.setColor(CLICKED_TEXT);
-            g2d.drawString(MENU_TEXT,x,y);
+            g2d.drawString(EXIT_TEXT,x,y);
             g2d.setColor(tmp);
         }
         else{
             g2d.draw(exitButton);
-            g2d.drawString(MENU_TEXT,x,y);
+            g2d.drawString(EXIT_TEXT,x,y);
         }
 
     }
