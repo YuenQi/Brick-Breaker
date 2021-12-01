@@ -57,6 +57,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
         this.autoLocate();
+        //this.setLocationRelativeTo(null); //allows frame to appear in the middle of the screen, not just top left corner
+        this.setResizable(false);
         this.setVisible(true);
     }
 
