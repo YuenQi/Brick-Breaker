@@ -35,14 +35,16 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String CREDITS = "Version 2.0";
     private static final String START_TEXT = "Start";
     private static final String EXIT_TEXT = "Exit"; //REFACTOR: change MENU_TEXT to EXIT_TEXT
+    private static final String INFO_TEXT = "Info";
 
     private static final Color TEXT_COLOR = Color.BLACK;
     private static final Color CLICKED_BUTTON_COLOR = Color.WHITE;
-    private static final Color CLICKED_TEXT = Color.WHITE;
+    private static final Color CLICKED_TEXT_COLOR = Color.WHITE;//REFACTOR: change CLICKED_TEXT_COLOR to CLICKED_TEXT_COLOR
 
     private Rectangle menuFace;
     private Rectangle startButton;
     private Rectangle exitButton;//REFACTOR: change menuButton to exitButton
+    private Rectangle infoButton;
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -53,6 +55,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private boolean startClicked;
     private boolean exitClicked;//REFACTOR: change menuClicked to exitClicked
+    private boolean infoClicked;
 
     private BufferedImage background = null;
 
@@ -70,6 +73,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
         startButton = new Rectangle(btnDim);
         exitButton = new Rectangle(btnDim);
+        infoButton = new Rectangle(btnDim);
 
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
@@ -131,8 +135,13 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(GAME_TITLE,frc);
         Rectangle2D creditsRect = creditsFont.getStringBounds(CREDITS,frc);
 
+        /*
+         * sX is x-coordinate of the leftmost character of the specified string
+         * sY is y-coordinate of the leftmost character of the specified string
+         */
         int sX,sY;
 
+        //This calculation is to position the specified string in the middle of the frame
         sX = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
         sY = (int)(menuFace.getHeight() / 4);
 
@@ -150,35 +159,38 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         g2d.setFont(creditsFont);
         g2d.drawString(CREDITS,sX,sY);
-
-
     }
 
     private void drawButton(Graphics2D g2d){
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        Rectangle2D txtRect = buttonFont.getStringBounds(START_TEXT,frc);
-        Rectangle2D mTxtRect = buttonFont.getStringBounds(EXIT_TEXT,frc);
+        Rectangle2D startTextRect = buttonFont.getStringBounds(START_TEXT,frc); //REFACTOR: change txtRect to startTextRect
+        Rectangle2D exitTextRect = buttonFont.getStringBounds(EXIT_TEXT,frc);//REFACTOR: change mTxtRect to exitTextRect
+        Rectangle2D infoTextRect = buttonFont.getStringBounds(INFO_TEXT,frc);
 
         g2d.setFont(buttonFont);
 
+        //create start button
         int x = (menuFace.width - startButton.width) / 2;
-        int y =(int) ((menuFace.height - startButton.height) * 0.8);
+        int y =(int) ((menuFace.height - startButton.height) * 0.7);
 
         startButton.setLocation(x,y);
+        //end of creation of start button
 
-        x = (int)(startButton.getWidth() - txtRect.getWidth()) / 2;
-        y = (int)(startButton.getHeight() - txtRect.getHeight()) / 2;
+        //This calculation is to position the text in the centre of the rectangle button
+        x = (int)(startButton.getWidth() - startTextRect.getWidth()) / 2;
+        y = (int)(startButton.getHeight() - startTextRect.getHeight()) / 2;
 
         x += startButton.x;
-        y += startButton.y + (startButton.height * 0.9);
+        y += startButton.y + (startButton.height * 0.9);//
 
+        //draw start rectangle button and the text inside it
         if(startClicked){
             Color tmp = g2d.getColor();
             g2d.setColor(CLICKED_BUTTON_COLOR);
             g2d.draw(startButton);
-            g2d.setColor(CLICKED_TEXT);
+            g2d.setColor(CLICKED_TEXT_COLOR);
             g2d.drawString(START_TEXT,x,y);
             g2d.setColor(tmp);
         }
@@ -187,31 +199,63 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             g2d.drawString(START_TEXT,x,y);
         }
 
+        //create exit button
         x = startButton.x;
         y = startButton.y;
 
         y *= 1.2;
 
         exitButton.setLocation(x,y);
+        //end of creation of exit button
 
-        x = (int)(exitButton.getWidth() - mTxtRect.getWidth()) / 2;
-        y = (int)(exitButton.getHeight() - mTxtRect.getHeight()) / 2;
+        x = (int)(exitButton.getWidth() - exitTextRect.getWidth()) / 2;
+        y = (int)(exitButton.getHeight() - exitTextRect.getHeight()) / 2;
 
         x += exitButton.x;
         y += exitButton.y + (startButton.height * 0.9);
 
+        //draw exit rectangle button and the text inside it
         if(exitClicked){
             Color tmp = g2d.getColor();
-
             g2d.setColor(CLICKED_BUTTON_COLOR);
             g2d.draw(exitButton);
-            g2d.setColor(CLICKED_TEXT);
+            g2d.setColor(CLICKED_TEXT_COLOR);
             g2d.drawString(EXIT_TEXT,x,y);
             g2d.setColor(tmp);
         }
         else{
             g2d.draw(exitButton);
             g2d.drawString(EXIT_TEXT,x,y);
+        }
+
+        //create info button
+        x = startButton.x;
+        y = exitButton.y;
+
+        //TODO extract the calculation method and automate spacing calculation instead of hardcoding a value
+        y += 38.5;
+
+        infoButton.setLocation(x,y);
+        //end of creation of info button
+
+        x = (int)(infoButton.getWidth() - infoTextRect.getWidth()) / 2;
+        y = (int)(infoButton.getHeight() - infoTextRect.getHeight()) / 2;
+
+        x += infoButton.x;
+        y += infoButton.y + (startButton.height * 0.9);
+
+        //draw info rectangle button and the text inside it
+        if(infoClicked){
+            Color tmp = g2d.getColor();
+            g2d.setColor(CLICKED_BUTTON_COLOR);
+            g2d.draw(infoButton);
+            g2d.setColor(CLICKED_TEXT_COLOR);
+            g2d.drawString(INFO_TEXT,x,y);
+            g2d.setColor(tmp);
+        }
+        else{
+            g2d.draw(infoButton);
+            g2d.drawString(INFO_TEXT,x,y);
         }
 
     }
@@ -221,11 +265,13 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         Point p = mouseEvent.getPoint();
         if(startButton.contains(p)){
             owner.enableGameBoard();
-
         }
         else if(exitButton.contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
             System.exit(0);
+        }
+        else if(infoButton.contains(p)){
+            //TODO create new window
         }
     }
 
@@ -235,23 +281,30 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         if(startButton.contains(p)){
             startClicked = true;
             repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
-
         }
         else if(exitButton.contains(p)){
             exitClicked = true;
             repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
         }
+        else if(infoButton.contains(p)){
+            infoClicked = true;
+            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-        if(startClicked ){
+        if(startClicked){
             startClicked = false;
             repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
         }
         else if(exitClicked){
             exitClicked = false;
             repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
+        }
+        else if(infoClicked){
+            infoClicked = false;
+            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
         }
     }
 
