@@ -26,6 +26,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
@@ -52,6 +53,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Font buttonFont;
 
     private GameFrame owner;
+    private InfoPage infoPage;
 
     private boolean startClicked;
     private boolean exitClicked;//REFACTOR: change menuClicked to exitClicked
@@ -271,7 +273,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             System.exit(0);
         }
         else if(infoButton.contains(p)){
-            //TODO create new window
+            //owner.enableInfoPage();
+            infoPage = new InfoPage(owner);
         }
     }
 

@@ -36,20 +36,12 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public GameFrame(){
         super();
-
         gaming = false;
-
         this.setLayout(new BorderLayout());
-
         gameBoard = new GameBoard(this);
-
         homeMenu = new HomeMenu(this,new Dimension(450,300));
-
         this.add(homeMenu,BorderLayout.CENTER);
-
         this.setUndecorated(true);
-
-
     }
 
     public void initialize(){
@@ -57,7 +49,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
         this.autoLocate();
-        //this.setLocationRelativeTo(null); //allows frame to appear in the middle of the screen, not just top left corner
         this.setResizable(false);
         this.setVisible(true);
     }
@@ -70,7 +61,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
-
     }
 
     /**
@@ -83,7 +73,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         int y = (size.height - this.getHeight()) / 2;
         this.setLocation(x,y);
     }
-
 
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
@@ -104,4 +93,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
             gameBoard.onLostFocus();
 
     }
+
+
 }
