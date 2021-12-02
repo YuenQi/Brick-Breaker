@@ -24,11 +24,13 @@ import java.util.Random;
 
 public class Wall {
 
-    private static final int LEVELS_COUNT = 4;
+    private static final int LEVELS_COUNT = 5;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
+    private static final int FAST_BRICK = 4;
+    private static final int SLOW_BRICK = 5;
 
     private Random rnd;
     private Rectangle area;
@@ -170,6 +172,7 @@ public class Wall {
         tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
         tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
+        tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,FAST_BRICK,SLOW_BRICK);
         return tmp;
     }
 
@@ -327,6 +330,12 @@ public class Wall {
                 break;
             case CEMENT:
                 out = new CementBrick(point, size);
+                break;
+            case FAST_BRICK:
+                out = new FastBrick(point, size, this);
+                break;
+            case SLOW_BRICK:
+                out = new SlowBrick(point,size, this);
                 break;
             default:
                 throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
