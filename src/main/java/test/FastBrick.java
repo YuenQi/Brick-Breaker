@@ -13,21 +13,22 @@ public class FastBrick extends Brick {
 
     private Wall wall;
 
-    public FastBrick(Point point, Dimension size, Wall wall){
+    //public FastBrick(Point point, Dimension size, Wall wall){
+    public FastBrick(Point point, Dimension size){
         super(NAME,point,size, BORDER_COLOR, INNER_COLOR,FAST_BRICK_STRENGTH);
-        this.wall = wall;
+        //this.wall = wall;
     }
 
-    @Override
-    public boolean setImpact(Point2D point , int dir){
-        if(super.isBroken())
-            return false;
-        else {
-            impact();
-            makeBallSpeedFaster();
-        }
-        return super.isBroken();
-    }
+//    @Override
+//    public boolean setImpact(Point2D point , int dir){
+//        if(super.isBroken())
+//            return false;
+//        else {
+//            impact();
+//            makeBallSpeedFaster();
+//        }
+//        return super.isBroken();
+//    }
 
     /**
      * This method will set the speed of the ball to 5

@@ -22,8 +22,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
-
-
 public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
     private static final String CONTINUE = "Continue";
@@ -33,7 +31,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static final int TEXT_SIZE = 30;
     private static final Color MENU_COLOR = new Color(0,255,0);
 
-
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
@@ -42,6 +39,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private Timer gameTimer;
 
     private Wall wall;
+    private Level level;
 
     private String message;
 
@@ -56,7 +54,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsole debugConsole;
 
-
     public GameBoard(JFrame owner){
         super();
 
@@ -68,10 +65,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         this.initialize();
         message = "";
         wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
+        level = new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3, 6/2, wall);
 
-        debugConsole = new DebugConsole(owner,wall,this);
+        debugConsole = new DebugConsole(owner,wall,level,this);
         //initialize the first level
-        wall.nextLevel();
+        level.nextLevel();
 
         gameTimer = new Timer(10,e ->{
             wall.move();
@@ -86,12 +84,12 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 gameTimer.stop();
             }
             else if(wall.isDone()){
-                if(wall.hasLevel()){
+                if(level.hasLevel()){
                     message = "Go to Next Level";
                     gameTimer.stop();
                     wall.ballReset();
                     wall.wallReset();
-                    wall.nextLevel();
+                    level.nextLevel();
                 }
                 else{
                     message = "ALL WALLS DESTROYED";
@@ -104,8 +102,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     }
 
-
-
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
@@ -114,7 +110,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
-
 
     public void paint(Graphics g){
 
@@ -154,7 +149,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         g2d.setColor(brick.getBorderColor());
         g2d.draw(brick.getBrick());
-
 
         g2d.setColor(tmp);
     }
@@ -255,8 +249,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         g2d.drawString(EXIT,x,y);
 
-
-
         g2d.setFont(tmpFont);
         g2d.setColor(tmpColor);
     }
@@ -318,7 +310,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         else if(exitButtonRect.contains(p)){
             System.exit(0);
         }
-
     }
 
     @Override

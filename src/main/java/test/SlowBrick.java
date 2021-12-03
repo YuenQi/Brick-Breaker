@@ -13,21 +13,22 @@ public class SlowBrick extends Brick {
 
     private Wall wall;
 
-    public SlowBrick(Point point, Dimension size, Wall wall){
+    //public SlowBrick(Point point, Dimension size, Wall wall){
+    public SlowBrick(Point point, Dimension size){
         super(NAME,point,size, BORDER_COLOR, INNER_COLOR, SLOW_BRICK_STRENGTH);
-        this.wall = wall;
+        //this.wall = wall;
     }
 
-    @Override
-    public boolean setImpact(Point2D point , int dir){
-        if(super.isBroken())
-            return false;
-        else {
-            impact();
-            makeBallSpeedSlower();
-        }
-        return super.isBroken();
-    }
+//    @Override
+//    public boolean setImpact(Point2D point , int dir){
+//        if(super.isBroken())
+//            return false;
+//        else {
+//            impact();
+//            makeBallSpeedSlower();
+//        }
+//        return super.isBroken();
+//    }
 
     /**
      * This method will set the speed of the ball to 1
@@ -50,6 +51,5 @@ public class SlowBrick extends Brick {
     public Shape getBrick() {
         return super.getBrickFace();
     }
-
 
 }
