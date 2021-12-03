@@ -42,6 +42,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private Level level;
 
     private String message;
+    private String scoreMessage;
+    private String highScoreMessage;
 
     private boolean showPauseMenu;
 
@@ -64,6 +66,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         this.initialize();
         message = "";
+        scoreMessage = "";
+        highScoreMessage = "";
         wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),new Point(300,430));
         level = new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3, 6/2, wall);
 
@@ -75,9 +79,13 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wall.move();
             wall.findImpacts();
             message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
+            scoreMessage = String.format("Score: %d", wall.getScore());
+            highScoreMessage = "High Score Record: " + wall.getHighScore();
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
+                    wall.checkScore();
                     wall.wallReset();
+                    wall.resetScore();
                     message = "Game over";
                 }
                 wall.ballReset();
@@ -93,13 +101,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 }
                 else{
                     message = "ALL WALLS DESTROYED";
+                    wall.checkScore();
+                    wall.resetScore();
                     gameTimer.stop();
                 }
             }
 
             repaint();
         });
-
     }
 
     private void initialize(){
@@ -119,6 +128,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         g2d.setColor(Color.BLUE);
         g2d.drawString(message,250,225);
+        g2d.setColor(Color.BLACK);
+        g2d.drawString(scoreMessage,0,390);
+        g2d.drawString(highScoreMessage,0,410);
 
         drawBall(wall.getBall(),g2d);
 

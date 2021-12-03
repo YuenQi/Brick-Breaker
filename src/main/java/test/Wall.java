@@ -17,8 +17,10 @@
  */
 package test;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.*;
 
 public class Wall {
 
@@ -36,6 +38,9 @@ public class Wall {
     private int ballSpeedX;
     private int ballSpeedY;
 
+    private int score = 0;
+    private String highScore = "";
+
     public Wall(Rectangle drawArea, Point ballPos){
 
         this.startPoint = new Point(ballPos);
@@ -50,6 +55,12 @@ public class Wall {
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
         area = drawArea;
+
+        if(highScore.equals(""))
+        {
+            //initialise high score
+            highScore = this.getHighScore();
+        }
     }
 
     /**
@@ -86,6 +97,7 @@ public class Wall {
               because for every brick program checks for horizontal and vertical impacts
             */
             brickCount--;
+            score++; //REWARD: if ball hits the brick, reward 1 point
         }
 
         /*
@@ -112,6 +124,7 @@ public class Wall {
         else if(ball.getPosition().getY() > area.getY() + area.getHeight()){
             ballCount--;
             ballLost = true;
+            score-=5; //PENALTY: if player can't catch the ball, deduct 5 points
         }
     }
 
@@ -219,4 +232,85 @@ public class Wall {
         this.player = player;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getHighScore(){
+        FileReader readFile;
+        BufferedReader reader = null;
+        try {
+            readFile = new FileReader("src/main/resources/highscore.dat");
+            reader = new BufferedReader(readFile);
+            return reader.readLine();
+        }
+        catch (Exception e) {
+            return "Nobody:0";
+        }
+        finally {
+            try{
+                if(reader != null)
+                    reader.close();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void checkScore(){
+        if (highScore.equals("")) {
+            return;
+        }
+        if(score > Integer.parseInt(highScore.split(":")[1])){
+            String name = JOptionPane.showInputDialog("You've created a new high score! What is your name?");
+            highScore = name + ":" + score;
+            /*
+            .dat file is used because I don't want to let user edit the highScore file
+            to change the high score
+            */
+            File scoreFile = new File("src/main/resources/highscore.dat");
+            if(!scoreFile.exists())
+            {
+                try {
+                    scoreFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            FileWriter writeFile;
+            BufferedWriter writer = null;
+            try {
+                writeFile = new FileWriter(scoreFile);
+                writer = new BufferedWriter(writeFile);
+                /*
+                write operation is used instead of
+                append operation to ensure only the
+                name of the person who scores the highest score and
+                the highest score is kept inside highscore.dat file
+                 */
+                writer.write(this.highScore);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    if (writer != null)
+                        writer.close();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void resetScore() {
+        score = 0;
+    }
 }
