@@ -29,6 +29,7 @@ public class Wall {
     private Brick[] bricks;
     private Ball ball;
     private Player player;
+    private BallFactory ballFactory;
 
     private Point startPoint;
     private int brickCount;
@@ -39,9 +40,6 @@ public class Wall {
     private int ballSpeedY;
 
     private int score = 0;
-
-
-
     private String highScore = "";
 
     public Wall(Rectangle drawArea, Point ballPos){
@@ -76,7 +74,8 @@ public class Wall {
     }
 
     private void makeBall(Point2D ballPos){
-        ball = new RubberBall(ballPos);
+        ballFactory = new BallFactory();
+        ball = ballFactory.getBall("RUBBER", ballPos);
     }
 
     public void move(){
