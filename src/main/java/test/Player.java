@@ -59,7 +59,7 @@ public class Player {
      * @return true is returned if the centre and bottom of the ball touches the player
      */
     public boolean impact(Ball b){
-        return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
+        return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDown()) ;
     }
 
     public void move(){

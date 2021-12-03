@@ -14,10 +14,10 @@ abstract public class Ball {
 
     private Point2D center;
 
-    Point2D up;
-    Point2D down;
-    Point2D left;
-    Point2D right;
+    private Point2D up;
+    private Point2D down;
+    private Point2D left;
+    private Point2D right;
 
     private Color border;
     private Color inner;
@@ -126,5 +126,35 @@ abstract public class Ball {
         return speedY;
     }
 
+    public Point2D getUp() {
+        return up;
+    }
 
+    public void setUp(Point2D up) {
+        this.up = up;
+    }
+
+    public Point2D getDown() {
+        return down;
+    }
+
+    public void setDown(Point2D down) {
+        this.down = down;
+    }
+
+    public Point2D getLeft() {
+        return left;
+    }
+
+    public void setLeft(Point2D left) {
+        this.left = left;
+    }
+
+    public Point2D getRight() {
+        return right;
+    }
+
+    public void setRight(Point2D right) {
+        this.right = right;
+    }
 }

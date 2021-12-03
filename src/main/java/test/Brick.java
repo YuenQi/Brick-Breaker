@@ -16,13 +16,10 @@ abstract public class Brick  {
     public static final int DEF_CRACK_DEPTH = 1;
     public static final int DEF_STEPS = 35;
 
-
     public static final int UP_IMPACT = 100;
     public static final int DOWN_IMPACT = 200;
     public static final int LEFT_IMPACT = 300;
     public static final int RIGHT_IMPACT = 400;
-
-
 
     private static Random rnd;
 
@@ -37,7 +34,6 @@ abstract public class Brick  {
     private int strength;
 
     private boolean broken;
-
 
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
         rnd = new Random();
@@ -76,13 +72,13 @@ abstract public class Brick  {
         if(broken)
             return 0;
         int out  = 0;
-        if(brickFace.contains(b.right))
+        if(brickFace.contains(b.getRight()))
             out = LEFT_IMPACT;
-        else if(brickFace.contains(b.left))
+        else if(brickFace.contains(b.getLeft()))
             out = RIGHT_IMPACT;
-        else if(brickFace.contains(b.up))
+        else if(brickFace.contains(b.getUp()))
             out = DOWN_IMPACT;
-        else if(brickFace.contains(b.down))
+        else if(brickFace.contains(b.getDown()))
             out = UP_IMPACT;
         return out;
     }
