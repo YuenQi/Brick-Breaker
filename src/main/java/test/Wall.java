@@ -19,11 +19,9 @@ package test;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.Random;
 
 public class Wall {
 
-    private Random rnd;
     private Rectangle area;
 
     private Brick[] bricks;
@@ -35,6 +33,9 @@ public class Wall {
     private int ballCount;
     private boolean ballLost;
 
+    private int ballSpeedX;
+    private int ballSpeedY;
+
     public Wall(Rectangle drawArea, Point ballPos){
 
         this.startPoint = new Point(ballPos);
@@ -42,30 +43,27 @@ public class Wall {
         ballCount = 3;
         ballLost = false;
 
-        rnd = new Random();
-
         makeBall(ballPos);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
 
-        ball.setSpeed(speedX,speedY);
+        initialiseSpeed();
 
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
         area = drawArea;
     }
 
+    /**
+     * This method is to set initial speed in x and y direction of ball
+     */
+    private void initialiseSpeed() {
+        ballSpeedX = 2;
+        ballSpeedY = -4;
+        ball.setSpeed(ballSpeedX,ballSpeedY);
+    }
 
     private void makeBall(Point2D ballPos){
         ball = new RubberBall(ballPos);
     }
-
-
 
     public void move(){
         player.move();
@@ -166,15 +164,7 @@ public class Wall {
     public void ballReset(){
         player.moveTo(startPoint);
         ball.moveTo(startPoint);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
-
-        ball.setSpeed(speedX,speedY);
+        initialiseSpeed();
         ballLost = false;
     }
 
@@ -204,7 +194,6 @@ public class Wall {
     public void resetBallCount(){
         ballCount = 3;
     }
-
 
     public Brick[] getBricks() {
         return bricks;
