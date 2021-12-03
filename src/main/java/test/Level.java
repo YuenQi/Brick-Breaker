@@ -16,7 +16,7 @@ public class Level {
     private int level;
 
     private static Wall wall;
-    private BrickFactory brickFactory;
+    private BrickFactory brickFactory = new BrickFactory();
 
     public Level(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Wall wall){
         levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
@@ -58,7 +58,8 @@ public class Level {
         for(double y = brickHgt;i < tmp.length;i++, y += 2*brickHgt){
             double x = (brickOnLine * brickLen) - (brickLen / 2);
             p.setLocation(x,y);
-            tmp[i] = new ClayBrick(p,brickSize);
+            //tmp[i] = new ClayBrick(p,brickSize);
+            tmp[i] = brickFactory.getBrick("CLAY",p,brickSize);
         }
         return tmp;
     }
@@ -132,7 +133,6 @@ public class Level {
     }
 
     private Brick makeBrick(Point point, Dimension size, int type){
-        brickFactory = new BrickFactory();
         Brick out;
         switch(type){
             case CLAY:
@@ -145,11 +145,9 @@ public class Level {
                 out = brickFactory.getBrick("CEMENT",point, size);
                 break;
             case FAST_BRICK:
-                //out = new FastBrick(point, size, wall);
                 out = brickFactory.getBrick("FAST_BRICK",point, size);
                 break;
             case SLOW_BRICK:
-                //out = new SlowBrick(point,size, wall);
                 out = brickFactory.getBrick("SLOW_BRICK",point,size);
                 break;
             default:
