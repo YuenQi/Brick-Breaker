@@ -39,6 +39,9 @@ public class Wall {
     private int ballSpeedY;
 
     private int score = 0;
+
+
+
     private String highScore = "";
 
     public Wall(Rectangle drawArea, Point ballPos){
@@ -59,7 +62,7 @@ public class Wall {
         if(highScore.equals(""))
         {
             //initialise high score
-            highScore = this.getHighScore();
+            highScore = this.readHighScore();
         }
     }
 
@@ -240,7 +243,7 @@ public class Wall {
         return score;
     }
 
-    public String getHighScore(){
+    public String readHighScore(){
         FileReader readFile;
         BufferedReader reader = null;
         try {
@@ -312,5 +315,13 @@ public class Wall {
 
     public void resetScore() {
         score = 0;
+    }
+
+    public String getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(String highScore) {
+        this.highScore = highScore;
     }
 }

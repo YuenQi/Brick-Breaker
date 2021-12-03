@@ -40,6 +40,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private Wall wall;
     private Level level;
+    private HighScore highScore;
 
     private String message;
     private String scoreMessage;
@@ -80,12 +81,13 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             wall.findImpacts();
             message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
             scoreMessage = String.format("Score: %d", wall.getScore());
-            highScoreMessage = "High Score Record: " + wall.getHighScore();
+            highScoreMessage = "High Score Record: " + wall.readHighScore();
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
                     wall.checkScore();
                     wall.wallReset();
                     wall.resetScore();
+                    highScore = new HighScore(wall);
                     message = "Game over";
                 }
                 wall.ballReset();
