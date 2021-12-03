@@ -16,6 +16,7 @@ public class Level {
     private int level;
 
     private Wall wall;
+    private BrickFactory brickFactory;
 
     public Level(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Wall wall){
         levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
@@ -131,24 +132,25 @@ public class Level {
     }
 
     private Brick makeBrick(Point point, Dimension size, int type){
+        brickFactory = new BrickFactory();
         Brick out;
         switch(type){
             case CLAY:
-                out = new ClayBrick(point,size);
+                out = brickFactory.getBrick("CLAY",point,size);
                 break;
             case STEEL:
-                out = new SteelBrick(point,size);
+                out = brickFactory.getBrick("STEEL",point,size);
                 break;
             case CEMENT:
-                out = new CementBrick(point, size);
+                out = brickFactory.getBrick("CEMENT",point, size);
                 break;
             case FAST_BRICK:
                 //out = new FastBrick(point, size, wall);
-                out = new FastBrick(point, size);
+                out = brickFactory.getBrick("FAST_BRICK",point, size);
                 break;
             case SLOW_BRICK:
                 //out = new SlowBrick(point,size, wall);
-                out = new SlowBrick(point,size);
+                out = brickFactory.getBrick("SLOW_BRICK",point,size);
                 break;
             default:
                 throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
