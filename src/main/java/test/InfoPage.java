@@ -55,7 +55,12 @@ public class InfoPage extends JFrame implements ActionListener {
         text = text + "1. Move LEFT using \"A\" key.<br/>";
         text = text + "2. Move RIGHT using \"D\" key.<br/>";
         text = text + "3. You can pause the game using the SPACEBAR.<br/>";
-        text = text + "4. You can view the debug console by pressing SHIFT+ALT+F1.<br/><br/><br/>";
+        text = text + "4. You can view the debug console by pressing SHIFT+ALT+F1.<br/><br/>";
+
+        text = text + "You can adjust the speed on debug console. <br/>";
+        text = text + "The slider on the left is the speed of ball in x direction. <br/>";
+        text = text + "The slider on the right is the speed of ball in y direction. <br/>";
+        text = text + "Adjust accordingly and plan your strategy to win your game :-)<br/><br/><br/>";
 
         text = text + "Enjoy your game =)";
 

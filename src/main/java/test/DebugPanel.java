@@ -64,14 +64,15 @@ public class DebugPanel extends JPanel {
     private JButton makeButton(String title, ActionListener e){
         JButton out = new JButton(title);
         out.addActionListener(e);
-        return  out;
+        return out;
     }
 
     private JSlider makeSlider(int min, int max, ChangeListener e){
         JSlider out = new JSlider(min,max);
-        out.setMajorTickSpacing(1);
-        out.setSnapToTicks(true);
         out.setPaintTicks(true);
+        out.setMajorTickSpacing(1);
+        out.setPaintLabels(true); //show speed of ball on sliders
+        out.setSnapToTicks(true);
         out.addChangeListener(e);
         return out;
     }
