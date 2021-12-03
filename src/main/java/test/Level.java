@@ -15,7 +15,7 @@ public class Level {
     private Brick[][] levels;
     private int level;
 
-    private Wall wall;
+    private static Wall wall;
     private BrickFactory brickFactory;
 
     public Level(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Wall wall){
@@ -158,4 +158,7 @@ public class Level {
         return  out;
     }
 
+    public static Wall getWall(){
+        return wall;
+    }
 }
