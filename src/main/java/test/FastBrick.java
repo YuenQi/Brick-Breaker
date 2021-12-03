@@ -11,24 +11,20 @@ public class FastBrick extends Brick {
     private static final Color BORDER_COLOR = new Color(0x1815bd);
     private static final int FAST_BRICK_STRENGTH = 1;
 
-    private Wall wall;
-
-    //public FastBrick(Point point, Dimension size, Wall wall){
     public FastBrick(Point point, Dimension size){
         super(NAME,point,size, BORDER_COLOR, INNER_COLOR,FAST_BRICK_STRENGTH);
-        //this.wall = wall;
     }
 
-//    @Override
-//    public boolean setImpact(Point2D point , int dir){
-//        if(super.isBroken())
-//            return false;
-//        else {
-//            impact();
-//            makeBallSpeedFaster();
-//        }
-//        return super.isBroken();
-//    }
+    @Override
+    public boolean setImpact(Point2D point , int dir){
+        if(super.isBroken())
+            return false;
+        else {
+            impact();
+            makeBallSpeedFaster();
+        }
+        return super.isBroken();
+    }
 
     /**
      * This method will set the speed of the ball to 5
@@ -37,8 +33,8 @@ public class FastBrick extends Brick {
      */
     private void makeBallSpeedFaster() {
         if (super.isBroken()){
-            wall.setBallXSpeed(5);
-            wall.setBallYSpeed(5);
+            Level.getWall().setBallXSpeed(4);
+            Level.getWall().setBallYSpeed(3);
         }
     }
 
