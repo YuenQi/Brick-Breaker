@@ -19,7 +19,12 @@ package test;
 
 import java.awt.*;
 
-
+/**
+ * This is the Main Class of Brick Breaker game
+ * @author Heng Yuen Qi
+ * @version 2.0
+ * @since 30/11/2021
+ */
 public class GraphicsMain {
 
     public static void main(String[] args){
