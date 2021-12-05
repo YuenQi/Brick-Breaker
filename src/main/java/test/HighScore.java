@@ -6,11 +6,11 @@ import java.awt.event.*;
 
 public class HighScore extends JFrame implements ActionListener {
 
-    JButton quitGameButton;
-    JLabel label1;
-    JLabel label2;
-    JLabel label3;
-    JLabel label4;
+    private JButton quitGameButton;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
+    private JLabel label4;
     private Wall wall;
     private String highScoreRecord;
 
