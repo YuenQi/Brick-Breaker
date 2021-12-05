@@ -93,6 +93,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             timeMessage = String.format("Time: %02d minute(s) %02d second(s)", timer.getMinutes(), timer.getSeconds());
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
+                    wall.reward();
                     wall.checkScore();
                     wall.wallReset();
                     wall.resetScore();

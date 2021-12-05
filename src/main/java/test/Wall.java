@@ -42,7 +42,11 @@ public class Wall {
     private int score = 0;
     private String highScore = "";
 
+    private GameTimer timer;
+
     public Wall(Rectangle drawArea, Point ballPos){
+
+        timer = new GameTimer();
 
         this.startPoint = new Point(ballPos);
 
@@ -61,6 +65,31 @@ public class Wall {
         {
             //initialise high score
             highScore = this.readHighScore();
+        }
+
+    }
+
+    /**
+     * This method is to give additional reward to user.
+     *
+     * The reward is give as follows:
+     * 1. If the user takes less than 6 minutes to finish the
+     * game and the number of brick broken is more than 120, reward
+     * additional 10 points.
+     * 2. If the user takes less than 3 minutes to finish the
+     * game and the number of brick broken is more than 50, reward
+     * additional 5 points.
+     * 3. If the user takes less than 1 minute to finish the
+     * game and the number of brick broken is more than 20, reward
+     * additional 3 points.
+     */
+    public void reward() {
+        if (timer.getMinutes() < 6 && score > 120){
+            score += 10;
+        } else if (timer.getMinutes() < 3 && score > 50){
+            score += 5;
+        } else if (timer.getMinutes() < 1 && score > 20){
+            score += 3;
         }
     }
 
@@ -126,7 +155,7 @@ public class Wall {
         else if(ball.getPosition().getY() > area.getY() + area.getHeight()){
             ballCount--;
             ballLost = true;
-            score-=5; //PENALTY: if player can't catch the ball, deduct 5 points
+            score -= 3; //PENALTY: if player can't catch the ball, deduct 3 points
         }
     }
 
