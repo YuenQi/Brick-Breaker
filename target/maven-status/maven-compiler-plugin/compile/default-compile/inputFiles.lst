@@ -1,11 +1,15 @@
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\GraphicsMain.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\Player.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\Crack.java
+D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\BrickFactory.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\HomeMenu.java
+D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\HighScore.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\InfoPage.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\DebugPanel.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\Brick.java
+D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\GameTimer.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\Ball.java
+D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\BallFactory.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\SteelBrick.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\CementBrick.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\FastBrick.java
@@ -16,3 +20,4 @@ D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcy
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\SlowBrick.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\GameBoard.java
 D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\GameFrame.java
+D:\! Nottingham\Y2 Autumn Sem\Developing Maintenable Software\CW\COMP2042_CW_hcyyh1\src\main\java\test\Level.java
