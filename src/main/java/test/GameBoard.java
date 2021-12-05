@@ -96,7 +96,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     wall.reward();
                     wall.checkScore();
                     wall.wallReset();
-                    wall.resetScore();
                     highScore = new HighScore(wall);
                     message = "Game over";
                     timer.resetTimer();
@@ -116,7 +115,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 else{
                     message = "ALL WALLS DESTROYED";
                     wall.checkScore();
-                    wall.resetScore();
                     timer.resetTimer();
                     gameTimer.stop();
                 }

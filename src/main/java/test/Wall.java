@@ -341,10 +341,6 @@ public class Wall {
         }
     }
 
-    public void resetScore() {
-        score = 0;
-    }
-
     public String getHighScore() {
         return highScore;
     }
