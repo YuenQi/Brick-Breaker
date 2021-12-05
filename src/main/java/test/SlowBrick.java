@@ -45,7 +45,7 @@ public class SlowBrick extends Brick {
 
     @Override
     public Shape getBrick() {
-        return super.getBrickFace();
+        return super.brickFace;
     }
 
 }

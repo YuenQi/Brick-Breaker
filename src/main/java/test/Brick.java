@@ -7,8 +7,13 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 /**
- * Created by filippo on 04/09/16.
- *
+ * This is an abstract Brick class which consists of
+ * two abstract methods (makeBrickFace and getBrick)
+ * that must be implemented by its subclass if its subclass is not
+ * abstract class.
+ * It also consists of non-abstract method which is used to set
+ * impact and find impact. There are also non-abstract method to
+ * define color and state (broken / not broken) of brick.
  */
 abstract public class Brick  {
 
@@ -25,7 +30,11 @@ abstract public class Brick  {
 
     private String name;
 
-    private Shape brickFace;
+    /*
+    make the access modifier of brickFace protected so that its child
+    class and the class inside the same package with Brick class can use this variable
+     */
+    protected Shape brickFace;
 
     private Color border;
     private Color inner;
@@ -35,6 +44,16 @@ abstract public class Brick  {
 
     private boolean broken;
 
+    /**
+     * This is a constructor which initialises variables of brick.
+     *
+     * @param name name of brick
+     * @param pos point (x-coordinate and y-coordinate) to draw the brick
+     * @param size size (width and height) of brick
+     * @param border border color of brick
+     * @param inner inner color of brick
+     * @param strength strength of brick (need to hit how many times in order to break the brick)
+     */
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
         rnd = new Random();
         broken = false;
@@ -43,31 +62,66 @@ abstract public class Brick  {
         this.border = border;
         this.inner = inner;
         this.fullStrength = this.strength = strength;
-
     }
 
+    /**
+     * This method is to provide signature (return type,
+     * parameter list) for subclass of Brick which is not abstract
+     * to implement the method to make a brick.
+     *
+     * @param pos point (x-coordinate and y-coordinate) to draw the brick
+     * @param size size (width and height) of brick
+     * @return a brick which is of type Shape
+     */
     protected abstract Shape makeBrickFace(Point pos,Dimension size);
 
-    public  boolean setImpact(Point2D point , int dir){
+    /**
+     * This method is to set impact on brick.
+     *
+     * @param point point at which the ball hits the brick
+     * @param dir direction of crack of brick (if there is crack)
+     * @return state of brick (broken / not broken)
+     */
+    public boolean setImpact(Point2D point , int dir){
         if(broken)
             return false;
         impact();
         return  broken;
     }
 
+    /**
+     * This method is to provide signature (return type,
+     * parameter list) for subclass of Brick which is not abstract
+     * to implement the method to return a brick to the calling method.
+     *
+     * @return brick of type Shape
+     */
     public abstract Shape getBrick();
 
-
-
+    /**
+     * This method is to return border color of brick to the calling method.
+     *
+     * @return border color of brick
+     */
     public Color getBorderColor(){
         return  border;
     }
 
+    /**
+     * This method is to return inner color of brick to the calling method.
+     *
+     * @return inner color of brick
+     */
     public Color getInnerColor(){
         return inner;
     }
 
-
+    /**
+     * This method is to find direction of impact of ball on the brick.
+     *
+     * @param b ball that hits the brick
+     * @return direction of impact of ball on the brick
+     */
     public final int findImpact(Ball b){
         if(broken)
             return 0;
@@ -83,27 +137,41 @@ abstract public class Brick  {
         return out;
     }
 
+    /**
+     * This method is to check is the brick is broken or not.
+     *
+     * @return state (broken or not broken) of brick
+     */
     public final boolean isBroken(){
         return broken;
     }
 
+    /**
+     * This method is to reset the brick.
+     * Brick is reset to the not broken state and the
+     * strength of brick is restored to its original
+     * full strength.
+     */
     public void repair() {
         broken = false;
         strength = fullStrength;
     }
 
+    /**
+     * This method is to reduce strength of brick.
+     * If strength is reduced to 0, set broken state of brick to true.
+     */
     public void impact(){
         strength--;
         broken = (strength == 0);
     }
 
-    public Shape getBrickFace() {
-        return brickFace;
-    }
-
+    /**
+     * This method is to return a random value to the calling method.
+     *
+     * @return random value generated
+     */
     public static Random getRnd() {
         return rnd;
     }
-
-
 }

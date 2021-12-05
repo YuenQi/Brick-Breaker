@@ -45,6 +45,6 @@ public class FastBrick extends Brick {
 
     @Override
     public Shape getBrick() {
-        return super.getBrickFace();
+        return super.brickFace;
     }
 }

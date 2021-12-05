@@ -45,7 +45,7 @@ public class Crack{
     }
 
     protected void makeCrack(Point2D point, int direction){
-        Rectangle bounds = brick.getBrickFace().getBounds();
+        Rectangle bounds = brick.brickFace.getBounds();
 
         Point impact = new Point((int)point.getX(),(int)point.getY());
         Point start = new Point();
@@ -119,6 +119,11 @@ public class Crack{
         crack.append(path,true);
     }
 
+    /**
+     *
+     * @param bound a random fixed value to change the y-coordinate to make crack
+     * @return
+     */
     private int randomInBounds(int bound){
         int n = (bound * 2) + 1;
         return brick.getRnd().nextInt(n) - bound;
