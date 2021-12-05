@@ -173,10 +173,19 @@ public class Wall {
                 //Horizontal Impact
                 case Brick.LEFT_IMPACT:
                     ball.reverseX();
-                    return b.setImpact(ball.getRight(),Crack.RIGHT);
+                    /*
+                    REFACTOR: change Crack.RIGHT to Crack.LEFT so that
+                    crack can be made when the ball hits the left side of the brick
+                     */
+                    return b.setImpact(ball.getRight(),Crack.LEFT);
                 case Brick.RIGHT_IMPACT:
                     ball.reverseX();
-                    return b.setImpact(ball.getLeft(),Crack.LEFT);
+                    /*
+                    REFACTOR: change Crack.LEFT to Crack.RIGHT so that
+                    crack can be made when the ball hits the right side of the brick
+                     */
+                    return b.setImpact(ball.getLeft(),Crack.RIGHT);
+
             }
         }
         return false;
