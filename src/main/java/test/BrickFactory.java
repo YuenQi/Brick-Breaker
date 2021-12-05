@@ -2,8 +2,19 @@ package test;
 
 import java.awt.*;
 
+/**
+ * This class abstracts the brick object instantiation process.
+ */
 public class BrickFactory {
 
+    /**
+     * This method is to return brick object to the calling method.
+     *
+     * @param brickType type of brick
+     * @param point point (x-coordinate and y-coordinate) to draw the brick
+     * @param size size (width and height) of brick
+     * @return brick object created
+     */
     public Brick getBrick(String brickType, Point point, Dimension size){
         if (brickType == null)
             return null;
