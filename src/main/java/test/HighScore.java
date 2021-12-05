@@ -56,7 +56,6 @@ public class HighScore extends JFrame implements ActionListener {
 
         label2=new JLabel();
         label2.setText(Integer.toString(wall.getScore()));
-        System.out.println(wall.getScore());
         label2.setForeground(Color.WHITE);
         label2.setBounds(220,105,100,50);
         label2.setFont(new Font(null, Font.PLAIN, 20));
