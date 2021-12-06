@@ -30,9 +30,9 @@ public class CementBrick extends Brick {
     }
 
     /**
-     * This method is to return brick that has been created
-     * using the specified point and size of type Shape to
-     * the calling method.
+     * This method is to make a brick and return the brick
+     * that has been created using the specified point and
+     * size of type Shape to the calling method.
      *
      * @param pos point (x-coordinate and y-coordinate) to draw the brick
      * @param size size (width and height) of brick

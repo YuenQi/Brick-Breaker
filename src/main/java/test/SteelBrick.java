@@ -21,7 +21,9 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-
+/**
+ * This is SteelBrick class which inherits Brick class.
+ */
 public class SteelBrick extends Brick {
 
     private static final String NAME = "Steel Brick";
@@ -33,23 +35,49 @@ public class SteelBrick extends Brick {
     private Random rnd;
     private Shape brickFace;
 
+    /**
+     * This is a constructor which initialises variables of steel brick.
+     *
+     * @param point point (x-coordinate and y-coordinate) to draw the brick
+     * @param size size (width and height) of brick
+     */
     public SteelBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         rnd = new Random();
         brickFace = super.brickFace;
     }
 
-
+    /**
+     * This method is to make a brick and return the brick
+     * that has been created using the specified point and
+     * size of type Shape to the calling method.
+     *
+     * @param pos point (x-coordinate and y-coordinate) to draw the brick
+     * @param size size (width and height) of brick
+     * @return brick that has been created using the specified point and size of type Shape
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * This method is to return a brick to the calling method.
+     *
+     * @return brick of type Shape
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * This method is to set impact on brick.
+     *
+     * @param point point at which the ball hits the brick
+     * @param dir direction of crack of brick (if there is crack)
+     * @return state of brick (broken / not broken)
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
@@ -57,10 +85,14 @@ public class SteelBrick extends Brick {
         return  super.isBroken();
     }
 
+    /**
+     * This method is to reduce strength of brick if the random number
+     * generated is less than the broken probability of steel brick.
+     * If strength is reduced to 0, set broken state of brick to true.
+     */
     public void impact(){
         if(rnd.nextDouble() < STEEL_PROBABILITY){
             super.impact();
         }
     }
-
 }
