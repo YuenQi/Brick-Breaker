@@ -22,6 +22,10 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * This is a DebugPanel class which acts as a container to put the buttons and
+ * sliders inside.
+ */
 public class DebugPanel extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;
@@ -35,6 +39,12 @@ public class DebugPanel extends JPanel {
     private Wall wall;
     private Level level;
 
+    /**
+     * This is a constructor to initialise some variables of DebugPanel class.
+     *
+     * @param wall Wall object
+     * @param level Level object
+     */
     public DebugPanel(Wall wall, Level level){
 
         this.wall = wall;
@@ -53,33 +63,66 @@ public class DebugPanel extends JPanel {
 
         this.add(ballXSpeed);
         this.add(ballYSpeed);
-
     }
 
+    /**
+     * This method is to set background color of this DebugPanel container to white
+     * and set the layout manager for this container as GridLayout with 2 rows and 2 columns.
+     */
     private void initialize(){
         this.setBackground(DEF_BKG);
         this.setLayout(new GridLayout(2,2));
     }
 
+    /**
+     * This method is to create a button with text specified,
+     * add an ActionListener to the button created and return the button
+     * to the calling method.
+     *
+     * @param title text inside button
+     * @param e listener for receiving action events
+     * @return button with text specified
+     */
     private JButton makeButton(String title, ActionListener e){
         JButton out = new JButton(title);
         out.addActionListener(e);
         return out;
     }
 
+    /**
+     * This method is to create a horizontal slider using the specified minimum value
+     * and maximum value, add a ChangeListener to the slider created and return the
+     * slider to the calling method.
+     *
+     * @param min minimum value of the slider
+     * @param max maximum value of the slider
+     * @param e listener which determines if a state has changed in the event source
+     * @return horizontal slider with specified minimum value and maximum value
+     */
     private JSlider makeSlider(int min, int max, ChangeListener e){
         JSlider out = new JSlider(min,max);
         out.setPaintTicks(true);
         out.setMajorTickSpacing(1);
-        out.setPaintLabels(true); //show speed of ball on sliders
+        /*
+        ADDITION: show speed of ball on sliders so that user
+        can adjust the speed easily and can adjust accordingly
+        to find his / her strategy to win the game
+         */
+        out.setPaintLabels(true);
         out.setSnapToTicks(true);
         out.addChangeListener(e);
         return out;
     }
 
+    /**
+     * This method is to set the speed of ball in x and y direction
+     * according to the x and y value received.
+     *
+     * @param x speed of ball in x direction
+     * @param y speed of ball in y direction
+     */
     public void setValues(int x,int y){
         ballXSpeed.setValue(x);
         ballYSpeed.setValue(y);
     }
-
 }

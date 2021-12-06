@@ -21,7 +21,9 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-
+/**
+ * This is Player class to define movement, impact and design of player bar which is used to catch the ball.
+ */
 public class Player {
 
 
@@ -36,16 +38,29 @@ public class Player {
     private int min;
     private int max;
 
-
+    /**
+     * This is a constructor to initialise some variables in Player class.
+     *
+     * @param ballPoint center point of ball
+     * @param width width of player bar
+     * @param height height of player bar
+     * @param container draw area to draw the player bar
+     */
     public Player(Point ballPoint,int width,int height,Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
         playerFace = makeRectangle(width, height);
         min = container.x + (width / 2);
         max = min + container.width - width;
-
     }
 
+    /**
+     * This method is to make player bar.
+     *
+     * @param width width of player bar
+     * @param height height of player bar
+     * @return player bar that has been made
+     */
     private Rectangle makeRectangle(int width,int height){
         Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
         return  new Rectangle(p,new Dimension(width,height));
@@ -53,15 +68,18 @@ public class Player {
 
     /**
      * This method returns true if the ball touches the player, i.e.
-     * the bottom of the ball and the centre of the ball touches the player.
+     * the bottom of the ball and the centre of the ball touches the player bar.
      *
-     * @param b ball object
-     * @return true is returned if the centre and bottom of the ball touches the player
+     * @param b Ball object
+     * @return true is returned if the centre and bottom of the ball touches the player bar
      */
     public boolean impact(Ball b){
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDown()) ;
     }
 
+    /**
+     * This method is used to move the player bar.
+     */
     public void move(){
         double x = ballPoint.getX() + moveAmount;
         if(x < min || x > max)
@@ -70,19 +88,33 @@ public class Player {
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+    /**
+     * This method moves the player bar to the left.
+     */
     public void moveLeft(){
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
-    //REFACTOR: change movRight() to moveRight()
-    public void moveRight(){
+
+    /**
+     * This method moves the player bar to the right.
+     */
+    public void moveRight(){ //REFACTOR: change movRight() to moveRight()
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * This method stops the movement of player bar.
+     */
     public void stop(){
         moveAmount = 0;
     }
 
+    /**
+     * This method returns player bar to the calling method.
+     *
+     * @return player bar
+     */
     public Shape getPlayerFace(){
         return  playerFace;
     }

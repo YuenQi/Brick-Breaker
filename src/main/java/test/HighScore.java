@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * This is HighScore class which displays current score and high score board on the screen.
+ */
 public class HighScore extends JFrame implements ActionListener {
 
     private static final int FRAME_WIDTH = 450;
@@ -19,21 +22,19 @@ public class HighScore extends JFrame implements ActionListener {
     private ImageIcon gameOver;
     private JLabel background;
 
+    /**
+     * This is a constructor to initialise some variables of HighScore class
+     * and designs this frame.
+     *
+     * @param wall Wall object
+     */
     public HighScore(Wall wall){
 
         this.wall = wall;
         highScoreRecord = wall.getHighScore();
         createQuitGameButton();
         displayText();
-
-        gameOver = new ImageIcon("src/main/resources/gameOver.jpeg");
-        background = new JLabel(gameOver);
-        background.setSize(FRAME_WIDTH,FRAME_HEIGHT);
-        background.add(label1);
-        background.add(label2);
-        background.add(label3);
-        background.add(label4);
-        background.add(quitGameButton);
+        addBackgroundImage();
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(FRAME_WIDTH,FRAME_HEIGHT);
@@ -44,6 +45,23 @@ public class HighScore extends JFrame implements ActionListener {
         this.add(background);
     }
 
+    /**
+     * This method adds background image to this frame.
+     */
+    private void addBackgroundImage() {
+        gameOver = new ImageIcon("src/main/resources/gameOver.jpeg");
+        background = new JLabel(gameOver);
+        background.setSize(FRAME_WIDTH,FRAME_HEIGHT);
+        background.add(label1);
+        background.add(label2);
+        background.add(label3);
+        background.add(label4);
+        background.add(quitGameButton);
+    }
+
+    /**
+     * This method displays text that will be shown on this frame.
+     */
     private void displayText() {
         label1 = new JLabel();
 
@@ -73,6 +91,10 @@ public class HighScore extends JFrame implements ActionListener {
         label4.setFont(new Font(null, Font.PLAIN, 20));
     }
 
+    /**
+     * This method creates a quit game button
+     * and adds ActionListener to the button.
+     */
     private void createQuitGameButton() {
         quitGameButton = new JButton("QUIT GAME");
         quitGameButton.setBounds(125,230,200, 30);
@@ -84,6 +106,12 @@ public class HighScore extends JFrame implements ActionListener {
         quitGameButton.addActionListener(this);
     }
 
+    /**
+     * This method terminates the program if user clicks the quit game button.
+     *
+     * @param e a semantic event which indicates that a component-defined action occurred
+     *          (generated when the button is clicked)
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == quitGameButton){

@@ -2,6 +2,9 @@ package test;
 
 import java.awt.*;
 
+/**
+ * This is Level class to define different levels in this game.
+ */
 public class Level {
 
     private static final int LEVELS_COUNT = 5;
@@ -18,12 +21,31 @@ public class Level {
     private static Wall wall;
     private BrickFactory brickFactory = new BrickFactory();
 
+    /**
+     * This is a constructor to initialise some variables in Level class.
+     *
+     * @param drawArea draw area to draw all the bricks
+     * @param brickCount number of bricks
+     * @param lineCount row of bricks to be drawn
+     * @param brickDimensionRatio width of brick : height of brick ratio
+     * @param wall Wall object
+     */
     public Level(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Wall wall){
         levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
         level = 0;
         this.wall = wall;
     }
 
+    /**
+     * This method is to make a level which consists of only 1 type of brick.
+     *
+     * @param drawArea draw area to draw the bricks
+     * @param brickCnt number of bricks
+     * @param lineCnt row of bricks to be drawn
+     * @param brickSizeRatio width of brick : height of brick ratio
+     * @param type type of brick
+     * @return a level which consists of the drawn bricks
+     */
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -64,6 +86,17 @@ public class Level {
         return tmp;
     }
 
+    /**
+     * This method is to make a level which consists of 2 types of brick.
+     *
+     * @param drawArea draw area to draw the bricks
+     * @param brickCnt number of bricks
+     * @param lineCnt row of bricks to be drawn
+     * @param brickSizeRatio width of brick : height of brick ratio
+     * @param typeA first type of brick
+     * @param typeB second type of brick
+     * @return a level which consists of the drawn bricks
+     */
     private Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -109,6 +142,14 @@ public class Level {
         return tmp;
     }
 
+    /**
+     * This method is to make levels (either single type or chessboard type).
+     *
+     * @param brickCount number of bricks
+     * @param lineCount row of bricks to be drawn
+     * @param brickDimensionRatio width of brick : height of brick ratio
+     * @return levels which consist of the drawn bricks
+     */
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
@@ -119,19 +160,33 @@ public class Level {
         return tmp;
     }
 
+    /**
+     * This method draw bricks and set brick count if there is next level.
+     */
     public void nextLevel(){
-//        bricks = levels[level++];
-//        this.brickCount = bricks.length;
         if (hasLevel()) {
             wall.setBricks(levels[level++]);
             wall.setBrickCount(wall.getBricks().length);
         }
     }
 
+    /**
+     * This method checks if there is another level in this game.
+     *
+     * @return whether there is another level
+     */
     public boolean hasLevel(){
         return level < levels.length;
     }
 
+    /**
+     * This method makes bricks of different types.
+     *
+     * @param point point (x-coordinate and y-coordinate) to start drawing the brick
+     * @param size size (width and height) of brick
+     * @param type type of brick to be made
+     * @return brick that has been made
+     */
     private Brick makeBrick(Point point, Dimension size, int type){
         Brick out;
         switch(type){
@@ -156,6 +211,11 @@ public class Level {
         return  out;
     }
 
+    /**
+     * This method is to return Wall object to the calling method.
+     *
+     * @return Wall object
+     */
     public static Wall getWall(){
         return wall;
     }

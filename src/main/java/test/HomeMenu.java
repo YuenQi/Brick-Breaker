@@ -29,6 +29,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This is HomeMenu class which displays home menu.
+ */
 public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String GREETINGS = "Welcome to:";
@@ -61,6 +64,13 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private BufferedImage background = null;
 
+    /**
+     * This is a constructor to design home menu, add MouseListener,
+     * MouseMotionListener and initialise some variables in HomeMenu class.
+     *
+     * @param owner GameFrame object
+     * @param area width and height of home menu
+     */
     public HomeMenu(GameFrame owner,Dimension area){
 
         this.setFocusable(true);
@@ -83,11 +93,22 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
     }
 
-    //Invoked by Swing to draw components
-    public void paint(Graphics g){
+    /**
+     * This method calls method to draw the home menu.
+     *
+     * @param g Graphics object which is used to render output
+     *          (can derive Graphics2D object from this Graphics object
+     *          in order to render output)
+     */
+    public void paint(Graphics g){ //Invoked by Swing to draw components
         drawMenu((Graphics2D)g);
     }
 
+    /**
+     * This method is to draw home menu.
+     *
+     * @param g2d Graphics2D object
+     */
     public void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
@@ -115,6 +136,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.setColor(prevColor);
     }
 
+    /**
+     * This method displays a background image on the home menu screen.
+     *
+     * @param g2d Graphics2D object
+     */
     private void drawContainer(Graphics2D g2d){
 
         //ADDITION: A start screen displaying a picture related to the game
@@ -133,6 +159,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.drawImage(background, 0,0,450,300,null);
     }
 
+    /**
+     * This method draws text on the home menu screen.
+     *
+     * @param g2d Graphics2D object
+     */
     private void drawText(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -169,6 +200,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.drawString(CREDITS,sX,sY);
     }
 
+    /**
+     * This method draws button on the home menu screen.
+     *
+     * @param g2d Graphics2D object
+     */
     private void drawButton(Graphics2D g2d){
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -268,6 +304,18 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * This method is used to define some actions performed when
+     * the mouse button has been clicked (pressed and released) on this component.
+     * The actions are as followed:
+     * 1. If the mouse button clicks on the so-called "Start button", display game board.
+     * 2. If the mouse button clicks on the so-called "Exit button", terminates this program.
+     * 3. If the mouse button clicks on the so-called "Info button", display the InfoPage Window.
+     *
+     * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
+     *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
+     *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -279,11 +327,22 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             System.exit(0);
         }
         else if(infoButton.contains(p)){
-            //owner.enableInfoPage();
             infoPage = new InfoPage(owner);
         }
     }
 
+    /**
+     * This method is used to define some actions performed when
+     * the mouse button has been pressed on this component.
+     * The actions are as followed:
+     * 1. If the mouse button clicks on the so-called "Start button", repaint the start button.
+     * 2. If the mouse button clicks on the so-called "Exit button", repaint the exit button.
+     * 3. If the mouse button clicks on the so-called "Info button", repaint the info button.
+     *
+     * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
+     *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
+     *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -301,6 +360,18 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * This method is used to define some actions performed when
+     * the mouse button has been released on this component.
+     * The actions are as followed:
+     * 1. If the mouse button clicks on the so-called "Start button", repaint the start button.
+     * 2. If the mouse button clicks on the so-called "Exit button", repaint the exit button.
+     * 3. If the mouse button clicks on the so-called "Info button", repaint the info button.
+     *
+     * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
+     *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
+     *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if(startClicked){
@@ -317,26 +388,62 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * This method is used to define some actions performed when
+     * the mouse enters this component but
+     * it does nothing in this class as no implementation is provided.
+     *
+     * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
+     *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
+     *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
+     */
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * This method is used to define some actions performed when
+     * the mouse exits this component but
+     * it does nothing in this class as no implementation is provided.
+     *
+     * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
+     *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
+     *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
+     */
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 
     }
 
-
+    /**
+     * This method is used to define some actions performed when
+     * a mouse button is pressed on this component and then dragged but
+     * it does nothing in this class as no implementation is provided.
+     *
+     * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
+     *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
+     *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
+     */
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * This method is used to define some actions performed when
+     * the mouse cursor has been moved onto this component but no buttons have been pushed.
+     * When mouse cursor move to the so-called "Start button", "Exit button" ot "Info button",
+     * set the cursor image to hand cursor, otherwise, set the cursor image as the default cursor.
+     *
+     * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
+     *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
+     *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(startButton.contains(p) || exitButton.contains(p))
+        if(startButton.contains(p) || exitButton.contains(p) || infoButton.contains(p))
             this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else
             this.setCursor(Cursor.getDefaultCursor());

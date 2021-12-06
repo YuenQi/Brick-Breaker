@@ -27,6 +27,12 @@ import java.awt.*;
  */
 public class GraphicsMain {
 
+    /**
+     * This is the starting point for JVM to start execution of a Java program.
+     * It creates GameFrame object and initialise it accordingly.
+     *
+     * @param args command line arguments in the form of string values
+     */
     public static void main(String[] args){
         EventQueue.invokeLater(() -> new GameFrame().initialize());
     }

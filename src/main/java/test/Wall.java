@@ -22,6 +22,9 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.*;
 
+/**
+ * This is Wall class which handles most of the things happen to the wall.
+ */
 public class Wall {
 
     private Rectangle area;
@@ -44,6 +47,13 @@ public class Wall {
 
     private GameTimer timer;
 
+    /**
+     * This is a constructor to initialise some variables in Wall class.
+     * and create Player object.
+     *
+     * @param drawArea draw area to draw brick / player bar
+     * @param ballPos center point of ball
+     */
     public Wall(Rectangle drawArea, Point ballPos){
 
         timer = new GameTimer();
@@ -102,16 +112,34 @@ public class Wall {
         ball.setSpeed(ballSpeedX,ballSpeedY);
     }
 
+    /**
+     * This method is to make ball.
+     *
+     * @param ballPos center point of ball
+     */
     private void makeBall(Point2D ballPos){
         ballFactory = new BallFactory();
         ball = ballFactory.getBall("RUBBER", ballPos);
     }
 
+    /**
+     * This method moves the player bar and ball.
+     */
     public void move(){
         player.move();
         ball.move();
     }
 
+    /**
+     * This method is to define impacts when the ball hits certain thing.
+     *
+     * The impacts are as followed:
+     * 1. If the ball hits the player bar, reverse the direction of the ball.
+     * 2. If the ball hits the brick, decrement the brick count and reward point.
+     * 3. If the ball hits the border of frame, reverse the direction of the ball.
+     * 4. If the player bar can't catch the ball and the ball goes beyond the frame,
+     * decrement ball count, set ballLost to true and deduct point.
+     */
     public void findImpacts(){
 
         /*
@@ -159,6 +187,11 @@ public class Wall {
         }
     }
 
+    /**
+     * This method is to check if the brick hit is broken or not.
+     *
+     * @return state of brick (broken / not broken)
+     */
     private boolean impactWall(){
         for(Brick b : bricks){
             switch(b.findImpact(ball)) {
@@ -191,6 +224,11 @@ public class Wall {
         return false;
     }
 
+    /**
+     * This method is to check if the ball hits the border of the frame.
+     *
+     * @return is the ball hits the border of the frame
+     */
     private boolean impactBorder(){
         Point2D p = ball.getPosition();//get position of center of ball
         //area refers to drawArea, area.getX() is always 0, area.getWidth() is always 600
@@ -198,22 +236,46 @@ public class Wall {
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
+    /**
+     * This method is to return brick count to the calling method.
+     *
+     * @return brick count
+     */
     public int getBrickCount(){
         return brickCount;
     }
 
+    /**
+     * This method is to set brick count.
+     *
+     * @param brickCount number of brick
+     */
     public void setBrickCount(int brickCount){
         this.brickCount = brickCount;
     }
 
+    /**
+     * This method is to return ball count to the calling method.
+     *
+     * @return number of ball left
+     */
     public int getBallCount(){
         return ballCount;
     }
 
+    /**
+     * This method checks if the ball is lost.
+     *
+     * @return is the ball lost
+     */
     public boolean isBallLost(){
         return ballLost;
     }
 
+    /**
+     * This method resets position of ball and player bar to the original position.
+     * It also reinitialise speed of ball and set ballLost to false.
+     */
     public void ballReset(){
         player.moveTo(startPoint);
         ball.moveTo(startPoint);
@@ -221,6 +283,12 @@ public class Wall {
         ballLost = false;
     }
 
+    /**
+     * This method resets the wall.
+     * Brick is repaired.
+     * Brick count is restored.
+     * Ball count is restored.
+     */
     public void wallReset(){
         for(Brick b : bricks)
             b.repair();
@@ -228,58 +296,110 @@ public class Wall {
         ballCount = 3;
     }
 
+    /**
+     * This method checks if the number of ball left is 0.
+     *
+     * @return whether the number of ball left is 0
+     */
     public boolean ballEnd(){
         return ballCount == 0;
     }
 
+    /**
+     * This method checks if the number of brick left is 0.
+     *
+     * @return whether the number of brick left is 0
+     */
     public boolean isDone(){
         return brickCount == 0;
     }
 
+    /**
+     * This method sets the speed of ball in x direction.
+     *
+     * @param s speed of ball in x direction
+     */
     public void setBallXSpeed(int s){
         ball.setXSpeed(s);
     }
 
+    /**
+     * This method sets the speed of ball in y direction.
+     *
+     * @param s speed of ball in y direction
+     */
     public void setBallYSpeed(int s){
         ball.setYSpeed(s);
     }
 
+    /**
+     * This method resets the number of balls to 3.
+     */
     public void resetBallCount(){
         ballCount = 3;
     }
 
+    /**
+     * This method return bricks created to the calling method.
+     *
+     * @return bricks created
+     */
     public Brick[] getBricks() {
         return bricks;
     }
 
+    /**
+     * This method sets bricks.
+     *
+     * @param bricks bricks
+     */
     public void setBricks(Brick[] bricks) {
         this.bricks = bricks;
     }
 
+    /**
+     * This method returns Ball object to the calling method.
+     *
+     * @return Ball object
+     */
     public Ball getBall() {
         return ball;
     }
 
+    /**
+     * This method sets Ball object.
+     *
+     * @param ball Ball object
+     */
     public void setBall(Ball ball) {
         this.ball = ball;
     }
 
+    /**
+     * This method returns Player object to the calling method.
+     *
+     * @return Player object
+     */
     public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
+    /**
+     * This method returns score to the calling method.
+     *
+     * @return score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * This method read the highest score from a file if the highest score record file exists
+     * and return the string to the calling method.
+     * Otherwise, it return a string "Nobody:0" to the calling method.
+     *
+     * @return highest score record
+     */
     public String readHighScore(){
         FileReader readFile;
         BufferedReader reader = null;
@@ -302,6 +422,11 @@ public class Wall {
         }
     }
 
+    /**
+     * This method checks if the current score is higher than the score stored in the file.
+     * If current score is higher than the score in the file, prompt the user to input
+     * his / her name and write the new highest score record to the file.
+     */
     public void checkScore(){
         if (highScore.equals("")) {
             return;
@@ -350,11 +475,10 @@ public class Wall {
         }
     }
 
+    /**
+     * This method returns the highest score.
+     */
     public String getHighScore() {
         return highScore;
-    }
-
-    public void setHighScore(String highScore) {
-        this.highScore = highScore;
     }
 }

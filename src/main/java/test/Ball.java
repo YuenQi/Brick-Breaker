@@ -10,7 +10,6 @@ import java.awt.geom.RectangularShape;
  * by its subclass if its subclass is not abstract class.
  * It also consists of non-abstract method which defines movement,
  * color and speed of ball.
- *
  */
 abstract public class Ball {
 
