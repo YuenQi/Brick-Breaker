@@ -26,9 +26,9 @@ import java.awt.font.FontRenderContext;
 import java.io.IOException;
 
 /**
- * This is GameBoard class which displays the game board and pause menu if "esc" key is pressed.
+ * This is GameBoardView class which displays the game board and pause menu if "esc" key is pressed.
  */
-public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
+public class GameBoardView extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
     private static final String CONTINUE = "Continue";
     private static final String RESTART = "Restart";
@@ -50,6 +50,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private GameTimer timer;
     private Audio audio;
+    private GameBoardController gameBoardController;
 
     private String message;
     private String scoreMessage;
@@ -68,12 +69,12 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private DebugConsole debugConsole;
 
     /**
-     * This is a constructor which is used to initialise some variables in GameBoard class
+     * This is a constructor which is used to initialise some variables in GameBoardView class
      * as well as creating object of other classes.
      *
      * @param owner GameFrame object
      */
-    public GameBoard(JFrame owner){
+    public GameBoardView(JFrame owner){
         super();
 
         strLen = 0;
@@ -94,6 +95,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         audio = new Audio();
 
         debugConsole = new DebugConsole(owner,wall,level,this);
+        gameBoardController = new GameBoardController(this);
+
         //initialize the first level
         level.nextLevel();
 
@@ -406,34 +409,35 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        switch(keyEvent.getKeyCode()){
-            case KeyEvent.VK_A:
-                wall.getPlayer().moveLeft();
-                break;
-            case KeyEvent.VK_D:
-                wall.getPlayer().moveRight();
-                break;
-            case KeyEvent.VK_ESCAPE:
-                showPauseMenu = !showPauseMenu;
-                timer.setGaming(false);
-                repaint();
-                gameTimer.stop();
-                break;
-            case KeyEvent.VK_SPACE:
-                if(!showPauseMenu)
-                    if(gameTimer.isRunning()) {
-                        gameTimer.stop();
-                        timer.setGaming(false);
-                    }
-                    else
-                        gameTimer.start();
-                break;
-            case KeyEvent.VK_F1:
-                if(keyEvent.isAltDown() && keyEvent.isShiftDown())
-                    debugConsole.setVisible(true);
-            default:
-                wall.getPlayer().stop();
-        }
+//        switch(keyEvent.getKeyCode()){
+//            case KeyEvent.VK_A:
+//                wall.getPlayer().moveLeft();
+//                break;
+//            case KeyEvent.VK_D:
+//                wall.getPlayer().moveRight();
+//                break;
+//            case KeyEvent.VK_ESCAPE:
+//                showPauseMenu = !showPauseMenu;
+//                timer.setGaming(false);
+//                repaint();
+//                gameTimer.stop();
+//                break;
+//            case KeyEvent.VK_SPACE:
+//                if(!showPauseMenu)
+//                    if(gameTimer.isRunning()) {
+//                        gameTimer.stop();
+//                        timer.setGaming(false);
+//                    }
+//                    else
+//                        gameTimer.start();
+//                break;
+//            case KeyEvent.VK_F1:
+//                if(keyEvent.isAltDown() && keyEvent.isShiftDown())
+//                    debugConsole.setVisible(true);
+//            default:
+//                wall.getPlayer().stop();
+//        }
+        gameBoardController.checkKeyPressed(keyEvent);
     }
 
     /**
@@ -464,24 +468,25 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(!showPauseMenu)
-            return;
-        if(continueButtonRect.contains(p)){
-            showPauseMenu = false;
-            repaint();
-        }
-        else if(restartButtonRect.contains(p)){
-            message = "Restarting Game...";
-            timer.resetTimer();
-            wall.ballReset();
-            wall.wallReset();
-            showPauseMenu = false;
-            repaint();
-        }
-        else if(exitButtonRect.contains(p)){
-            System.exit(0);
-        }
+//        Point p = mouseEvent.getPoint();
+//        if(!showPauseMenu)
+//            return;
+//        if(continueButtonRect.contains(p)){
+//            showPauseMenu = false;
+//            repaint();
+//        }
+//        else if(restartButtonRect.contains(p)){
+//            message = "Restarting Game...";
+//            timer.resetTimer();
+//            wall.ballReset();
+//            wall.wallReset();
+//            showPauseMenu = false;
+//            repaint();
+//        }
+//        else if(exitButtonRect.contains(p)){
+//            System.exit(0);
+//        }
+        gameBoardController.checkMouseClicked(mouseEvent);
     }
 
     /**
@@ -569,16 +574,25 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(exitButtonRect != null && showPauseMenu) {
-            if (exitButtonRect.contains(p) || continueButtonRect.contains(p) || restartButtonRect.contains(p))
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            else
-                this.setCursor(Cursor.getDefaultCursor());
-        }
-        else{
-            this.setCursor(Cursor.getDefaultCursor());
-        }
+//        Point p = mouseEvent.getPoint();
+//        if(exitButtonRect != null && showPauseMenu) {
+//            if (exitButtonRect.contains(p) || continueButtonRect.contains(p) || restartButtonRect.contains(p))
+//                this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//            else
+//                this.setCursor(Cursor.getDefaultCursor());
+//        }
+//        else{
+//            this.setCursor(Cursor.getDefaultCursor());
+//        }
+        gameBoardController.checkMouseMoved(mouseEvent);
+    }
+
+    public void setHandCursor(){
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+
+    public void setDefaultCursor(){
+        this.setCursor(Cursor.getDefaultCursor());
     }
 
     /**
@@ -592,4 +606,75 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         repaint();
     }
 
+    public Wall getWall() {
+        return wall;
+    }
+
+    public boolean isShowPauseMenu() {
+        return showPauseMenu;
+    }
+
+    public void setShowPauseMenu(boolean showPauseMenu) {
+        this.showPauseMenu = showPauseMenu;
+    }
+
+    public DebugConsole getDebugConsole() {
+        return debugConsole;
+    }
+
+    public void setDebugConsole(DebugConsole debugConsole) {
+        this.debugConsole = debugConsole;
+    }
+
+    public Timer getGameTimer() {
+        return gameTimer;
+    }
+
+    public void setGameTimer(Timer gameTimer) {
+        this.gameTimer = gameTimer;
+    }
+
+    public GameTimer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(GameTimer timer) {
+        this.timer = timer;
+    }
+
+    public void repaintGameBoard(){
+        repaint();
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Rectangle getContinueButtonRect() {
+        return continueButtonRect;
+    }
+
+    public void setContinueButtonRect(Rectangle continueButtonRect) {
+        this.continueButtonRect = continueButtonRect;
+    }
+
+    public Rectangle getExitButtonRect() {
+        return exitButtonRect;
+    }
+
+    public void setExitButtonRect(Rectangle exitButtonRect) {
+        this.exitButtonRect = exitButtonRect;
+    }
+
+    public Rectangle getRestartButtonRect() {
+        return restartButtonRect;
+    }
+
+    public void setRestartButtonRect(Rectangle restartButtonRect) {
+        this.restartButtonRect = restartButtonRect;
+    }
 }
