@@ -17,10 +17,13 @@
  */
 package test;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
+import java.io.IOException;
 
 /**
  * This is GameBoard class which displays the game board and pause menu if "esc" key is pressed.
@@ -46,6 +49,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private HighScore highScore;
 
     private GameTimer timer;
+    private Audio audio;
 
     private String message;
     private String scoreMessage;
@@ -87,6 +91,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         level = new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3, 6/2, wall);
 
         timer = new GameTimer();
+        audio = new Audio();
 
         debugConsole = new DebugConsole(owner,wall,level,this);
         //initialize the first level
@@ -108,6 +113,16 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     highScore = new HighScore(wall);
                     message = "Game over";
                     timer.resetTimer();
+                    //PENALTY: play booing music when the user loses all the ball
+                    try {
+                        audio.playGameOver();
+                    } catch (UnsupportedAudioFileException ex) {
+                        ex.printStackTrace();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch (LineUnavailableException ex) {
+                        ex.printStackTrace();
+                    }
                 }
                 timer.setGaming(true);
                 wall.ballReset();
@@ -120,12 +135,36 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     wall.ballReset();
                     wall.wallReset();
                     level.nextLevel();
+                    /*
+                    REWARD: when user successfully breaks all the bricks in 1 level,
+                    play a cheering music when he / she successfully goes to next level
+                     */
+                    try {
+                        audio.playNextLevel();
+                    } catch (UnsupportedAudioFileException ex) {
+                        ex.printStackTrace();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch (LineUnavailableException ex) {
+                        ex.printStackTrace();
+                    }
                 }
                 else{
                     message = "ALL WALLS DESTROYED";
+                    wall.reward();
                     wall.checkScore();
                     timer.resetTimer();
                     gameTimer.stop();
+                    //REWARD: when user destroys all the wall, play a cheering music
+                    try {
+                        audio.playAllWallDestroyed();
+                    } catch (UnsupportedAudioFileException ex) {
+                        ex.printStackTrace();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch (LineUnavailableException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
 
