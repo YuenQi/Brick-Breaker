@@ -42,83 +42,62 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
 
     private static final Color BG_COLOR = Color.WHITE;
 
-    private Timer gameTimer;
-
-    private Wall wall;
-    private Level level;
-    private HighScore highScore;
-
-    private GameTimer timer;
-    private Audio audio;
     private GameBoardController gameBoardController;
+    private GameBoardModel gameBoardModel;
 
-    private String message;
-    private String scoreMessage;
-    private String highScoreMessage;
-    private String timeMessage;
-
-    private boolean showPauseMenu;
-
-    private Font menuFont;
-
-    private Rectangle continueButtonRect;
-    private Rectangle exitButtonRect;
-    private Rectangle restartButtonRect;
-    private int strLen;
-
-    private DebugConsole debugConsole;
-
-    /**
+    /*
      * This is a constructor which is used to initialise some variables in GameBoardView class
      * as well as creating object of other classes.
      *
      * @param owner GameFrame object
      */
-    public GameBoardView(JFrame owner){
+    public GameBoardView(GameBoardModel gameBoardModel){
         super();
 
-        strLen = 0;
-        showPauseMenu = false;
+        gameBoardController = new GameBoardController(gameBoardModel, this);
+        this.gameBoardModel = gameBoardModel;
 
-        menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
+        gameBoardModel.setStrLen(0);
+        gameBoardModel.setShowPauseMenu(false);
+
+        gameBoardModel.setMenuFont(new Font("Monospaced",Font.PLAIN,TEXT_SIZE));
 
         this.initialize();
-        message = "";
-        scoreMessage = "";
-        highScoreMessage = "";
-        timeMessage = "";
+        gameBoardModel.setMessage("");
+        gameBoardModel.setScoreMessage("");
+        gameBoardModel.setHighScoreMessage("");
+        gameBoardModel.setTimeMessage("");
 
-        wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),new Point(300,430));
-        level = new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3, 6/2, wall);
+        gameBoardModel.setWall(new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),new Point(300,430)));
 
-        timer = new GameTimer();
-        audio = new Audio();
+        gameBoardModel.setLevel(new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3, 6/2, gameBoardModel.getWall()));
 
-        debugConsole = new DebugConsole(owner,wall,level,this);
-        gameBoardController = new GameBoardController(this);
+        gameBoardModel.setGameTimer(new GameTimer());
+        gameBoardModel.setAudio(new Audio());
+
+        gameBoardModel.setDebugConsole(new DebugConsole(gameBoardModel.getOwner(),gameBoardModel.getWall(),gameBoardModel.getLevel(),this));
 
         //initialize the first level
-        level.nextLevel();
+        gameBoardModel.getLevel().nextLevel();
 
-        gameTimer = new Timer(10,e ->{
-            wall.move();
-            wall.findImpacts();
-            timer.setGaming(true);
-            message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
-            scoreMessage = String.format("Score: %d", wall.getScore());
-            highScoreMessage = "High Score Record: " + wall.readHighScore();
-            timeMessage = String.format("Time: %02d minute(s) %02d second(s)", timer.getMinutes(), timer.getSeconds());
-            if(wall.isBallLost()){
-                if(wall.ballEnd()){
-                    wall.reward();
-                    wall.checkScore();
-                    wall.wallReset();
-                    highScore = new HighScore(wall);
-                    message = "Game over";
-                    timer.resetTimer();
+        gameBoardModel.setTimer(new Timer(10, e ->{
+            gameBoardModel.getWall().move();
+            gameBoardModel.getWall().findImpacts();
+            gameBoardModel.getGameTimer().setGaming(true);
+            gameBoardModel.setMessage(String.format("Bricks: %d Balls %d",gameBoardModel.getWall().getBrickCount(),gameBoardModel.getWall().getBallCount()));
+            gameBoardModel.setScoreMessage(String.format("Score: %d", gameBoardModel.getWall().getScore()));
+            gameBoardModel.setHighScoreMessage("High Score Record: " + gameBoardModel.getWall().readHighScore());
+            if(gameBoardModel.getWall().isBallLost()){
+                if(gameBoardModel.getWall().ballEnd()){
+                    gameBoardModel.getWall().reward();
+                    gameBoardModel.getWall().checkScore();
+                    gameBoardModel.getWall().wallReset();
+                    gameBoardModel.setHighScore(new HighScore(gameBoardModel.getWall()));
+                    gameBoardModel.setMessage("Game over");
+                    gameBoardModel.getGameTimer().resetTimer();
                     //PENALTY: play booing music when the user loses all the ball
                     try {
-                        audio.playGameOver();
+                        gameBoardModel.getAudio().playGameOver();
                     } catch (UnsupportedAudioFileException ex) {
                         ex.printStackTrace();
                     } catch (IOException ex) {
@@ -127,23 +106,23 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
                         ex.printStackTrace();
                     }
                 }
-                timer.setGaming(true);
-                wall.ballReset();
-                gameTimer.stop();
+                gameBoardModel.getGameTimer().setGaming(true);
+                gameBoardModel.getWall().ballReset();
+                gameBoardModel.getTimer().stop();
             }
-            else if(wall.isDone()){
-                if(level.hasLevel()){
-                    message = "Go to Next Level";
-                    gameTimer.stop();
-                    wall.ballReset();
-                    wall.wallReset();
-                    level.nextLevel();
+            else if(gameBoardModel.getWall().isDone()){
+                if(gameBoardModel.getLevel().hasLevel()){
+                    gameBoardModel.setMessage("Go to Next Level");
+                    gameBoardModel.getTimer().stop();
+                    gameBoardModel.getWall().ballReset();
+                    gameBoardModel.getWall().wallReset();
+                    gameBoardModel.getLevel().nextLevel();
                     /*
                     REWARD: when user successfully breaks all the bricks in 1 level,
                     play a cheering music when he / she successfully goes to next level
                      */
                     try {
-                        audio.playNextLevel();
+                        gameBoardModel.getAudio().playNextLevel();
                     } catch (UnsupportedAudioFileException ex) {
                         ex.printStackTrace();
                     } catch (IOException ex) {
@@ -153,14 +132,14 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
                     }
                 }
                 else{
-                    message = "ALL WALLS DESTROYED";
-                    wall.reward();
-                    wall.checkScore();
-                    timer.resetTimer();
-                    gameTimer.stop();
+                    gameBoardModel.setMessage("ALL WALLS DESTROYED");
+                    gameBoardModel.getWall().reward();
+                    gameBoardModel.getWall().checkScore();
+                    gameBoardModel.getGameTimer().resetTimer();
+                    gameBoardModel.getTimer().stop();
                     //REWARD: when user destroys all the wall, play a cheering music
                     try {
-                        audio.playAllWallDestroyed();
+                        gameBoardModel.getAudio().playAllWallDestroyed();
                     } catch (UnsupportedAudioFileException ex) {
                         ex.printStackTrace();
                     } catch (IOException ex) {
@@ -172,7 +151,8 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
             }
 
             repaint();
-        });
+        }));
+
     }
 
     /**
@@ -203,21 +183,21 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
         clear(g2d);
 
         g2d.setColor(Color.BLUE);
-        g2d.drawString(message,250,225);
-        g2d.drawString(timeMessage,215,245);
+        g2d.drawString(gameBoardModel.getMessage(),250,225);
+        g2d.drawString(gameBoardModel.getTimeMessage(),215,245);
         g2d.setColor(Color.BLACK);
-        g2d.drawString(scoreMessage,0,390);
-        g2d.drawString(highScoreMessage,0,410);
+        g2d.drawString(gameBoardModel.getScoreMessage(),0,390);
+        g2d.drawString(gameBoardModel.getHighScoreMessage(),0,410);
 
-        drawBall(wall.getBall(),g2d);
+        drawBall(gameBoardModel.getWall().getBall(),g2d);
 
-        for(Brick b : wall.getBricks())
+        for(Brick b : gameBoardModel.getWall().getBricks())
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
-        drawPlayer(wall.getPlayer(),g2d);
+        drawPlayer(gameBoardModel.getWall().getPlayer(),g2d);
 
-        if(showPauseMenu)
+        if(gameBoardModel.isShowPauseMenu())
             drawMenu(g2d);
 
         Toolkit.getDefaultToolkit().sync();
@@ -335,15 +315,15 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
 
-        g2d.setFont(menuFont);
+        g2d.setFont(gameBoardModel.getMenuFont());
         g2d.setColor(MENU_COLOR);
 
-        if(strLen == 0){
+        if(gameBoardModel.getStrLen() == 0){
             FontRenderContext frc = g2d.getFontRenderContext();
-            strLen = menuFont.getStringBounds(PAUSE,frc).getBounds().width;
+            gameBoardModel.setStrLen(gameBoardModel.getMenuFont().getStringBounds(PAUSE,frc).getBounds().width);
         }
 
-        int x = (this.getWidth() - strLen) / 2;
+        int x = (this.getWidth() - gameBoardModel.getStrLen()) / 2;
         int y = this.getHeight() / 10;
 
         g2d.drawString(PAUSE,x,y);
@@ -351,28 +331,28 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
         x = this.getWidth() / 8;
         y = this.getHeight() / 4;
 
-        if(continueButtonRect == null){
+        if(gameBoardModel.getContinueButtonRect() == null){
             FontRenderContext frc = g2d.getFontRenderContext();
-            continueButtonRect = menuFont.getStringBounds(CONTINUE,frc).getBounds();
-            continueButtonRect.setLocation(x,y-continueButtonRect.height);
+            gameBoardModel.setContinueButtonRect(gameBoardModel.getMenuFont().getStringBounds(CONTINUE,frc).getBounds());
+            gameBoardModel.getContinueButtonRect().setLocation(x,y-gameBoardModel.getContinueButtonRect().height);
         }
 
         g2d.drawString(CONTINUE,x,y);
 
         y *= 2;
 
-        if(restartButtonRect == null){
-            restartButtonRect = (Rectangle) continueButtonRect.clone();
-            restartButtonRect.setLocation(x,y-restartButtonRect.height);
+        if(gameBoardModel.getRestartButtonRect() == null){
+            gameBoardModel.setRestartButtonRect((Rectangle) gameBoardModel.getContinueButtonRect().clone());
+            gameBoardModel.getRestartButtonRect().setLocation(x,y-gameBoardModel.getRestartButtonRect().height);
         }
 
         g2d.drawString(RESTART,x,y);
 
         y *= 3.0/2;
 
-        if(exitButtonRect == null){
-            exitButtonRect = (Rectangle) continueButtonRect.clone();
-            exitButtonRect.setLocation(x,y-exitButtonRect.height);
+        if(gameBoardModel.getExitButtonRect() == null){
+            gameBoardModel.setExitButtonRect((Rectangle) gameBoardModel.getContinueButtonRect().clone());
+            gameBoardModel.getExitButtonRect().setLocation(x,y-gameBoardModel.getExitButtonRect().height);
         }
 
         g2d.drawString(EXIT,x,y);
@@ -409,34 +389,6 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
      */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-//        switch(keyEvent.getKeyCode()){
-//            case KeyEvent.VK_A:
-//                wall.getPlayer().moveLeft();
-//                break;
-//            case KeyEvent.VK_D:
-//                wall.getPlayer().moveRight();
-//                break;
-//            case KeyEvent.VK_ESCAPE:
-//                showPauseMenu = !showPauseMenu;
-//                timer.setGaming(false);
-//                repaint();
-//                gameTimer.stop();
-//                break;
-//            case KeyEvent.VK_SPACE:
-//                if(!showPauseMenu)
-//                    if(gameTimer.isRunning()) {
-//                        gameTimer.stop();
-//                        timer.setGaming(false);
-//                    }
-//                    else
-//                        gameTimer.start();
-//                break;
-//            case KeyEvent.VK_F1:
-//                if(keyEvent.isAltDown() && keyEvent.isShiftDown())
-//                    debugConsole.setVisible(true);
-//            default:
-//                wall.getPlayer().stop();
-//        }
         gameBoardController.checkKeyPressed(keyEvent);
     }
 
@@ -448,7 +400,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
      */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        wall.getPlayer().stop();
+        gameBoardModel.getWall().getPlayer().stop();
     }
 
     /**
@@ -468,24 +420,6 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
      */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-//        Point p = mouseEvent.getPoint();
-//        if(!showPauseMenu)
-//            return;
-//        if(continueButtonRect.contains(p)){
-//            showPauseMenu = false;
-//            repaint();
-//        }
-//        else if(restartButtonRect.contains(p)){
-//            message = "Restarting Game...";
-//            timer.resetTimer();
-//            wall.ballReset();
-//            wall.wallReset();
-//            showPauseMenu = false;
-//            repaint();
-//        }
-//        else if(exitButtonRect.contains(p)){
-//            System.exit(0);
-//        }
         gameBoardController.checkMouseClicked(mouseEvent);
     }
 
@@ -528,7 +462,6 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
      */
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
-
     }
 
     /**
@@ -574,16 +507,6 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
      */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-//        Point p = mouseEvent.getPoint();
-//        if(exitButtonRect != null && showPauseMenu) {
-//            if (exitButtonRect.contains(p) || continueButtonRect.contains(p) || restartButtonRect.contains(p))
-//                this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//            else
-//                this.setCursor(Cursor.getDefaultCursor());
-//        }
-//        else{
-//            this.setCursor(Cursor.getDefaultCursor());
-//        }
         gameBoardController.checkMouseMoved(mouseEvent);
     }
 
@@ -600,81 +523,13 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
      * repaint the game board.
      */
     public void onLostFocus(){
-        gameTimer.stop();
-        timer.setGaming(false);
-        message = "Focus Lost";
-        repaint();
-    }
-
-    public Wall getWall() {
-        return wall;
-    }
-
-    public boolean isShowPauseMenu() {
-        return showPauseMenu;
-    }
-
-    public void setShowPauseMenu(boolean showPauseMenu) {
-        this.showPauseMenu = showPauseMenu;
-    }
-
-    public DebugConsole getDebugConsole() {
-        return debugConsole;
-    }
-
-    public void setDebugConsole(DebugConsole debugConsole) {
-        this.debugConsole = debugConsole;
-    }
-
-    public Timer getGameTimer() {
-        return gameTimer;
-    }
-
-    public void setGameTimer(Timer gameTimer) {
-        this.gameTimer = gameTimer;
-    }
-
-    public GameTimer getTimer() {
-        return timer;
-    }
-
-    public void setTimer(GameTimer timer) {
-        this.timer = timer;
+        gameBoardModel.getTimer().stop();
+        gameBoardModel.getGameTimer().setGaming(false);
+        gameBoardModel.setMessage("Focus Lost");
+        repaintGameBoard();
     }
 
     public void repaintGameBoard(){
         repaint();
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Rectangle getContinueButtonRect() {
-        return continueButtonRect;
-    }
-
-    public void setContinueButtonRect(Rectangle continueButtonRect) {
-        this.continueButtonRect = continueButtonRect;
-    }
-
-    public Rectangle getExitButtonRect() {
-        return exitButtonRect;
-    }
-
-    public void setExitButtonRect(Rectangle exitButtonRect) {
-        this.exitButtonRect = exitButtonRect;
-    }
-
-    public Rectangle getRestartButtonRect() {
-        return restartButtonRect;
-    }
-
-    public void setRestartButtonRect(Rectangle restartButtonRect) {
-        this.restartButtonRect = restartButtonRect;
     }
 }
