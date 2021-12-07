@@ -26,7 +26,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -56,7 +55,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     private Font buttonFont;
 
     private GameFrame owner;
-    private InfoPage infoPage;
+    private InfoPageView infoPageView;
 
     private boolean startClicked;
     private boolean exitClicked;//REFACTOR: change menuClicked to exitClicked
@@ -314,7 +313,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
      * The actions are as followed:
      * 1. If the mouse button clicks on the so-called "Start button", display game board.
      * 2. If the mouse button clicks on the so-called "Exit button", terminates this program.
-     * 3. If the mouse button clicks on the so-called "Info button", display the InfoPage Window.
+     * 3. If the mouse button clicks on the so-called "Info button", display the InfoPageView Window.
      *
      * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
      *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
@@ -331,7 +330,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 //            System.exit(0);
 //        }
 //        else if(infoButton.contains(p)){
-//            infoPage = new InfoPage(owner);
+//            infoPageView = new InfoPageView(owner);
 //        }
         homeMenuController.isMouseClicked(mouseEvent);
     }

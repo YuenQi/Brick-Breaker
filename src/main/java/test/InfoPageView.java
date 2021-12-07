@@ -6,14 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * This is InfoPage class which displays the description of the game and instruction.
+ * This is InfoPageView class which displays the description of the game and instruction.
  */
-public class InfoPage extends JFrame implements ActionListener {
+public class InfoPageView extends JFrame implements ActionListener {
 
     private static final int FRAME_WIDTH = 600;
     private static final int FRAME_HEIGHT = 500;
 
     private JLabel label;
+
     private JButton startButton;
     private JButton backButton;
 
@@ -21,16 +22,18 @@ public class InfoPage extends JFrame implements ActionListener {
     private JLabel background;
 
     private GameFrame owner;
+    private InfoPageController infoPageController;
 
     /**
      * This is a constructor to design info page, add ActionListener,
-     * and initialise some variables in InfoPage class.
+     * and initialise some variables in InfoPageView class.
      *
      * @param owner GameFrame object
      */
-    public InfoPage(GameFrame owner){
+    public InfoPageView(GameFrame owner){
 
         this.owner = owner;
+        infoPageController = new InfoPageController(this);
 
         displayInstruction();
         createStartButton();
@@ -50,7 +53,7 @@ public class InfoPage extends JFrame implements ActionListener {
      * This method adds background image to this frame.
      */
     private void addBackgroundImage() {
-        infoPage = new ImageIcon("src/main/resources/infoPageBackground.jpg");
+        infoPage = new ImageIcon("resources/infoPageBackground.jpg");
         background = new JLabel(infoPage);
         background.setSize(FRAME_WIDTH,FRAME_HEIGHT);
         background.add(label);
@@ -129,12 +132,26 @@ public class InfoPage extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == startButton){
-            dispose();
-            owner.enableGameBoard();
-        } else if(e.getSource() == backButton){
-            dispose();
-            new GameFrame();
-        }
+//        if(e.getSource() == startButton){
+//            dispose();
+//            owner.enableGameBoard();
+//        } else if(e.getSource() == backButton){
+//            dispose();
+//            new GameFrame();
+//        }
+        infoPageController.isActionPerformed(e);
+    }
+
+    public JButton getStartButton() {
+        return startButton;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
+    }
+
+    @Override
+    public GameFrame getOwner() {
+        return owner;
     }
 }

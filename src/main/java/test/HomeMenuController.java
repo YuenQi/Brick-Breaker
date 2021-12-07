@@ -10,7 +10,7 @@ public class HomeMenuController {
     private boolean exitClicked;
     private boolean infoClicked;
 
-    private InfoPage infoPage;
+    private InfoPageView infoPageView;
 
     public HomeMenuController(HomeMenuView homeMenuView) {
         this.homeMenuView = homeMenuView;
@@ -26,7 +26,7 @@ public class HomeMenuController {
             System.exit(0);
         }
         else if(homeMenuView.getInfoButton().contains(p)){
-            infoPage = new InfoPage(homeMenuView.getOwner());
+            infoPageView = new InfoPageView(homeMenuView.getOwner());
         }
 
     }
