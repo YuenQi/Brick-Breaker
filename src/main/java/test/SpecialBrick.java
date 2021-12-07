@@ -15,7 +15,7 @@ public class SpecialBrick extends Brick {
 
     private static final String NAME = "Special Brick";
     private static final Color INNER_COLOR = new Color(0x7de893);
-    private static final Color BORDER_COLOR = new Color(0x03fc35);
+    private static final Color BORDER_COLOR = new Color(0x006b15);
     private static final int SPECIAL_BRICK_STRENGTH = 1;
 
     private GameTimer timer;
