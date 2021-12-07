@@ -6,68 +6,70 @@ import java.awt.event.MouseEvent;
 
 public class GameBoardController {
 
+    private GameBoardModel gameBoardModel;
     private GameBoardView gameBoardView;
 
-    public GameBoardController(GameBoardView gameBoardView){
+    public GameBoardController(GameBoardModel gameBoardModel, GameBoardView gameBoardView){
+        this.gameBoardModel = gameBoardModel;
         this.gameBoardView = gameBoardView;
     }
 
     public void checkKeyPressed(KeyEvent keyEvent){
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
-                gameBoardView.getWall().getPlayer().moveLeft();
+                gameBoardModel.getWall().getPlayer().moveLeft();
                 break;
             case KeyEvent.VK_D:
-                gameBoardView.getWall().getPlayer().moveRight();
+                gameBoardModel.getWall().getPlayer().moveRight();
                 break;
             case KeyEvent.VK_ESCAPE:
-                gameBoardView.setShowPauseMenu(!gameBoardView.isShowPauseMenu());
-                gameBoardView.getTimer().setGaming(false);
+                gameBoardModel.setShowPauseMenu(!gameBoardModel.isShowPauseMenu());
+                gameBoardModel.getGameTimer().setGaming(false);
                 gameBoardView.repaintGameBoard();
-                gameBoardView.getGameTimer().stop();
+                gameBoardModel.getTimer().stop();
                 break;
             case KeyEvent.VK_SPACE:
-                if(!gameBoardView.isShowPauseMenu())
-                    if(gameBoardView.getGameTimer().isRunning()) {
-                        gameBoardView.getGameTimer().stop();
-                        gameBoardView.getTimer().setGaming(false);
+                if(!gameBoardModel.isShowPauseMenu())
+                    if(gameBoardModel.getTimer().isRunning()) {
+                        gameBoardModel.getTimer().stop();
+                        gameBoardModel.getGameTimer().setGaming(false);
                     }
                     else
-                        gameBoardView.getGameTimer().start();
+                        gameBoardModel.getTimer().start();
                 break;
             case KeyEvent.VK_F1:
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
-                    gameBoardView.getDebugConsole().setVisible(true);
+                    gameBoardModel.getDebugConsole().setVisible(true);
             default:
-                gameBoardView.getWall().getPlayer().stop();
+                gameBoardModel.getWall().getPlayer().stop();
         }
     }
 
     public void checkMouseClicked(MouseEvent mouseEvent){
         Point p = mouseEvent.getPoint();
-        if(!gameBoardView.isShowPauseMenu())
+        if(!gameBoardModel.isShowPauseMenu())
             return;
-        if(gameBoardView.getContinueButtonRect().contains(p)){
-            gameBoardView.setShowPauseMenu(false);
+        if(gameBoardModel.getContinueButtonRect().contains(p)){
+            gameBoardModel.setShowPauseMenu(false);
             gameBoardView.repaintGameBoard();
         }
-        else if(gameBoardView.getRestartButtonRect().contains(p)){
-            gameBoardView.setMessage("Restarting Game...");
-            gameBoardView.getTimer().resetTimer();
-            gameBoardView.getWall().ballReset();
-            gameBoardView.getWall().wallReset();
-            gameBoardView.setShowPauseMenu(false);
+        else if(gameBoardModel.getRestartButtonRect().contains(p)){
+            gameBoardModel.setMessage("Restarting Game...");
+            gameBoardModel.getGameTimer().resetTimer();
+            gameBoardModel.getWall().ballReset();
+            gameBoardModel.getWall().wallReset();
+            gameBoardModel.setShowPauseMenu(false);
             gameBoardView.repaintGameBoard();
         }
-        else if(gameBoardView.getExitButtonRect().contains(p)){
+        else if(gameBoardModel.getExitButtonRect().contains(p)){
             System.exit(0);
         }
     }
 
     public void checkMouseMoved(MouseEvent mouseEvent){
         Point p = mouseEvent.getPoint();
-        if(gameBoardView.getExitButtonRect() != null && gameBoardView.isShowPauseMenu()) {
-            if (gameBoardView.getExitButtonRect().contains(p) || gameBoardView.getContinueButtonRect().contains(p) || gameBoardView.getRestartButtonRect().contains(p))
+        if(gameBoardModel.getExitButtonRect() != null && gameBoardModel.isShowPauseMenu()) {
+            if (gameBoardModel.getExitButtonRect().contains(p) || gameBoardModel.getContinueButtonRect().contains(p) || gameBoardModel.getRestartButtonRect().contains(p))
                 gameBoardView.setHandCursor();
             else
                 gameBoardView.setDefaultCursor();
