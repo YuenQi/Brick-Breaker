@@ -19,35 +19,33 @@ package test;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
 
 /**
- * This is GameFrame class which is a container to add GameBoard and HomeMenu components.
+ * This is GameFrame class which is a container to add GameBoard and HomeMenuView components.
  */
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
 
     private GameBoard gameBoard;
-    private HomeMenu homeMenu;
+    private HomeMenuView homeMenuView;
 
     private boolean gaming;
 
     /**
      * This is a constructor to initialise some variables in GameFrame class and create
-     * GameBoard and HomeMenu objects. It also sets the LayoutManager as BorderLayout,
-     * add HomeMenu components to this container and enables decorations for this frame.
+     * GameBoard and HomeMenuView objects. It also sets the LayoutManager as BorderLayout,
+     * add HomeMenuView components to this container and enables decorations for this frame.
      */
     public GameFrame(){
         super();
         gaming = false;
         this.setLayout(new BorderLayout());
         gameBoard = new GameBoard(this);
-        homeMenu = new HomeMenu(this,new Dimension(450,300));
-        this.add(homeMenu,BorderLayout.CENTER);
+        homeMenuView = new HomeMenuView(this,new Dimension(450,300));
+        this.add(homeMenuView,BorderLayout.CENTER);
         this.setUndecorated(true);
     }
 
@@ -69,13 +67,13 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
     /**
-     * This method disposes the GameFrame screen and removes HomeMenu component
+     * This method disposes the GameFrame screen and removes HomeMenuView component
      * to add GameBoard component to this frame and initialises this frame accordingly.
      * WindowFocusListener is also added to avoid problems with graphics.
      */
     public void enableGameBoard(){
         this.dispose();//when click on startButton, dispose GameFrame screen
-        this.remove(homeMenu);
+        this.remove(homeMenuView);
         this.add(gameBoard,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
@@ -84,7 +82,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
     /**
-     * This method will auto locate the HomeMenu / GameBoard components
+     * This method will auto locate the HomeMenuView / GameBoard components
      * in the middle of this frame.
      */
     private void autoLocate(){

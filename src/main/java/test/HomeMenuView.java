@@ -30,9 +30,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * This is HomeMenu class which displays home menu.
+ * This is HomeMenuView class which displays home menu.
  */
-public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
+public class HomeMenuView extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String GREETINGS = "Welcome to:";
     private static final String GAME_TITLE = "Brick Destroy";
@@ -64,20 +64,24 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private BufferedImage background = null;
 
+    private HomeMenuController homeMenuController;
+
     /**
      * This is a constructor to design home menu, add MouseListener,
-     * MouseMotionListener and initialise some variables in HomeMenu class.
+     * MouseMotionListener and initialise some variables in HomeMenuView class.
      *
      * @param owner GameFrame object
      * @param area width and height of home menu
      */
-    public HomeMenu(GameFrame owner,Dimension area){
+    public HomeMenuView(GameFrame owner, Dimension area){
 
         this.setFocusable(true);
         this.requestFocusInWindow();
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
         this.owner = owner;
+
+        homeMenuController = new HomeMenuController(this);
 
         menuFace = new Rectangle(new Point(0,0),area);
         this.setPreferredSize(area);
@@ -115,7 +119,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         /*
         all the following method calls need a relative
-        painting directly into the HomeMenu rectangle,
+        painting directly into the HomeMenuView rectangle,
         so the translation is made here so the other methods do not do that.
          */
         Color prevColor = g2d.getColor();
@@ -318,17 +322,18 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
      */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(startButton.contains(p)){
-            owner.enableGameBoard();
-        }
-        else if(exitButton.contains(p)){
-            System.out.println("Goodbye " + System.getProperty("user.name"));
-            System.exit(0);
-        }
-        else if(infoButton.contains(p)){
-            infoPage = new InfoPage(owner);
-        }
+//        Point p = mouseEvent.getPoint();
+//        if(startButton.contains(p)){
+//            owner.enableGameBoard();
+//        }
+//        else if(exitButton.contains(p)){
+//            System.out.println("Goodbye " + System.getProperty("user.name"));
+//            System.exit(0);
+//        }
+//        else if(infoButton.contains(p)){
+//            infoPage = new InfoPage(owner);
+//        }
+        homeMenuController.isMouseClicked(mouseEvent);
     }
 
     /**
@@ -345,19 +350,20 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
      */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(startButton.contains(p)){
-            startClicked = true;
-            repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
-        }
-        else if(exitButton.contains(p)){
-            exitClicked = true;
-            repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
-        }
-        else if(infoButton.contains(p)){
-            infoClicked = true;
-            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
-        }
+//        Point p = mouseEvent.getPoint();
+//        if(startButton.contains(p)){
+//            startClicked = true;
+//            repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
+//        }
+//        else if(exitButton.contains(p)){
+//            exitClicked = true;
+//            repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
+//        }
+//        else if(infoButton.contains(p)){
+//            infoClicked = true;
+//            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
+//        }
+        homeMenuController.isMousePressed(mouseEvent);
     }
 
     /**
@@ -374,18 +380,19 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
      */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-        if(startClicked){
-            startClicked = false;
-            repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
-        }
-        else if(exitClicked){
-            exitClicked = false;
-            repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
-        }
-        else if(infoClicked){
-            infoClicked = false;
-            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
-        }
+//        if(startClicked){
+//            startClicked = false;
+//            repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
+//        }
+//        else if(exitClicked){
+//            exitClicked = false;
+//            repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
+//        }
+//        else if(infoClicked){
+//            infoClicked = false;
+//            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
+//        }
+        homeMenuController.isMouseReleased(mouseEvent);
     }
 
     /**
@@ -442,10 +449,40 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
      */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(startButton.contains(p) || exitButton.contains(p) || infoButton.contains(p))
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        else
-            this.setCursor(Cursor.getDefaultCursor());
+//        Point p = mouseEvent.getPoint();
+//        if(startButton.contains(p) || exitButton.contains(p) || infoButton.contains(p))
+//            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//        else
+//            this.setCursor(Cursor.getDefaultCursor());
+        homeMenuController.isMouseMoved(mouseEvent);
     }
+
+    public void setHandCursor(){
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+
+    public void setDefaultCursor(){
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
+    public Rectangle getStartButton() {
+        return startButton;
+    }
+
+    public Rectangle getExitButton() {
+        return exitButton;
+    }
+
+    public Rectangle getInfoButton() {
+        return infoButton;
+    }
+
+    public GameFrame getOwner() {
+        return owner;
+    }
+
+    public void repaintButton (Rectangle button) {
+        repaint(button.x,button.y,button.width+1,button.height+1);
+    }
+
 }
