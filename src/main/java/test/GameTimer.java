@@ -9,7 +9,7 @@ import java.util.Timer;
  */
 public class GameTimer {
 
-    private int gameTime;
+    private static int gameTime;
     private int seconds;
     private int minutes;
     private Timer timer;
@@ -81,5 +81,13 @@ public class GameTimer {
      */
     public void resetTimer(){
         gameTime = 0;
+    }
+
+    public static int getGameTime() {
+        return gameTime;
+    }
+
+    public void setGameTime(int gameTime) {
+        this.gameTime = gameTime;
     }
 }

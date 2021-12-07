@@ -28,6 +28,8 @@ public class BrickFactory {
             return new FastBrick(point, size);
         else if(brickType.equalsIgnoreCase("SLOW_BRICK"))
             return new SlowBrick(point, size);
+        else if(brickType.equalsIgnoreCase("SPECIAL"))
+            return new SpecialBrick(point, size);
 
         return null;
     }
