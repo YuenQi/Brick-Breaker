@@ -14,6 +14,7 @@ public class Level {
     private static final int CEMENT = 3;
     private static final int FAST_BRICK = 4;
     private static final int SLOW_BRICK = 5;
+    private static final int SPECIAL = 6;
 
     private Brick[][] levels;
     private int level;
@@ -81,7 +82,7 @@ public class Level {
             double x = (brickOnLine * brickLen) - (brickLen / 2);
             p.setLocation(x,y);
             //tmp[i] = new ClayBrick(p,brickSize);
-            tmp[i] = brickFactory.getBrick("CLAY",p,brickSize);
+            tmp[i] = brickFactory.getBrick("SPECIAL",p,brickSize);
         }
         return tmp;
     }
@@ -137,7 +138,8 @@ public class Level {
         for(double y = brickHgt;i < tmp.length;i++, y += 2*brickHgt){
             double x = (brickOnLine * brickLen) - (brickLen / 2);
             p.setLocation(x,y);
-            tmp[i] = makeBrick(p,brickSize,typeA);
+            //tmp[i] = makeBrick(p,brickSize,typeA);
+            tmp[i] = brickFactory.getBrick("SPECIAL",p,brickSize);
         }
         return tmp;
     }
@@ -204,6 +206,9 @@ public class Level {
                 break;
             case SLOW_BRICK:
                 out = brickFactory.getBrick("SLOW_BRICK",point,size);
+                break;
+            case SPECIAL:
+                out = brickFactory.getBrick("SPECIAL",point,size);
                 break;
             default:
                 throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
