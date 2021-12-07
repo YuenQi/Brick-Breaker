@@ -13,27 +13,19 @@ public class InfoPageView extends JFrame implements ActionListener {
     private static final int FRAME_WIDTH = 600;
     private static final int FRAME_HEIGHT = 500;
 
-    private JLabel label;
-
-    private JButton startButton;
-    private JButton backButton;
-
-    private ImageIcon infoPage;
-    private JLabel background;
-
-    private GameFrame owner;
     private InfoPageController infoPageController;
+    private InfoPageModel infoPageModel;
 
-    /**
+    /*
      * This is a constructor to design info page, add ActionListener,
      * and initialise some variables in InfoPageView class.
      *
      * @param owner GameFrame object
      */
-    public InfoPageView(GameFrame owner){
+    public InfoPageView(InfoPageModel infoPageModel){
 
-        this.owner = owner;
-        infoPageController = new InfoPageController(this);
+        this.infoPageModel = infoPageModel;
+        infoPageController = new InfoPageController(infoPageModel, this);
 
         displayInstruction();
         createStartButton();
@@ -46,19 +38,19 @@ public class InfoPageView extends JFrame implements ActionListener {
         this.setUndecorated(true);
         this.setVisible(true);
         this.setLocationRelativeTo(null);//allows frame to appear in the middle of the screen, not just top left corner
-        this.add(background);
+        this.add(infoPageModel.getBackground());
     }
 
     /**
      * This method adds background image to this frame.
      */
     private void addBackgroundImage() {
-        infoPage = new ImageIcon("resources/infoPageBackground.jpg");
-        background = new JLabel(infoPage);
-        background.setSize(FRAME_WIDTH,FRAME_HEIGHT);
-        background.add(label);
-        background.add(startButton);
-        background.add(backButton);
+        infoPageModel.setInfoPage(new ImageIcon("src/main/resources/infoPageBackground.jpg"));
+        infoPageModel.setBackground(new JLabel(infoPageModel.getInfoPage()));
+        infoPageModel.getBackground().setSize(FRAME_WIDTH,FRAME_HEIGHT);
+        infoPageModel.getBackground().add(infoPageModel.getLabel());
+        infoPageModel.getBackground().add(infoPageModel.getStartButton());
+        infoPageModel.getBackground().add(infoPageModel.getBackButton());
     }
 
     /**
@@ -66,21 +58,21 @@ public class InfoPageView extends JFrame implements ActionListener {
      * and adds ActionListener to the button.
      */
     private void createStartButton() {
-        startButton = new JButton("START");
-        startButton.setBounds(215,450,80, 30);
-        startButton.setHorizontalTextPosition(JButton.CENTER);
-        startButton.setVerticalTextPosition(JButton.CENTER);
-        startButton.setBackground(Color.GRAY);
-        startButton.setForeground(Color.WHITE);
-        startButton.setFocusable(false);//get rid of border of text
-        startButton.addActionListener(this);
+        infoPageModel.setStartButton(new JButton("START"));
+        infoPageModel.getStartButton().setBounds(215,450,80, 30);
+        infoPageModel.getStartButton().setHorizontalTextPosition(JButton.CENTER);
+        infoPageModel.getStartButton().setVerticalTextPosition(JButton.CENTER);
+        infoPageModel.getStartButton().setBackground(Color.GRAY);
+        infoPageModel.getStartButton().setForeground(Color.WHITE);
+        infoPageModel.getStartButton().setFocusable(false);//get rid of border of text
+        infoPageModel.getStartButton().addActionListener(this);
     }
 
     /**
      * This method displays game description and instruction.
      */
     private void displayInstruction() {
-        label = new JLabel();
+        infoPageModel.setLabel(new JLabel());
 
         String text = "<html><h2 align = 'center'>GAME DESCRIPTION</h2>";
         text = text + "This is a brick destroy game.<br/>";
@@ -101,9 +93,9 @@ public class InfoPageView extends JFrame implements ActionListener {
 
         text = text + "<h3 align = 'center'>Enjoy your game!</h3>";
 
-        label.setText(text);
-        label.setFont(new Font("Noto Mono", Font.PLAIN, 15));   //set font
-        label.setBounds(20,0,FRAME_WIDTH-10,FRAME_HEIGHT-30);
+        infoPageModel.getLabel().setText(text);
+        infoPageModel.getLabel().setFont(new Font("Noto Mono", Font.PLAIN, 15));   //set font
+        infoPageModel.getLabel().setBounds(20,0,FRAME_WIDTH-10,FRAME_HEIGHT-30);
     }
 
     /**
@@ -111,14 +103,14 @@ public class InfoPageView extends JFrame implements ActionListener {
      * and adds ActionListener to the button.
      */
     public void createBackButton(){
-        backButton = new JButton("BACK");
-        backButton.setBounds(305,450,80, 30);
-        backButton.setHorizontalTextPosition(JButton.CENTER);
-        backButton.setVerticalTextPosition(JButton.CENTER);
-        backButton.setBackground(Color.GRAY);
-        backButton.setForeground(Color.WHITE);
-        backButton.setFocusable(false);//get rid of border of text
-        backButton.addActionListener(this);
+        infoPageModel.setBackButton(new JButton("BACK"));
+        infoPageModel.getBackButton().setBounds(305,450,80, 30);
+        infoPageModel.getBackButton().setHorizontalTextPosition(JButton.CENTER);
+        infoPageModel.getBackButton().setVerticalTextPosition(JButton.CENTER);
+        infoPageModel.getBackButton().setBackground(Color.GRAY);
+        infoPageModel.getBackButton().setForeground(Color.WHITE);
+        infoPageModel.getBackButton().setFocusable(false);//get rid of border of text
+        infoPageModel.getBackButton().addActionListener(this);
     }
 
     /**
@@ -142,16 +134,4 @@ public class InfoPageView extends JFrame implements ActionListener {
         infoPageController.isActionPerformed(e);
     }
 
-    public JButton getStartButton() {
-        return startButton;
-    }
-
-    public JButton getBackButton() {
-        return backButton;
-    }
-
-    @Override
-    public GameFrame getOwner() {
-        return owner;
-    }
 }

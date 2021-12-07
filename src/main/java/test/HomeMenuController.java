@@ -9,6 +9,7 @@ public class HomeMenuController {
     private HomeMenuModel homeMenuModel;
 
     private InfoPageView infoPageView;
+    private InfoPageModel infoPageModel;
 
     public HomeMenuController(HomeMenuModel homeMenuModel, HomeMenuView homeMenuView) {
         this.homeMenuModel = homeMenuModel;
@@ -25,7 +26,8 @@ public class HomeMenuController {
             System.exit(0);
         }
         else if(homeMenuModel.getInfoButton().contains(p)){
-            infoPageView = new InfoPageView(homeMenuModel.getOwner());
+            infoPageModel = new InfoPageModel(homeMenuModel.getOwner());
+            infoPageView = new InfoPageView(infoPageModel);
         }
     }
 
