@@ -31,6 +31,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private GameBoardView gameBoardView;
     private HomeMenuView homeMenuView;
+    private HomeMenuModel homeMenuModel;
 
     private boolean gaming;
 
@@ -44,7 +45,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = false;
         this.setLayout(new BorderLayout());
         gameBoardView = new GameBoardView(this);
-        homeMenuView = new HomeMenuView(this,new Dimension(450,300));
+        homeMenuModel = new HomeMenuModel(this,new Dimension(450,300));
+        homeMenuView = new HomeMenuView(homeMenuModel);
         this.add(homeMenuView,BorderLayout.CENTER);
         this.setUndecorated(true);
     }
