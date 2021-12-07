@@ -17,7 +17,6 @@
  */
 package test;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -25,8 +24,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 /**
  * This is HomeMenuView class which displays home menu.
@@ -44,56 +41,41 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     private static final Color CLICKED_BUTTON_COLOR = Color.WHITE;
     private static final Color CLICKED_TEXT_COLOR = Color.WHITE;//REFACTOR: change CLICKED_TEXT_COLOR to CLICKED_TEXT_COLOR
 
-    private Rectangle menuFace;
-    private Rectangle startButton;
-    private Rectangle exitButton;//REFACTOR: change menuButton to exitButton
-    private Rectangle infoButton;
-
-    private Font greetingsFont;
-    private Font gameTitleFont;
-    private Font creditsFont;
-    private Font buttonFont;
-
-    private GameFrame owner;
-    private InfoPageView infoPageView;
-
-    private boolean startClicked;
-    private boolean exitClicked;//REFACTOR: change menuClicked to exitClicked
-    private boolean infoClicked;
-
-    private BufferedImage background = null;
-
+    private HomeMenuModel homeMenuModel;
     private HomeMenuController homeMenuController;
 
-    /**
+    /*
      * This is a constructor to design home menu, add MouseListener,
      * MouseMotionListener and initialise some variables in HomeMenuView class.
      *
      * @param owner GameFrame object
      * @param area width and height of home menu
      */
-    public HomeMenuView(GameFrame owner, Dimension area){
+    public HomeMenuView(HomeMenuModel homeMenuModel){
 
         this.setFocusable(true);
         this.requestFocusInWindow();
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
-        this.owner = owner;
 
-        homeMenuController = new HomeMenuController(this);
+        this.homeMenuModel = homeMenuModel;
 
-        menuFace = new Rectangle(new Point(0,0),area);
-        this.setPreferredSize(area);
+        homeMenuController = new HomeMenuController(homeMenuModel,this);
 
-        Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
-        startButton = new Rectangle(btnDim);
-        exitButton = new Rectangle(btnDim);
-        infoButton = new Rectangle(btnDim);
+        homeMenuModel.setMenuFace(new Rectangle(new Point(0,0),homeMenuModel.getArea()));
 
-        greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
-        gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
-        creditsFont = new Font("Monospaced",Font.PLAIN,10);
-        buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
+        this.setPreferredSize(homeMenuModel.getArea());
+
+        Dimension btnDim = new Dimension(homeMenuModel.getArea().width / 3, homeMenuModel.getArea().height / 12);
+
+        homeMenuModel.setStartButton(new Rectangle(btnDim));
+        homeMenuModel.setExitButton(new Rectangle(btnDim));
+        homeMenuModel.setInfoButton(new Rectangle(btnDim));
+
+        homeMenuModel.setGreetingsFont(new Font("Noto Mono",Font.PLAIN,25));
+        homeMenuModel.setGameTitleFont(new Font("Noto Mono",Font.BOLD,40));
+        homeMenuModel.setCreditsFont(new Font("Monospaced",Font.PLAIN,10));
+        homeMenuModel.setButtonFont(new Font("Monospaced",Font.PLAIN,homeMenuModel.getStartButton().height-2));
     }
 
     /**
@@ -124,8 +106,8 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         Color prevColor = g2d.getColor();
         Font prevFont = g2d.getFont();
 
-        double x = menuFace.getX();
-        double y = menuFace.getY();
+        double x = homeMenuModel.getMenuFace().getX();
+        double y = homeMenuModel.getMenuFace().getY();
 
         g2d.translate(x,y);
 
@@ -151,15 +133,13 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         reading the image inside the if statement to save resources,
         the image will only be loaded if it has not yet been loaded
          */
-        if (background == null){
-            try {
-                background = ImageIO.read(getClass().getResource("/background.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (homeMenuModel.getBackground() == null){
+            homeMenuModel.setBackground(new ImageIcon("src/main/resources/background.png").getImage());
         }
 
-        g2d.drawImage(background, 0,0,450,300,null);
+
+        g2d.drawImage(homeMenuModel.getBackground(), 0,0,450,300,null);
+
     }
 
     /**
@@ -173,9 +153,9 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        Rectangle2D greetingsRect = greetingsFont.getStringBounds(GREETINGS,frc);
-        Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(GAME_TITLE,frc);
-        Rectangle2D creditsRect = creditsFont.getStringBounds(CREDITS,frc);
+        Rectangle2D greetingsRect = homeMenuModel.getGreetingsFont().getStringBounds(GREETINGS,frc);
+        Rectangle2D gameTitleRect = homeMenuModel.getGameTitleFont().getStringBounds(GAME_TITLE,frc);
+        Rectangle2D creditsRect = homeMenuModel.getCreditsFont().getStringBounds(CREDITS,frc);
 
         /*
          * sX is x-coordinate of the leftmost character of the specified string
@@ -184,22 +164,22 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         int sX,sY;
 
         //This calculation is to position the specified string in the middle of the frame
-        sX = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        sY = (int)(menuFace.getHeight() / 4);
+        sX = (int)(homeMenuModel.getMenuFace().getWidth() - greetingsRect.getWidth()) / 2;
+        sY = (int)(homeMenuModel.getMenuFace().getHeight() / 4);
 
-        g2d.setFont(greetingsFont);
+        g2d.setFont(homeMenuModel.getGreetingsFont());
         g2d.drawString(GREETINGS,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - gameTitleRect.getWidth()) / 2;
+        sX = (int)(homeMenuModel.getMenuFace().getWidth() - gameTitleRect.getWidth()) / 2;
         sY += (int) gameTitleRect.getHeight() * 1.1;//add 10% of String height between the two strings
 
-        g2d.setFont(gameTitleFont);
+        g2d.setFont(homeMenuModel.getGameTitleFont());
         g2d.drawString(GAME_TITLE,sX,sY);
 
-        sX = (int)(menuFace.getWidth() - creditsRect.getWidth()) / 2;
+        sX = (int)(homeMenuModel.getMenuFace().getWidth() - creditsRect.getWidth()) / 2;
         sY += (int) creditsRect.getHeight() * 1.1;
 
-        g2d.setFont(creditsFont);
+        g2d.setFont(homeMenuModel.getCreditsFont());
         g2d.drawString(CREDITS,sX,sY);
     }
 
@@ -212,96 +192,96 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        Rectangle2D startTextRect = buttonFont.getStringBounds(START_TEXT,frc); //REFACTOR: change txtRect to startTextRect
-        Rectangle2D exitTextRect = buttonFont.getStringBounds(EXIT_TEXT,frc);//REFACTOR: change mTxtRect to exitTextRect
-        Rectangle2D infoTextRect = buttonFont.getStringBounds(INFO_TEXT,frc);
+        Rectangle2D startTextRect = homeMenuModel.getButtonFont().getStringBounds(START_TEXT,frc); //REFACTOR: change txtRect to startTextRect
+        Rectangle2D exitTextRect = homeMenuModel.getButtonFont().getStringBounds(EXIT_TEXT,frc);//REFACTOR: change mTxtRect to exitTextRect
+        Rectangle2D infoTextRect = homeMenuModel.getButtonFont().getStringBounds(INFO_TEXT,frc);
 
-        g2d.setFont(buttonFont);
+        g2d.setFont(homeMenuModel.getButtonFont());
 
         //create start button
-        int x = (menuFace.width - startButton.width) / 2;
-        int y =(int) ((menuFace.height - startButton.height) * 0.7);
+        int x = (homeMenuModel.getMenuFace().width - homeMenuModel.getStartButton().width) / 2;
+        int y =(int) ((homeMenuModel.getMenuFace().height - homeMenuModel.getStartButton().height) * 0.7);
 
-        startButton.setLocation(x,y);
+        homeMenuModel.getStartButton().setLocation(x,y);
         //end of creation of start button
 
         //This calculation is to position the text in the centre of the rectangle button
-        x = (int)(startButton.getWidth() - startTextRect.getWidth()) / 2;
-        y = (int)(startButton.getHeight() - startTextRect.getHeight()) / 2;
+        x = (int)(homeMenuModel.getStartButton().getWidth() - startTextRect.getWidth()) / 2;
+        y = (int)(homeMenuModel.getStartButton().getHeight() - startTextRect.getHeight()) / 2;
 
-        x += startButton.x;
-        y += startButton.y + (startButton.height * 0.9);//
+        x += homeMenuModel.getStartButton().x;
+        y += homeMenuModel.getStartButton().y + (homeMenuModel.getStartButton().height * 0.9);//
 
         //draw start rectangle button and the text inside it
-        if(startClicked){
+        if(homeMenuModel.isStartClicked()){
             Color tmp = g2d.getColor();
             g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(startButton);
+            g2d.draw(homeMenuModel.getStartButton());
             g2d.setColor(CLICKED_TEXT_COLOR);
             g2d.drawString(START_TEXT,x,y);
             g2d.setColor(tmp);
         }
         else{
-            g2d.draw(startButton);
+            g2d.draw(homeMenuModel.getStartButton());
             g2d.drawString(START_TEXT,x,y);
         }
 
         //create exit button
-        x = startButton.x;
-        y = startButton.y;
+        x = homeMenuModel.getStartButton().x;
+        y = homeMenuModel.getStartButton().y;
 
         y *= 1.2;
 
-        exitButton.setLocation(x,y);
+        homeMenuModel.getExitButton().setLocation(x,y);
         //end of creation of exit button
 
-        x = (int)(exitButton.getWidth() - exitTextRect.getWidth()) / 2;
-        y = (int)(exitButton.getHeight() - exitTextRect.getHeight()) / 2;
+        x = (int)(homeMenuModel.getExitButton().getWidth() - exitTextRect.getWidth()) / 2;
+        y = (int)(homeMenuModel.getExitButton().getHeight() - exitTextRect.getHeight()) / 2;
 
-        x += exitButton.x;
-        y += exitButton.y + (startButton.height * 0.9);
+        x += homeMenuModel.getExitButton().x;
+        y += homeMenuModel.getExitButton().y + (homeMenuModel.getStartButton().height * 0.9);
 
         //draw exit rectangle button and the text inside it
-        if(exitClicked){
+        if(homeMenuModel.isExitClicked()){
             Color tmp = g2d.getColor();
             g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(exitButton);
+            g2d.draw(homeMenuModel.getExitButton());
             g2d.setColor(CLICKED_TEXT_COLOR);
             g2d.drawString(EXIT_TEXT,x,y);
             g2d.setColor(tmp);
         }
         else{
-            g2d.draw(exitButton);
+            g2d.draw(homeMenuModel.getExitButton());
             g2d.drawString(EXIT_TEXT,x,y);
         }
 
         //create info button
-        x = startButton.x;
-        y = exitButton.y;
+        x = homeMenuModel.getStartButton().x;
+        y = homeMenuModel.getExitButton().y;
 
         //TODO extract the calculation method and automate spacing calculation instead of hardcoding a value
         y += 38.5;
 
-        infoButton.setLocation(x,y);
+        homeMenuModel.getInfoButton().setLocation(x,y);
         //end of creation of info button
 
-        x = (int)(infoButton.getWidth() - infoTextRect.getWidth()) / 2;
-        y = (int)(infoButton.getHeight() - infoTextRect.getHeight()) / 2;
+        x = (int)(homeMenuModel.getInfoButton().getWidth() - infoTextRect.getWidth()) / 2;
+        y = (int)(homeMenuModel.getInfoButton().getHeight() - infoTextRect.getHeight()) / 2;
 
-        x += infoButton.x;
-        y += infoButton.y + (startButton.height * 0.9);
+        x += homeMenuModel.getInfoButton().x;
+        y += homeMenuModel.getInfoButton().y + (homeMenuModel.getStartButton().height * 0.9);
 
         //draw info rectangle button and the text inside it
-        if(infoClicked){
+        if(homeMenuModel.isInfoClicked()){
             Color tmp = g2d.getColor();
             g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(infoButton);
+            g2d.draw(homeMenuModel.getInfoButton());
             g2d.setColor(CLICKED_TEXT_COLOR);
             g2d.drawString(INFO_TEXT,x,y);
             g2d.setColor(tmp);
         }
         else{
-            g2d.draw(infoButton);
+            g2d.draw(homeMenuModel.getInfoButton());
             g2d.drawString(INFO_TEXT,x,y);
         }
 
@@ -362,7 +342,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 //            infoClicked = true;
 //            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
 //        }
-        homeMenuController.isMousePressed(mouseEvent);
+        homeMenuController.checkMousePressed(mouseEvent);
     }
 
     /**
@@ -391,7 +371,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 //            infoClicked = false;
 //            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
 //        }
-        homeMenuController.isMouseReleased(mouseEvent);
+        homeMenuController.checkMouseReleased(mouseEvent);
     }
 
     /**
@@ -453,7 +433,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 //            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 //        else
 //            this.setCursor(Cursor.getDefaultCursor());
-        homeMenuController.isMouseMoved(mouseEvent);
+        homeMenuController.checkMouseMoved(mouseEvent);
     }
 
     public void setHandCursor(){
@@ -462,22 +442,6 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
     public void setDefaultCursor(){
         this.setCursor(Cursor.getDefaultCursor());
-    }
-
-    public Rectangle getStartButton() {
-        return startButton;
-    }
-
-    public Rectangle getExitButton() {
-        return exitButton;
-    }
-
-    public Rectangle getInfoButton() {
-        return infoButton;
-    }
-
-    public GameFrame getOwner() {
-        return owner;
     }
 
     public void repaintButton (Rectangle button) {

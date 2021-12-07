@@ -4,67 +4,65 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class HomeMenuController {
-    private HomeMenuView homeMenuView;
 
-    private boolean startClicked;
-    private boolean exitClicked;
-    private boolean infoClicked;
+    private HomeMenuView homeMenuView;
+    private HomeMenuModel homeMenuModel;
 
     private InfoPageView infoPageView;
 
-    public HomeMenuController(HomeMenuView homeMenuView) {
+    public HomeMenuController(HomeMenuModel homeMenuModel, HomeMenuView homeMenuView) {
+        this.homeMenuModel = homeMenuModel;
         this.homeMenuView = homeMenuView;
     }
 
     public void isMouseClicked (MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(homeMenuView.getStartButton().contains(p)){
-            homeMenuView.getOwner().enableGameBoard();
+        if(homeMenuModel.getStartButton().contains(p)){
+            homeMenuModel.getOwner().enableGameBoard();
         }
-        else if(homeMenuView.getExitButton().contains(p)){
+        else if(homeMenuModel.getExitButton().contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
             System.exit(0);
         }
-        else if(homeMenuView.getInfoButton().contains(p)){
-            infoPageView = new InfoPageView(homeMenuView.getOwner());
+        else if(homeMenuModel.getInfoButton().contains(p)){
+            infoPageView = new InfoPageView(homeMenuModel.getOwner());
         }
-
     }
 
-    public void isMousePressed (MouseEvent mouseEvent) {
+    public void checkMousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(homeMenuView.getStartButton().contains(p)){
-            startClicked = true;
-            homeMenuView.repaintButton(homeMenuView.getStartButton());
+        if(homeMenuModel.getStartButton().contains(p)){
+            homeMenuModel.setStartClicked(true);
+            homeMenuView.repaintButton(homeMenuModel.getStartButton());
         }
-        else if(homeMenuView.getExitButton().contains(p)){
-            exitClicked = true;
-            homeMenuView.repaintButton(homeMenuView.getExitButton());
+        else if(homeMenuModel.getExitButton().contains(p)){
+            homeMenuModel.setExitClicked(true);
+            homeMenuView.repaintButton(homeMenuModel.getExitButton());
         }
-        else if(homeMenuView.getInfoButton().contains(p)){
-            infoClicked = true;
-            homeMenuView.repaintButton(homeMenuView.getInfoButton());
-        }
-    }
-
-    public void isMouseReleased (MouseEvent mouseEvent) {
-        if(startClicked){
-            startClicked = false;
-            homeMenuView.repaintButton(homeMenuView.getStartButton());
-        }
-        else if(exitClicked){
-            exitClicked = false;
-            homeMenuView.repaintButton(homeMenuView.getExitButton());
-        }
-        else if(infoClicked){
-            infoClicked = false;
-            homeMenuView.repaintButton(homeMenuView.getInfoButton());
+        else if(homeMenuModel.getInfoButton().contains(p)){
+            homeMenuModel.setInfoClicked(true);
+            homeMenuView.repaintButton(homeMenuModel.getInfoButton());
         }
     }
 
-    public void isMouseMoved (MouseEvent mouseEvent) {
+    public void checkMouseReleased(MouseEvent mouseEvent) {
+        if(homeMenuModel.isStartClicked()){
+            homeMenuModel.setStartClicked(false);
+            homeMenuView.repaintButton(homeMenuModel.getStartButton());
+        }
+        else if(homeMenuModel.isExitClicked()){
+            homeMenuModel.setExitClicked(false);
+            homeMenuView.repaintButton(homeMenuModel.getExitButton());
+        }
+        else if(homeMenuModel.isInfoClicked()){
+            homeMenuModel.setInfoClicked(false);
+            homeMenuView.repaintButton(homeMenuModel.getInfoButton());
+        }
+    }
+
+    public void checkMouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(homeMenuView.getStartButton().contains(p) || homeMenuView.getExitButton().contains(p) || homeMenuView.getInfoButton().contains(p))
+        if(homeMenuModel.getStartButton().contains(p) || homeMenuModel.getExitButton().contains(p) || homeMenuModel.getInfoButton().contains(p))
             homeMenuView.setHandCursor();
         else
             homeMenuView.setDefaultCursor();
