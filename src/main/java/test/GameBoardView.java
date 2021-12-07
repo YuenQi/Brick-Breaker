@@ -87,6 +87,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
             gameBoardModel.setMessage(String.format("Bricks: %d Balls %d",gameBoardModel.getWall().getBrickCount(),gameBoardModel.getWall().getBallCount()));
             gameBoardModel.setScoreMessage(String.format("Score: %d", gameBoardModel.getWall().getScore()));
             gameBoardModel.setHighScoreMessage("High Score Record: " + gameBoardModel.getWall().readHighScore());
+            gameBoardModel.setTimeMessage(String.format("Time: %02d minute(s) %02d second(s)", gameBoardModel.getGameTimer().getMinutes(), gameBoardModel.getGameTimer().getSeconds()));
             if(gameBoardModel.getWall().isBallLost()){
                 if(gameBoardModel.getWall().ballEnd()){
                     gameBoardModel.getWall().reward();
