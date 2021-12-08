@@ -301,18 +301,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
      */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-//        Point p = mouseEvent.getPoint();
-//        if(startButton.contains(p)){
-//            owner.enableGameBoard();
-//        }
-//        else if(exitButton.contains(p)){
-//            System.out.println("Goodbye " + System.getProperty("user.name"));
-//            System.exit(0);
-//        }
-//        else if(infoButton.contains(p)){
-//            infoPageView = new InfoPageView(owner);
-//        }
-        homeMenuController.isMouseClicked(mouseEvent);
+        homeMenuController.checkMouseClicked(mouseEvent);
     }
 
     /**
@@ -329,19 +318,6 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
      */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
-//        Point p = mouseEvent.getPoint();
-//        if(startButton.contains(p)){
-//            startClicked = true;
-//            repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
-//        }
-//        else if(exitButton.contains(p)){
-//            exitClicked = true;
-//            repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
-//        }
-//        else if(infoButton.contains(p)){
-//            infoClicked = true;
-//            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
-//        }
         homeMenuController.checkMousePressed(mouseEvent);
     }
 
@@ -359,18 +335,6 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
      */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-//        if(startClicked){
-//            startClicked = false;
-//            repaint(startButton.x,startButton.y,startButton.width+1,startButton.height+1);
-//        }
-//        else if(exitClicked){
-//            exitClicked = false;
-//            repaint(exitButton.x, exitButton.y, exitButton.width+1, exitButton.height+1);
-//        }
-//        else if(infoClicked){
-//            infoClicked = false;
-//            repaint(infoButton.x, infoButton.y, infoButton.width+1, infoButton.height+1);
-//        }
         homeMenuController.checkMouseReleased(mouseEvent);
     }
 
@@ -428,11 +392,6 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
      */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-//        Point p = mouseEvent.getPoint();
-//        if(startButton.contains(p) || exitButton.contains(p) || infoButton.contains(p))
-//            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//        else
-//            this.setCursor(Cursor.getDefaultCursor());
         homeMenuController.checkMouseMoved(mouseEvent);
     }
 

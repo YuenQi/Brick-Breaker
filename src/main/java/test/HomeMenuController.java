@@ -16,7 +16,7 @@ public class HomeMenuController {
         this.homeMenuView = homeMenuView;
     }
 
-    public void isMouseClicked (MouseEvent mouseEvent) {
+    public void checkMouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(homeMenuModel.getStartButton().contains(p)){
             homeMenuModel.getOwner().enableGameBoard();
