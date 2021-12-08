@@ -31,7 +31,7 @@
                         <archive>
                             <manifest>
                                 <addClasspath>true</addClasspath>
-                                <mainClass>test.GraphicsMain</mainClass>
+                                <mainClass>game.GraphicsMain</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
