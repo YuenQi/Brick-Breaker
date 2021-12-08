@@ -22,8 +22,8 @@ abstract public class Ball {
     private Point2D left;
     private Point2D right;
 
-    private Color border;
-    private Color inner;
+    private Color borderColor; //REFACTOR: change name from border to borderColor
+    private Color innerColor; //REFACTOR: change name from inner to innerColor
 
     private int speedX;
     private int speedY;
@@ -31,13 +31,13 @@ abstract public class Ball {
     /**
      * This is a constructor which initialises variables of ball.
      *
-     * @param center centre point of ball
+     * @param center center point of ball
      * @param radiusA diameter of ball (width of rectangle)
      * @param radiusB diameter of ball (height of rectangle)
-     * @param inner inner color of ball
-     * @param border border color of ball
+     * @param innerColor inner color of ball
+     * @param borderColor border color of ball
      */
-    public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
+    public Ball(Point2D center, int radiusA, int radiusB, Color innerColor, Color borderColor){
         this.center = center;
 
         up = new Point2D.Double();
@@ -52,8 +52,8 @@ abstract public class Ball {
         right.setLocation(center.getX()+(radiusA /2),center.getY());
 
         ballFace = makeBall(center,radiusA,radiusB);
-        this.border = border;
-        this.inner  = inner;
+        this.borderColor = borderColor;
+        this.innerColor = innerColor;
         speedX = 0;
         speedY = 0;
     }
@@ -63,7 +63,7 @@ abstract public class Ball {
      * parameter list) for subclass of Ball which is not abstract
      * to implement the method to make a ball.
      *
-     * @param center centre point of ball
+     * @param center center point of ball
      * @param radiusA diameter of ball (width of rectangle)
      * @param radiusB diameter of ball (height of rectangle)
      * @return a ball which is of type Shape
@@ -127,21 +127,21 @@ abstract public class Ball {
     }
 
     /**
-     * This method is to return the value of border color of ball.
+     * This method is to return the value of borderColor color of ball.
      *
      * @return border color of ball
      */
     public Color getBorderColor(){
-        return border;
+        return borderColor;
     }
 
     /**
-     * This method is to return the value of inner color of ball.
+     * This method is to return the value of innerColor color of ball.
      *
      * @return inner color of ball
      */
     public Color getInnerColor(){
-        return inner;
+        return innerColor;
     }
 
     /**
@@ -156,7 +156,7 @@ abstract public class Ball {
     /**
      * This method is to return a ball.
      *
-     * @return ball
+     * @return a ball which is of type Shape
      */
     public Shape getBallFace(){
         return ballFace;
@@ -247,7 +247,7 @@ abstract public class Ball {
     }
 
     /**
-     * This method is to return point on the left of the ball
+     * This method is to return point on the left of the ball.
      *
      * @return point on the left of the ball
      */
