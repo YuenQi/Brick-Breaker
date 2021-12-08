@@ -16,8 +16,8 @@ import java.util.Random;
  */
 abstract public class Brick  {
 
-    public static final int DEF_CRACK_DEPTH = 1;
-    public static final int DEF_STEPS = 35;
+    public static final int CRACK_DEPTH = 1;
+    public static final int STEPS = 35;
 
     public static final int UP_IMPACT = 100;
     public static final int DOWN_IMPACT = 200;
@@ -43,7 +43,7 @@ abstract public class Brick  {
     private boolean broken;
 
     /**
-     * This is a constructor which initialises variables of brick.
+     * This is a constructor which initialises variables in Brick class.
      *
      * @param name name of brick
      * @param position point (x-coordinate and y-coordinate) to draw the brick

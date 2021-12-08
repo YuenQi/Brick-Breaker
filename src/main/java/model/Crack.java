@@ -1,11 +1,10 @@
 package model;
 
-import model.Brick;
-
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
+//REFACTOR: separate Crack class from Brick class so that SOLID principle is adhered
 /**
  * This is Crack class which is used to define crack operations.
  */
@@ -98,7 +97,6 @@ public class Crack{
                 tmp = makeRandomPoint(start,end,HORIZONTAL);
                 makeCrack(impact,tmp);
                 break;
-
         }
     }
 
@@ -164,16 +162,16 @@ public class Crack{
     private Point makeRandomPoint(Point from,Point to, int direction){
 
         Point out = new Point();
-        int pos;
+        int position;
 
         switch(direction){
             case HORIZONTAL:
-                pos = brick.getRnd().nextInt(to.x - from.x) + from.x;
-                out.setLocation(pos,to.y);
+                position = brick.getRnd().nextInt(to.x - from.x) + from.x;
+                out.setLocation(position,to.y);
                 break;
             case VERTICAL:
-                pos = brick.getRnd().nextInt(to.y - from.y) + from.y;
-                out.setLocation(to.x,pos);
+                position = brick.getRnd().nextInt(to.y - from.y) + from.y;
+                out.setLocation(to.x,position);
                 break;
         }
         return out;

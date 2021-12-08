@@ -12,7 +12,7 @@ public class BallFactory {
      *
      * @param ballType type of ball to be created
      * @param center center point of ball
-     * @return ball object created
+     * @return Ball object created
      */
     public Ball getBall(String ballType, Point2D center){
         if (ballType == null)

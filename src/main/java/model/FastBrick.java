@@ -17,7 +17,7 @@ public class FastBrick extends Brick {
     private static final int FAST_BRICK_STRENGTH = 1;
 
     /**
-     * This is a constructor which initialises variables of fast brick.
+     * This is a constructor which initialises variables in FastBrick class.
      *
      * @param point point (x-coordinate and y-coordinate) to draw the brick
      * @param size size (width and height) of brick
@@ -30,11 +30,11 @@ public class FastBrick extends Brick {
      * This method is to set impact on brick.
      *
      * @param point point at which the ball hits the brick
-     * @param dir direction of crack of brick (if there is crack)
+     * @param direction direction of crack of brick (if there is crack)
      * @return state of brick (broken / not broken)
      */
     @Override
-    public boolean setImpact(Point2D point , int dir){
+    public boolean setImpact(Point2D point , int direction){
         if(super.isBroken())
             return false;
         else {
@@ -62,13 +62,13 @@ public class FastBrick extends Brick {
      * that has been created using the specified point and
      * size of type Shape to the calling method.
      *
-     * @param pos point (x-coordinate and y-coordinate) to draw the brick
+     * @param position point (x-coordinate and y-coordinate) to draw the brick
      * @param size size (width and height) of brick
      * @return brick that has been created using the specified point and size of type Shape
      */
     @Override
-    protected Shape makeBrickFace(Point pos, Dimension size) {
-        return new Rectangle(pos,size);
+    protected Shape makeBrickFace(Point position, Dimension size) {
+        return new Rectangle(position,size);
     }
 
     /**

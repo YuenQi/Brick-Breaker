@@ -13,7 +13,7 @@ public class BrickFactory {
      * @param brickType type of brick
      * @param point point (x-coordinate and y-coordinate) to draw the brick
      * @param size size (width and height) of brick
-     * @return brick object created
+     * @return Brick object created
      */
     public Brick getBrick(String brickType, Point point, Dimension size){
         if (brickType == null)

@@ -54,13 +54,13 @@ public class SteelBrick extends Brick {
      * that has been created using the specified point and
      * size of type Shape to the calling method.
      *
-     * @param pos point (x-coordinate and y-coordinate) to draw the brick
+     * @param position point (x-coordinate and y-coordinate) to draw the brick
      * @param size size (width and height) of brick
      * @return brick that has been created using the specified point and size of type Shape
      */
     @Override
-    protected Shape makeBrickFace(Point pos, Dimension size) {
-        return new Rectangle(pos,size);
+    protected Shape makeBrickFace(Point position, Dimension size) {
+        return new Rectangle(position,size);
     }
 
     /**
@@ -77,10 +77,10 @@ public class SteelBrick extends Brick {
      * This method is to set impact on brick.
      *
      * @param point point at which the ball hits the brick
-     * @param dir direction of crack of brick (if there is crack)
+     * @param direction direction of crack of brick (if there is crack)
      * @return state of brick (broken / not broken)
      */
-    public  boolean setImpact(Point2D point , int dir){
+    public  boolean setImpact(Point2D point , int direction){
         if(super.isBroken())
             return false;
         impact();

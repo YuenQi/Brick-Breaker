@@ -29,7 +29,7 @@ abstract public class Ball {
     private int speedY;
 
     /**
-     * This is a constructor which initialises variables of ball.
+     * This is a constructor which initialises variables in Ball class.
      *
      * @param center center point of ball
      * @param radiusA diameter of ball (width of rectangle)

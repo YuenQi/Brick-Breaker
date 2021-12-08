@@ -3,8 +3,9 @@ package model;
 import java.util.TimerTask;
 import java.util.Timer;
 
+//ADDITION: timer to calculate time taken by the user to play the game
 /**
- * This is GameTimer class which is used to calculate the time taken for the user
+ * This is GameTimer class which is used to calculate the time taken by the user
  * to play the game.
  */
 public class GameTimer {
@@ -83,10 +84,20 @@ public class GameTimer {
         gameTime = 0;
     }
 
+    /**
+     * This method returns time taken by the user to play the game to the calling method.
+     *
+     * @return time taken by the user to play the game
+     */
     public static int getGameTime() {
         return gameTime;
     }
 
+    /**
+     * This method sets time taken by the user to play the game.
+     *
+     * @param gameTime time taken by the user to play the game
+     */
     public void setGameTime(int gameTime) {
         this.gameTime = gameTime;
     }
