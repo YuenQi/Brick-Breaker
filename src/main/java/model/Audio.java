@@ -3,86 +3,63 @@ package model;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
+/**
+ * This is Audio class which will play audio.
+ */
 public class Audio {
 
     private File file;
     private AudioInputStream audioStream;
     private Clip clip;
-    private Timer timer;
-    private TimerTask task;
 
-    public Audio(){
-//        file = new File("src/main/resources/gameOver1.wav");
-//
-//        try {
-//            audioStream = AudioSystem.getAudioInputStream(file);
-//        } catch (UnsupportedAudioFileException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            clip = AudioSystem.getClip();
-//        } catch (LineUnavailableException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try {
-//            clip.open(audioStream);
-//        } catch (LineUnavailableException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-    }
-
-    public void playGameOver() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    /**
+     * This method plays "gameOver.wav" melancholy music when the user loses all the balls.
+     *
+     * @throws UnsupportedAudioFileException an exception indicating that an operation failed because a file did not contain valid data of a recognised file type and format
+     * @throws IOException I/O exception of some sort has occurred
+     * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable
+     */
+    public void playGameOver() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         file = new File("src/main/resources/gameOver.wav");
-        audioStream = AudioSystem.getAudioInputStream(file);
-        clip = AudioSystem.getClip();
-        clip.open(audioStream);
-        clip.start();
-
-//        timer = new Timer();
-//        task = new TimerTask() {
-//
-//            int counter = 10;
-//
-//            @Override
-//            public void run() {
-//                if (counter>0){
-//                    clip.start();
-//                    counter--;
-//                }
-//                else {
-//                    timer.cancel();
-//                }
-//
-//            }
-//        };
-//
-//        timer.schedule(task, 0, 1000);
+        playMusic(file);
     }
 
+    /**
+     * This method plays "allWallDestroyed.wav" cheering music when the user completes the last level.
+     *
+     * @throws UnsupportedAudioFileException an exception indicating that an operation failed because a file did not contain valid data of a recognised file type and format
+     * @throws IOException I/O exception of some sort has occurred
+     * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable
+     */
     public void playAllWallDestroyed() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         file = new File("src/main/resources/allWallDestroyed.wav");
-        audioStream = AudioSystem.getAudioInputStream(file);
-        clip = AudioSystem.getClip();
-        clip.open(audioStream);
-        clip.start();
+        playMusic(file);
     }
 
+    /**
+     * This method plays "nextLevel.wav" cheering music when user successfully breaks all the bricks in 1 level and goes to next level
+     *
+     * @throws UnsupportedAudioFileException an exception indicating that an operation failed because a file did not contain valid data of a recognised file type and format
+     * @throws IOException I/O exception of some sort has occurred
+     * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable
+     */
     public void playNextLevel() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         file = new File("src/main/resources/nextLevel.wav");
+        playMusic(file);
+    }
+
+    /**
+     * This method plays music specified by the calling method.
+     *
+     * @throws UnsupportedAudioFileException an exception indicating that an operation failed because a file did not contain valid data of a recognised file type and format
+     * @throws IOException I/O exception of some sort has occurred
+     * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable
+     */
+    public void playMusic(File file) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         audioStream = AudioSystem.getAudioInputStream(file);
         clip = AudioSystem.getClip();
         clip.open(audioStream);
         clip.start();
     }
-
 }
