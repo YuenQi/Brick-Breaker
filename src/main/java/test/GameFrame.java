@@ -35,6 +35,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private HomeMenuModel homeMenuModel;
 
     private boolean gaming;
+    private ImageIcon logo;
 
     /**
      * This is a constructor to initialise some variables in GameFrame class and create
@@ -51,6 +52,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         homeMenuView = new HomeMenuView(homeMenuModel);
         this.add(homeMenuView,BorderLayout.CENTER);
         this.setUndecorated(true);
+        logo = new ImageIcon("src/main/resources/logo.jpg");
     }
 
     /**
@@ -68,6 +70,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.autoLocate();
         this.setResizable(false);
         this.setVisible(true);
+        this.setIconImage(logo.getImage());
     }
 
     /**
