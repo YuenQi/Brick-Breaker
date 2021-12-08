@@ -5,9 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * This is HighScore class which displays current score and high score board on the screen.
+ * This is HighScoreView class which displays current score and high score board on the screen.
  */
-public class HighScore extends JFrame implements ActionListener {
+public class HighScoreView extends JFrame implements ActionListener {
 
     private static final int FRAME_WIDTH = 450;
     private static final int FRAME_HEIGHT = 300;
@@ -22,13 +22,15 @@ public class HighScore extends JFrame implements ActionListener {
     private ImageIcon gameOver;
     private JLabel background;
 
+    private HighScoreController highScoreController;
+
     /**
-     * This is a constructor to initialise some variables of HighScore class
+     * This is a constructor to initialise some variables of HighScoreView class
      * and designs this frame.
      *
      * @param wall Wall object
      */
-    public HighScore(Wall wall){
+    public HighScoreView(Wall wall){
 
         this.wall = wall;
         highScoreRecord = wall.getHighScore();
@@ -43,6 +45,8 @@ public class HighScore extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setLocationRelativeTo(null);//allows frame to appear in the middle of the screen, not just top left corner
         this.add(background);
+
+        highScoreController = new HighScoreController(this);
     }
 
     /**
@@ -114,8 +118,14 @@ public class HighScore extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == quitGameButton){
-            System.exit(0);
-        }
+        highScoreController.checkActionPerformed(e);
+    }
+
+    public JButton getQuitGameButton() {
+        return quitGameButton;
+    }
+
+    public void setQuitGameButton(JButton quitGameButton) {
+        this.quitGameButton = quitGameButton;
     }
 }
