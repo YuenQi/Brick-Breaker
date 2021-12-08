@@ -55,7 +55,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         homeMenuView = new HomeMenuView(homeMenuModel);
         this.add(homeMenuView,BorderLayout.CENTER);
         this.setUndecorated(true);
-        logo = new ImageIcon("src/main/resources/logo.jpg");
+        logo = new ImageIcon("src/main/resources/logo.jpg"); //ADDITION: add logo to the game
     }
 
     /**

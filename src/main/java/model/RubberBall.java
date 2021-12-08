@@ -17,8 +17,6 @@
  */
 package model;
 
-import model.Ball;
-
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -33,7 +31,7 @@ public class RubberBall extends Ball {
     private static final Color DEF_BORDER_COLOR = DEF_INNER_COLOR.darker().darker();
 
     /**
-     * This is a constructor to initialise variables of rubber ball.
+     * This is a constructor to initialise some variables in RubberBall class.
      * @param center center point of rubber ball
      */
     public RubberBall(Point2D center){
@@ -41,9 +39,9 @@ public class RubberBall extends Ball {
     }
 
     /**
-     * This method is to make rubber bal.
+     * This method is to make rubber ball.
      *
-     * @param center centre point of ball
+     * @param center center point of ball
      * @param radiusA diameter of ball (width of rectangle)
      * @param radiusB diameter of ball (height of rectangle)
      * @return rubber ball of type Shape

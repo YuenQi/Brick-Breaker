@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * This is GameBoardModel which is used to define game board model and allows other classes
- * to get and set value for GameBoard object.
+ * This is GameBoardModel class which is used to define game board model and allows other classes
+ * to get and set value for GameBoardView object.
  */
 public class GameBoardModel {
     private Timer timer;

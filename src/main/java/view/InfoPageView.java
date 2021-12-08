@@ -19,11 +19,11 @@ public class InfoPageView extends JFrame implements ActionListener {
     private InfoPageController infoPageController;
     private InfoPageModel infoPageModel;
 
-    /*
+    /**
      * This is a constructor to design info page, add ActionListener,
      * and initialise some variables in InfoPageView class.
      *
-     * @param owner GameFrame object
+     * @param infoPageModel InfoPageModel object
      */
     public InfoPageView(InfoPageModel infoPageModel){
 
@@ -117,23 +117,13 @@ public class InfoPageView extends JFrame implements ActionListener {
     }
 
     /**
-     * If user clicks the start button, this frame will be disposed
-     * and enableGameBoard method in GameFrame class will be called to
-     * display the game board.
-     * If user clicks the back button, this frame will be disposed too and GameFrame object will be created.
-     *
+     * This method checks if there is any action performed on this frame,
+     * and then passes the actionEvent to InfoPageController to update the view.
      * @param e a semantic event which indicates that a component-defined action occurred
      *          (generated when the button is clicked)
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if(e.getSource() == startButton){
-//            dispose();
-//            owner.enableGameBoard();
-//        } else if(e.getSource() == backButton){
-//            dispose();
-//            new GameFrame();
-//        }
         infoPageController.isActionPerformed(e);
     }
 

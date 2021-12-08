@@ -17,8 +17,6 @@
  */
 package model;
 
-import model.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -143,7 +141,6 @@ public class Wall {
      * decrement ball count, set ballLost to true and deduct point.
      */
     public void findImpacts(){
-
         /*
           If ball touches player, reverse direction of speedY
           if speedY is positive: ball goes down
@@ -276,7 +273,7 @@ public class Wall {
 
     /**
      * This method resets position of ball and player bar to the original position.
-     * It also reinitialise speed of ball and set ballLost to false.
+     * It also reinitialises speed of ball and set ballLost to false.
      */
     public void ballReset(){
         player.moveTo(startPoint);
@@ -436,10 +433,7 @@ public class Wall {
         if(score > Integer.parseInt(highScore.split(":")[1])){
             String name = JOptionPane.showInputDialog("You've created a new high score! What is your name?");
             highScore = name + ":" + score;
-            /*
-            .dat file is used because I don't want to let user edit the highScore file
-            to change the high score
-            */
+
             File scoreFile = new File("src/main/resources/highscore.dat");
             if(!scoreFile.exists())
             {

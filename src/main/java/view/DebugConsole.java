@@ -41,12 +41,12 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     /**
      * This is a constructor to initialise some variables in DebugConsole class
-     * and a debug panel to this dialog window.
+     * and a debug panel is added to this dialog window.
      *
-     * @param owner
-     * @param wall
-     * @param level
-     * @param gameBoardView
+     * @param owner game frame (owner)
+     * @param wall Wall object
+     * @param level Level object
+     * @param gameBoardView GameBoardView object
      */
     public DebugConsole(JFrame owner, Wall wall, Level level, GameBoardView gameBoardView){
         this.wall = wall;
@@ -73,7 +73,7 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     /**
      * This method is to locate Debug Console (dialog window) in the middle of the frame
-     * when it first pops out
+     * when it first pops out.
      */
     private void setLocation(){
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();

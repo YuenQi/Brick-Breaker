@@ -47,12 +47,11 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     private HomeMenuModel homeMenuModel;
     private HomeMenuController homeMenuController;
 
-    /*
+    /**
      * This is a constructor to design home menu, add MouseListener,
      * MouseMotionListener and initialise some variables in HomeMenuView class.
      *
-     * @param owner GameFrame object
-     * @param area width and height of home menu
+     * @param homeMenuModel HomeMenuModel object
      */
     public HomeMenuView(HomeMenuModel homeMenuModel){
 
@@ -62,7 +61,6 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         this.addMouseMotionListener(this);
 
         this.homeMenuModel = homeMenuModel;
-
         homeMenuController = new HomeMenuController(homeMenuModel,this);
 
         homeMenuModel.setMenuFace(new Rectangle(new Point(0,0),homeMenuModel.getArea()));
@@ -291,13 +289,8 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     }
 
     /**
-     * This method is used to define some actions performed when
-     * the mouse button has been clicked (pressed and released) on this component.
-     * The actions are as followed:
-     * 1. If the mouse button clicks on the so-called "Start button", display game board.
-     * 2. If the mouse button clicks on the so-called "Exit button", terminates this program.
-     * 3. If the mouse button clicks on the so-called "Info button", display the InfoPageView Window.
-     *
+     * This method checks if the mouse button has been clicked (pressed and released) and then passes the mouseEvent to
+     * HomeMenuController to update the view.
      * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
      *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
      *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
@@ -308,13 +301,8 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     }
 
     /**
-     * This method is used to define some actions performed when
-     * the mouse button has been pressed on this component.
-     * The actions are as followed:
-     * 1. If the mouse button clicks on the so-called "Start button", repaint the start button.
-     * 2. If the mouse button clicks on the so-called "Exit button", repaint the exit button.
-     * 3. If the mouse button clicks on the so-called "Info button", repaint the info button.
-     *
+     * This method checks if the mouse button has been pressed and then passes the mouseEvent to
+     * HomeMenuController to update the view.
      * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
      *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
      *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
@@ -325,13 +313,8 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     }
 
     /**
-     * This method is used to define some actions performed when
-     * the mouse button has been released on this component.
-     * The actions are as followed:
-     * 1. If the mouse button clicks on the so-called "Start button", repaint the start button.
-     * 2. If the mouse button clicks on the so-called "Exit button", repaint the exit button.
-     * 3. If the mouse button clicks on the so-called "Info button", repaint the info button.
-     *
+     * This method checks if the mouse button has been released and then passes the mouseEvent to
+     * HomeMenuController to update the view.
      * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
      *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
      *                   or when the mouse cursor enters or exits the unobscured part of component's geometry)
@@ -384,10 +367,8 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     }
 
     /**
-     * This method is used to define some actions performed when
-     * the mouse cursor has been moved onto this component but no buttons have been pushed.
-     * When mouse cursor move to the so-called "Start button", "Exit button" ot "Info button",
-     * set the cursor image to hand cursor, otherwise, set the cursor image as the default cursor.
+     * This method checks if the mouse cursor has been moved onto this component but no buttons have been pushed,
+     * then passes the mouseEvent to HomeMenuController to update the view.
      *
      * @param mouseEvent a low-level event which indicates that a mouse action occurred in a component
      *                   (generated when a mouse button is pressed, released or clicked (pressed and released),
@@ -398,14 +379,24 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         homeMenuController.checkMouseMoved(mouseEvent);
     }
 
+    /**
+     * This method sets hand cursor.
+     */
     public void setHandCursor(){
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
+    /**
+     * This method sets the default cursor.
+     */
     public void setDefaultCursor(){
         this.setCursor(Cursor.getDefaultCursor());
     }
 
+    /**
+     * This method repaints the button
+     * @param button button
+     */
     public void repaintButton (Rectangle button) {
         repaint(button.x,button.y,button.width+1,button.height+1);
     }

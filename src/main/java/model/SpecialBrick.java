@@ -1,12 +1,10 @@
 package model;
 
-import model.Brick;
-import model.GameTimer;
-
 import java.awt.*;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+//ADDDITION: Special brick to give reward
 /**
  * This is SpecialBrick class which inherits Brick class.
  * Special brick means if the ball hits the brick, the time taken

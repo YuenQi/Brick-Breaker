@@ -1,12 +1,10 @@
 package model;
 
-import model.Brick;
-import model.Level;
-
 import java.awt.*;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+//ADDDITION: Additional playble level
 /**
  * This is SlowBrick class which inherits Brick class.
  * Slow brick means if the ball hits the brick, the speed of the ball

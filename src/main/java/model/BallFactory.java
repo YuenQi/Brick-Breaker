@@ -2,6 +2,7 @@ package model;
 
 import java.awt.geom.Point2D;
 
+//REFACTOR: Use factory design pattern to create ball
 /**
  * This class abstracts the ball object instantiation process.
  */

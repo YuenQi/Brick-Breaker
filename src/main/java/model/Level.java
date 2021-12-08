@@ -2,6 +2,7 @@ package model;
 
 import java.awt.*;
 
+//REFACTOR: extract Level class from Wall class to ensure SOLID principle is adhered.
 /**
  * This is Level class to define different levels in this game.
  */
@@ -78,10 +79,14 @@ public class Level {
             tmp[i] = makeBrick(p,brickSize,type);
         }
 
+        /*
+        ADDITION (REWARD): Change the original clay brick to special brick to
+        reward user additional points. The special brick will decrement the
+        timer by 60 seconds and user will have a higher chance to get higher points.
+         */
         for(double y = brickHgt;i < tmp.length;i++, y += 2*brickHgt){
             double x = (brickOnLine * brickLen) - (brickLen / 2);
             p.setLocation(x,y);
-            //tmp[i] = new ClayBrick(p,brickSize);
             tmp[i] = brickFactory.getBrick("SPECIAL",p,brickSize);
         }
         return tmp;
@@ -135,10 +140,14 @@ public class Level {
             tmp[i] = b ?  makeBrick(p,brickSize,typeA) : makeBrick(p,brickSize,typeB);
         }
 
+        /*
+        ADDITION (REWARD): Change the original brick to special brick to
+        reward user additional points. The special brick will decrement the
+        timer by 60 seconds and user will have a higher chance to get higher points.
+         */
         for(double y = brickHgt;i < tmp.length;i++, y += 2*brickHgt){
             double x = (brickOnLine * brickLen) - (brickLen / 2);
             p.setLocation(x,y);
-            //tmp[i] = makeBrick(p,brickSize,typeA);
             tmp[i] = brickFactory.getBrick("SPECIAL",p,brickSize);
         }
         return tmp;
@@ -163,7 +172,7 @@ public class Level {
     }
 
     /**
-     * This method draw bricks and set brick count if there is next level.
+     * This method draws bricks and set brick count if there is next level.
      */
     public void nextLevel(){
         if (hasLevel()) {

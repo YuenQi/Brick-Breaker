@@ -2,6 +2,7 @@ package model;
 
 import java.awt.*;
 
+//REFACTOR: Use factory design pattern to create brick
 /**
  * This class abstracts the brick object instantiation process.
  */

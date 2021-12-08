@@ -17,8 +17,6 @@
  */
 package model;
 
-import model.Ball;
-
 import java.awt.*;
 
 /**
@@ -26,11 +24,10 @@ import java.awt.*;
  */
 public class Player {
 
-
     public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
     public static final Color INNER_COLOR = Color.GREEN;
 
-    private static final int DEF_MOVE_AMOUNT = 5;
+    private static final int MOVE_AMOUNT = 5;
 
     private Rectangle playerFace;
     private Point ballPoint;
@@ -92,7 +89,7 @@ public class Player {
      * This method moves the player bar to the left.
      */
     public void moveLeft(){
-        moveAmount = -DEF_MOVE_AMOUNT;
+        moveAmount = -MOVE_AMOUNT;
     }
 
 
@@ -100,7 +97,7 @@ public class Player {
      * This method moves the player bar to the right.
      */
     public void moveRight(){ //REFACTOR: change movRight() to moveRight()
-        moveAmount = DEF_MOVE_AMOUNT;
+        moveAmount = MOVE_AMOUNT;
     }
 
     /**

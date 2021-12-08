@@ -6,7 +6,9 @@ import model.Wall;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.font.FontRenderContext;
 
+//ADDITION: current score and highest score screen
 /**
  * This is HighScoreView class which displays current score and high score board on the screen.
  */
@@ -93,7 +95,7 @@ public class HighScoreView extends JFrame implements ActionListener {
 
         label4=new JLabel();
         label4.setText(highScoreRecord);
-        label4.setBounds(210,170,100,50);
+        label4.setBounds(195,170,100,50);
         label4.setForeground(Color.WHITE);
         label4.setFont(new Font(null, Font.PLAIN, 20));
     }
@@ -114,8 +116,8 @@ public class HighScoreView extends JFrame implements ActionListener {
     }
 
     /**
-     * This method terminates the program if user clicks the quit game button.
-     *
+     * This method checks if the user clicks the "Quit Game button"
+     * and then passes the actionEvent to HighScoreController to update the view.
      * @param e a semantic event which indicates that a component-defined action occurred
      *          (generated when the button is clicked)
      */
@@ -124,10 +126,18 @@ public class HighScoreView extends JFrame implements ActionListener {
         highScoreController.checkActionPerformed(e);
     }
 
+    /**
+     * This method is to return "Quit Game button" to the calling method.
+     * @return Quit Game button
+     */
     public JButton getQuitGameButton() {
         return quitGameButton;
     }
 
+    /**
+     * This method is to set "Quit Game button".
+     * @param quitGameButton Quit Game button
+     */
     public void setQuitGameButton(JButton quitGameButton) {
         this.quitGameButton = quitGameButton;
     }

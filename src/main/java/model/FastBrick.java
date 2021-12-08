@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+//ADDDITION: Additional playble level
 /**
  * This is FastBrick class which inherits Brick class.
  * Fast brick means if the ball hits the brick, the speed of the ball
