@@ -141,6 +141,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
                     gameBoardModel.getWall().checkScore();
                     gameBoardModel.getGameTimer().resetTimer();
                     gameBoardModel.getTimer().stop();
+                    gameBoardModel.setHighScore(new HighScoreView(gameBoardModel.getWall()));
                     //REWARD: when user destroys all the wall, play a cheering music
                     try {
                         gameBoardModel.getAudio().playAllWallDestroyed();
