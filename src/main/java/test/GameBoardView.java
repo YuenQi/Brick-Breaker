@@ -93,7 +93,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
                     gameBoardModel.getWall().reward();
                     gameBoardModel.getWall().checkScore();
                     gameBoardModel.getWall().wallReset();
-                    gameBoardModel.setHighScore(new HighScore(gameBoardModel.getWall()));
+                    gameBoardModel.setHighScore(new HighScoreView(gameBoardModel.getWall()));
                     gameBoardModel.setMessage("Game over");
                     gameBoardModel.getGameTimer().resetTimer();
                     //PENALTY: play booing music when the user loses all the ball

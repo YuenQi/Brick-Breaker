@@ -8,7 +8,7 @@ public class GameBoardModel {
 
     private Wall wall;
     private Level level;
-    private HighScore highScore;
+    private HighScoreView highScoreView;
 
     private GameTimer gameTimer;
     private Audio audio;
@@ -59,12 +59,12 @@ public class GameBoardModel {
         this.level = level;
     }
 
-    public HighScore getHighScore() {
-        return highScore;
+    public HighScoreView getHighScore() {
+        return highScoreView;
     }
 
-    public void setHighScore(HighScore highScore) {
-        this.highScore = highScore;
+    public void setHighScore(HighScoreView highScoreView) {
+        this.highScoreView = highScoreView;
     }
 
     public GameTimer getGameTimer() {
