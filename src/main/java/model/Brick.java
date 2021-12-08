@@ -1,7 +1,5 @@
 package model;
 
-import model.Ball;
-
 import java.awt.*;
 import java.awt.Point;
 import java.awt.geom.Point2D;
@@ -18,7 +16,6 @@ import java.util.Random;
  */
 abstract public class Brick  {
 
-    public static final int MIN_CRACK = 1;
     public static final int DEF_CRACK_DEPTH = 1;
     public static final int DEF_STEPS = 35;
 
@@ -31,14 +28,14 @@ abstract public class Brick  {
 
     private String name;
 
-    /*
+    /* REFACTOR (ENCAPSULATION):
     make the access modifier of brickFace protected so that its child
     class and the class inside the same package with Brick class can use this variable
      */
     protected Shape brickFace;
 
-    private Color border;
-    private Color inner;
+    private Color borderColor; //REFACTOR: change name from border to borderColor
+    private Color innerColor; //REFACTOR: change name from inner to innerColor
 
     private int fullStrength;
     private int strength;
@@ -49,19 +46,19 @@ abstract public class Brick  {
      * This is a constructor which initialises variables of brick.
      *
      * @param name name of brick
-     * @param pos point (x-coordinate and y-coordinate) to draw the brick
+     * @param position point (x-coordinate and y-coordinate) to draw the brick
      * @param size size (width and height) of brick
-     * @param border border color of brick
-     * @param inner inner color of brick
+     * @param borderColor border color of brick
+     * @param innerColor inner color of brick
      * @param strength strength of brick (need to hit how many times in order to break the brick)
      */
-    public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
+    public Brick(String name, Point position, Dimension size, Color borderColor, Color innerColor, int strength){ //REFACTOR: change "pos" to "position"
         rnd = new Random();
         broken = false;
         this.name = name;
-        brickFace = makeBrickFace(pos,size);
-        this.border = border;
-        this.inner = inner;
+        brickFace = makeBrickFace(position,size);
+        this.borderColor = borderColor;
+        this.innerColor = innerColor;
         this.fullStrength = this.strength = strength;
     }
 
@@ -70,20 +67,20 @@ abstract public class Brick  {
      * parameter list) for subclass of Brick which is not abstract
      * to implement the method to make a brick.
      *
-     * @param pos point (x-coordinate and y-coordinate) to draw the brick
+     * @param position point (x-coordinate and y-coordinate) to draw the brick
      * @param size size (width and height) of brick
      * @return a brick which is of type Shape
      */
-    protected abstract Shape makeBrickFace(Point pos,Dimension size);
+    protected abstract Shape makeBrickFace(Point position,Dimension size); //REFACTOR: change "pos" to "position"
 
     /**
      * This method is to set impact on brick.
      *
      * @param point point at which the ball hits the brick
-     * @param dir direction of crack of brick (if there is crack)
+     * @param direction direction of crack of brick (if there is crack)
      * @return state of brick (broken / not broken)
      */
-    public boolean setImpact(Point2D point , int dir){
+    public boolean setImpact(Point2D point , int direction){ //REFACTOR: change "dir" to "direction"
         if(broken)
             return false;
         impact();
@@ -105,7 +102,7 @@ abstract public class Brick  {
      * @return border color of brick
      */
     public Color getBorderColor(){
-        return  border;
+        return borderColor;
     }
 
     /**
@@ -114,7 +111,7 @@ abstract public class Brick  {
      * @return inner color of brick
      */
     public Color getInnerColor(){
-        return inner;
+        return innerColor;
     }
 
     /**
@@ -139,7 +136,7 @@ abstract public class Brick  {
     }
 
     /**
-     * This method is to check is the brick is broken or not.
+     * This method is to check if the brick is broken or not.
      *
      * @return state (broken or not broken) of brick
      */
