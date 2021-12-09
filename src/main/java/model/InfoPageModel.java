@@ -117,12 +117,4 @@ public class InfoPageModel {
         return owner;
     }
 
-    /**
-     * This method is to set game frame (owner).
-     * @param owner game frame (owner)
-     */
-    public void setOwner(GameFrame owner) {
-        this.owner = owner;
-    }
-
 }
