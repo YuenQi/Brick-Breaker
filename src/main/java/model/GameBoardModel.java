@@ -360,13 +360,4 @@ public class GameBoardModel {
     public JFrame getOwner() {
         return owner;
     }
-
-    /**
-     * This method is to set game frame (owner).
-     *
-     * @param owner game frame (owner)
-     */
-    public void setOwner(JFrame owner) {
-        this.owner = owner;
-    }
 }
