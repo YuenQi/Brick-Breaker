@@ -45,7 +45,7 @@ public class SpecialBrick extends Brick {
             return false;
         else {
             impact();
-            timer.setGameTime(timer.getGameTime()-60);
+            timer.setGameTime(GameTimer.getGameTime()-60);
         }
         return super.isBroken();
     }
