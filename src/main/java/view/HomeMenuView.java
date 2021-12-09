@@ -260,7 +260,6 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
         x = homeMenuModel.getStartButton().x;
         y = homeMenuModel.getExitButton().y;
 
-        //TODO extract the calculation method and automate spacing calculation instead of hardcoding a value
         y += 38.5;
 
         homeMenuModel.getInfoButton().setLocation(x,y);
