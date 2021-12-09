@@ -99,6 +99,23 @@ public class GameTimer {
      * @param gameTime time taken by the user to play the game
      */
     public void setGameTime(int gameTime) {
-        this.gameTime = gameTime;
+        GameTimer.gameTime = gameTime;
     }
+
+    /**
+     * This method is to set seconds (mainly used for testing purpose).
+     * @param seconds seconds taken by user to play the game
+     */
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
+    }
+
+    /**
+     * This method is to set minutes (mainly used for testing purpose).
+     * @param minutes minutes taken by user to play the game
+     */
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
+
 }

@@ -49,30 +49,12 @@ public class HomeMenuModel {
     }
 
     /**
-     * This method is to set game frame (owner).
-     *
-     * @param owner game frame (owner)
-     */
-    public void setOwner(GameFrame owner) {
-        this.owner = owner;
-    }
-
-    /**
      * This method is to return area (width and height) of home menu to the calling method.
      *
      * @return area (width and height) of home menu
      */
     public Dimension getArea() {
         return area;
-    }
-
-    /**
-     * This method is to set area (width and height) of home menu.
-     *
-     * @param area area (width and height) of home menu
-     */
-    public void setArea(Dimension area) {
-        this.area = area;
     }
 
     /**
