@@ -38,6 +38,7 @@ abstract public class Brick  {
     private Color innerColor; //REFACTOR: change name from inner to innerColor
 
     private int fullStrength;
+
     private int strength;
 
     private boolean broken;
@@ -171,5 +172,13 @@ abstract public class Brick  {
      */
     public static Random getRnd() {
         return rnd;
+    }
+
+    /**
+     * This method is used to return strength of brick to the calling method (mainly used for unit test).
+     * @return strength of brick
+     */
+    public int getStrength() {
+        return strength;
     }
 }
