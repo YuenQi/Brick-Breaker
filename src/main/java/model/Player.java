@@ -126,4 +126,37 @@ public class Player {
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
+
+    /**
+     * This method is to return move amount of player bar to the calling method (mainly used for testing purpose).
+     * @return move amount of player bar
+     */
+    public int getMoveAmount() {
+        return moveAmount;
+    }
+
+    /**
+     * This method returns center point of ball to the calling method (mainly used for testing purpose).
+     * @return center point of ball
+     */
+    public Point getBallPoint() {
+        return ballPoint;
+    }
+
+    /**
+     * This method sets player bar (mainly used for testing purpose).
+     * @param playerFace player bar
+     */
+    public void setPlayerFace(Rectangle playerFace) {
+        this.playerFace = playerFace;
+    }
+
+    /**
+     * This method sets center point of ball (mainly used for testing purpose).
+     * @param ballPoint center point of ball
+     */
+    public void setBallPoint(Point ballPoint) {
+        this.ballPoint = ballPoint;
+    }
+
 }
