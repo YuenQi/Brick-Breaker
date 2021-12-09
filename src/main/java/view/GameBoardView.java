@@ -44,7 +44,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
 
-    private static final Color BG_COLOR = Color.WHITE;
+    private static final Color BACKGROUND_COLOR = Color.WHITE;
 
     private GameBoardController gameBoardController;
     private GameBoardModel gameBoardModel;
@@ -218,7 +218,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
      */
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
-        g2d.setColor(BG_COLOR);
+        g2d.setColor(BACKGROUND_COLOR);
         g2d.fillRect(0,0,getWidth(),getHeight());
         g2d.setColor(tmp);
     }
