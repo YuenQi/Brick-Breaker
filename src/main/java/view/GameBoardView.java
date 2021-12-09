@@ -74,7 +74,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
 
         gameBoardModel.setWall(new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),new Point(300,430)));
 
-        gameBoardModel.setLevel(new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3, 6/2, gameBoardModel.getWall()));
+        gameBoardModel.setLevel(new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3, 3, gameBoardModel.getWall()));
 
         gameBoardModel.setGameTimer(new GameTimer());
         gameBoardModel.setAudio(new Audio());
@@ -104,11 +104,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
                     //PENALTY: play melancholy music when the user loses all the balls
                     try {
                         gameBoardModel.getAudio().playGameOver();
-                    } catch (UnsupportedAudioFileException ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    } catch (LineUnavailableException ex) {
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                         ex.printStackTrace();
                     }
                 }
@@ -129,11 +125,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
                      */
                     try {
                         gameBoardModel.getAudio().playNextLevel();
-                    } catch (UnsupportedAudioFileException ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    } catch (LineUnavailableException ex) {
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                         ex.printStackTrace();
                     }
                 }
@@ -147,11 +139,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
                     //REWARD: when user destroys all the wall, play a cheering music
                     try {
                         gameBoardModel.getAudio().playAllWallDestroyed();
-                    } catch (UnsupportedAudioFileException ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    } catch (LineUnavailableException ex) {
+                    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                         ex.printStackTrace();
                     }
                 }
