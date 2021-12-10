@@ -134,11 +134,4 @@ public class HighScoreView extends JFrame implements ActionListener {
         return quitGameButton;
     }
 
-    /**
-     * This method is to set "Quit Game button".
-     * @param quitGameButton Quit Game button
-     */
-    public void setQuitGameButton(JButton quitGameButton) {
-        this.quitGameButton = quitGameButton;
-    }
 }
