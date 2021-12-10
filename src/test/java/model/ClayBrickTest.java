@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClayBrickTest {
 
-    Brick clayBrick = new ClayBrick(new Point(0,0), new Dimension(60,20));
+    ClayBrick clayBrick = new ClayBrick(new Point(0,0), new Dimension(60,20));
 
     @Test
     public void makeBrickFaceTest1() {
@@ -38,5 +38,15 @@ class ClayBrickTest {
     @Test
     public void getBrickTest3() {
         assertEquals(new Rectangle(new Point(0, 0), new Dimension(60, 20)),clayBrick.getBrick());
+    }
+
+    @Test
+    public void getInnerColorTest(){
+        assertEquals(new Color(178, 34, 34).darker(),clayBrick.getInnerColor());
+    }
+
+    @Test
+    public void getBorderColorTest(){
+        assertEquals(Color.GRAY,clayBrick.getBorderColor());
     }
 }

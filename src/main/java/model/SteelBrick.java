@@ -17,8 +17,6 @@
  */
 package model;
 
-import model.Brick;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
@@ -29,13 +27,15 @@ import java.util.Random;
 public class SteelBrick extends Brick {
 
     private static final String NAME = "Steel Brick";
-    private static final Color DEF_INNER = new Color(203, 203, 201);
-    private static final Color DEF_BORDER = Color.BLACK;
+    private static final Color INNER_COLOR = new Color(203, 203, 201);
+    private static final Color BORDER_COLOR = Color.BLACK;
     private static final int STEEL_STRENGTH = 1;
     private static final double STEEL_PROBABILITY = 0.4;
 
     private Random rnd;
     private Shape brickFace;
+
+    private double randomProbability;
 
     /**
      * This is a constructor which initialises variables of steel brick.
@@ -44,7 +44,7 @@ public class SteelBrick extends Brick {
      * @param size size (width and height) of brick
      */
     public SteelBrick(Point point, Dimension size){
-        super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
+        super(NAME,point,size, BORDER_COLOR, INNER_COLOR,STEEL_STRENGTH);
         rnd = new Random();
         brickFace = super.brickFace;
     }
@@ -93,8 +93,18 @@ public class SteelBrick extends Brick {
      * If strength is reduced to 0, set broken state of brick to true.
      */
     public void impact(){
-        if(rnd.nextDouble() < STEEL_PROBABILITY){
+        randomProbability = rnd.nextDouble();
+        if(getRandomProbability() < STEEL_PROBABILITY){
             super.impact();
         }
     }
+
+    /**
+     * This method is used to return random number generated to the calling method.
+     * @return random number generated
+     */
+    public double getRandomProbability() {
+        return randomProbability;
+    }
+
 }

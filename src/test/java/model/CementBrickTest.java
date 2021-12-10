@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CementBrickTest {
 
-    Brick cementBrick = new CementBrick(new Point(60,0), new Dimension(60,20));
+    CementBrick cementBrick = new CementBrick(new Point(60,0), new Dimension(60,20));
 
     @Test
     public void makeBrickFaceTest1() {
@@ -86,5 +86,15 @@ class CementBrickTest {
         cementBrick.repair();
         assertFalse(cementBrick.isBroken());
         assertEquals(2,cementBrick.getStrength());
+    }
+
+    @Test
+    public void getInnerColorTest(){
+        assertEquals(new Color(147, 147, 147),cementBrick.getInnerColor());
+    }
+
+    @Test
+    public void getBorderColorTest(){
+        assertEquals(new Color(217, 199, 175),cementBrick.getBorderColor());
     }
 }

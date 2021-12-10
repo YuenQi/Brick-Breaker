@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SpecialBrickTest {
 
-    Brick specialBrick = new SpecialBrick(new Point(570,20), new Dimension(60,20));
+    SpecialBrick specialBrick = new SpecialBrick(new Point(570,20), new Dimension(60,20));
 
     @Test
-    public void setImpact() {
+    public void setImpactTest() {
         Point2D upBall = new Point2D.Double(494.0, 37.0);
         assertTrue(specialBrick.setImpact(upBall, Crack.DOWN)); //the special brick is broken when the ball hits it for the first time
         assertEquals(0,specialBrick.getStrength()); //the strength of the special brick becomes 0 when the ball hits it for the first time
@@ -46,5 +46,15 @@ class SpecialBrickTest {
     @Test
     public void getBrickTest3() {
         assertEquals(new Rectangle(new Point(570,20), new Dimension(60, 20)),specialBrick.getBrick());
+    }
+
+    @Test
+    public void getInnerColorTest(){
+        assertEquals(new Color(0x7de893),specialBrick.getInnerColor());
+    }
+
+    @Test
+    public void getBorderColorTest(){
+        assertEquals(new Color(0x006b15),specialBrick.getBorderColor());
     }
 }

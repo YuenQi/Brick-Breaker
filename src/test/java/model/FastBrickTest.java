@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FastBrickTest {
 
-    Brick fastBrick = new FastBrick(new Point(0,0), new Dimension(60,20));
+    FastBrick fastBrick = new FastBrick(new Point(0,0), new Dimension(60,20));
 
     @Test
     public void makeBrickFaceTest1() {
@@ -39,5 +39,15 @@ class FastBrickTest {
     @Test
     public void getBrickTest3() {
         assertEquals(new Rectangle(new Point(0, 0), new Dimension(60, 20)),fastBrick.getBrick());
+    }
+
+    @Test
+    public void getInnerColorTest(){
+        assertEquals(new Color(0x8bd2d9),fastBrick.getInnerColor());
+    }
+
+    @Test
+    public void getBorderColorTest(){
+        assertEquals(new Color(0x1815bd),fastBrick.getBorderColor());
     }
 }

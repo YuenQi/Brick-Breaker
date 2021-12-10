@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SlowBrickTest {
 
-    Brick slowBrick = new SlowBrick(new Point(60,0), new Dimension(60,20));
+    SlowBrick slowBrick = new SlowBrick(new Point(60,0), new Dimension(60,20));
 
     @Test
     public void makeBrickFaceTest1() {
@@ -38,5 +38,15 @@ class SlowBrickTest {
     @Test
     public void getBrickTest3() {
         assertEquals(new Rectangle(new Point(60, 0), new Dimension(60, 20)),slowBrick.getBrick());
+    }
+
+    @Test
+    public void getInnerColorTest(){
+        assertEquals(new Color(0xa995e8),slowBrick.getInnerColor());
+    }
+
+    @Test
+    public void getBorderColorTest(){
+        assertEquals(new Color(0x8932a8),slowBrick.getBorderColor());
     }
 }
