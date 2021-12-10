@@ -56,7 +56,7 @@ class PlayerTest {
     @Test
     public void moveTo() {
         player.setBallPoint(new Point(200,400));
-        player.setPlayerFace(new Rectangle(200,300,150,10));
+        player.setPlayerFace(new Rectangle(200,430,150,10));
         Point startPoint = new Point(300,430);
         player.moveTo(startPoint);
         /*

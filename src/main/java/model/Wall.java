@@ -104,7 +104,7 @@ public class Wall {
     }
 
     /**
-     * This method is to set initial speed in x and y direction of ball
+     * This method is to set initial speed in x and y direction of ball.
      */
     private void initialiseSpeed() {
         ballSpeedX = 2;
@@ -229,7 +229,7 @@ public class Wall {
      * @return is the ball hits the border of the frame
      */
     private boolean impactBorder(){
-        Point2D p = ball.getPosition();//get position of center of ball
+        Point2D p = ball.getPosition();//get position of center point of ball
         //area refers to drawArea, area.getX() is always 0, area.getWidth() is always 600
         //if x-coordinate of center of ball is < 0 or > 600, return true
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
@@ -477,4 +477,37 @@ public class Wall {
     public String getHighScore() {
         return highScore;
     }
+
+    /**
+     * This method is used to set score (mainly used to testing purpose).
+     * @param score score obtained by user
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    /**
+     * This method is used to return timer to the calling method (mainly used for testing purpose).
+     * @return timer which is used to calculate time taken by user to play the game
+     */
+    public GameTimer getTimer() {
+        return timer;
+    }
+
+    /**
+     * This method is to set whether ball is lost (mainly used for testing purpose).
+     * @param ballLost whether ball is lost
+     */
+    public void setBallLost(boolean ballLost) {
+        this.ballLost = ballLost;
+    }
+
+    /**
+     * This method is to set ball count (mainly used for testing purpose).
+     * @param ballCount number of ball left
+     */
+    public void setBallCount(int ballCount) {
+        this.ballCount = ballCount;
+    }
+
 }
