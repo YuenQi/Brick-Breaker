@@ -483,10 +483,16 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
         gameBoardController.checkMouseMoved(mouseEvent);
     }
 
+    /**
+     * This method is to set hand cursor.
+     */
     public void setHandCursor(){
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
+    /**
+     * This method is to set default mouse cursor.
+     */
     public void setDefaultCursor(){
         this.setCursor(Cursor.getDefaultCursor());
     }
@@ -507,5 +513,13 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
      */
     public void repaintGameBoard(){
         repaint();
+    }
+
+    /**
+     * This method is to get game board model (mainly used for testing purpose).
+     * @return GameBoardModel object
+     */
+    public GameBoardModel getGameBoardModel() {
+        return gameBoardModel;
     }
 }

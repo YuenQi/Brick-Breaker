@@ -138,4 +138,29 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         if(gaming)
             gameBoardView.onLostFocus();
     }
+
+    /**
+     * This method tells the calling method whether the user is playing the game (mainly for testing purpose).
+     * @return whether the user is playing the game
+     */
+    public boolean isGaming() {
+        return gaming;
+    }
+
+    /**
+     * This method is used to set whether user is playing the game (mainly used for testing purpose).
+     * @param gaming whether user is playing the game
+     */
+    public void setGaming(boolean gaming) {
+        this.gaming = gaming;
+    }
+
+    /**
+     * This method is to return game board view to the calling method (mainly used for testing purpose).
+     * @return GameBoardView object
+     */
+    public GameBoardView getGameBoardView() {
+        return gameBoardView;
+    }
+
 }
