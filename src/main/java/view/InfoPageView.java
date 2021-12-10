@@ -105,7 +105,7 @@ public class InfoPageView extends JFrame implements ActionListener {
      * This method creates back button
      * and adds ActionListener to the button.
      */
-    public void createBackButton(){
+    private void createBackButton(){
         infoPageModel.setBackButton(new JButton("BACK"));
         infoPageModel.getBackButton().setBounds(305,450,80, 30);
         infoPageModel.getBackButton().setHorizontalTextPosition(JButton.CENTER);
