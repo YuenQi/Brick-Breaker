@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
  */
 public class HighScoreController {
 
+    /**HighScoreView object*/
     private HighScoreView highScoreView;
 
     /**

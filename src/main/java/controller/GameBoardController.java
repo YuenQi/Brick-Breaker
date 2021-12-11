@@ -14,7 +14,10 @@ import java.awt.event.MouseEvent;
  */
 public class GameBoardController {
 
+    /**GameBoardModel object*/
     private GameBoardModel gameBoardModel;
+
+    /**GameBoardView object*/
     private GameBoardView gameBoardView;
 
     /**

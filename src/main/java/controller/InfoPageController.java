@@ -13,7 +13,10 @@ import java.awt.event.ActionEvent;
  */
 public class InfoPageController {
 
+    /**InfoPageModel object*/
     private InfoPageModel infoPageModel;
+
+    /**InfoPageView object*/
     private InfoPageView infoPageView;
 
     /**

@@ -15,10 +15,16 @@ import java.awt.event.MouseEvent;
  */
 public class HomeMenuController {
 
+    /**HomeMenuView object*/
     private HomeMenuView homeMenuView;
+
+    /**HomeMenuModel object*/
     private HomeMenuModel homeMenuModel;
 
+    /**InfoPageView object*/
     private InfoPageView infoPageView;
+
+    /**InfoPageModel object*/
     private InfoPageModel infoPageModel;
 
     /**
