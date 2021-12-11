@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**This is test class for ClayBrick class*/
 class ClayBrickTest {
 
     ClayBrick clayBrick = new ClayBrick(new Point(0,0), new Dimension(60,20));

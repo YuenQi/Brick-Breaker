@@ -8,12 +8,16 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**This is test class for DebugPanel class*/
 class DebugPanelTest {
 
     Wall wall = new Wall(new Rectangle(0,0,600,450),new Point(300,430));
     Level level = new Level(new Rectangle(0,0,600,450),30,3, 3, wall);
     DebugPanel debugPanel = new DebugPanel(wall,level);
 
+    /**
+     * This method tests for setValues method.
+     */
     @Test
     public void setValuesTest() {
         debugPanel.setValues(4,4);
