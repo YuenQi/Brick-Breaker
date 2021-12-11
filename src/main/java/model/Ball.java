@@ -16,6 +16,12 @@ abstract public class Ball {
     private Shape ballFace;
     private Point2D center;
 
+    /*
+    REFACTOR (ENCAPSULATION):
+    I changed the access modifier of the variables to "private"
+    and add getter and setter for the variables
+    so that encapsulation is achieved.
+     */
     private Point2D up;
     private Point2D down;
     private Point2D left;

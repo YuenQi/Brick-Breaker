@@ -15,7 +15,7 @@ public class Audio {
     private Clip clip;
 
     /**
-     * This method plays "gameOver.wav" melancholy music when the user loses all the balls.
+     * This method plays "gameOver.wav" melancholy music when the user loses all the balls to give some sort of penalty to user.
      *
      * @throws UnsupportedAudioFileException an exception indicating that an operation failed because a file did not contain valid data of a recognised file type and format
      * @throws IOException I/O exception of some sort has occurred
@@ -27,7 +27,7 @@ public class Audio {
     }
 
     /**
-     * This method plays "allWallDestroyed.wav" cheering music when the user completes the last level.
+     * This method plays "allWallDestroyed.wav" cheering music when the user completes the last level to give some sort of reward to user.
      *
      * @throws UnsupportedAudioFileException an exception indicating that an operation failed because a file did not contain valid data of a recognised file type and format
      * @throws IOException I/O exception of some sort has occurred
@@ -40,7 +40,7 @@ public class Audio {
 
     /**
      * This method plays "nextLevel.wav" cheering music when user successfully breaks all the bricks in 1 level and goes to next level
-     *
+     * to give some sort of reward to user.
      * @throws UnsupportedAudioFileException an exception indicating that an operation failed because a file did not contain valid data of a recognised file type and format
      * @throws IOException I/O exception of some sort has occurred
      * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable

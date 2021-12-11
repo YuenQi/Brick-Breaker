@@ -14,9 +14,19 @@ import java.awt.font.FontRenderContext;
  */
 public class HighScoreView extends JFrame implements ActionListener {
 
+    /*
+    Constant is used so that changes can be made in 1 place afterwards
+    to reduce errors that might occur.
+    This is good programming practice.
+     */
     private static final int FRAME_WIDTH = 450;
     private static final int FRAME_HEIGHT = 300;
 
+    /*
+    ENCAPSULATION:
+    "private" access modifier, respective getter and setter for the variables
+    is used so that encapsulation is achieved.
+    */
     private JButton quitGameButton;
     private JLabel label1;
     private JLabel label2;

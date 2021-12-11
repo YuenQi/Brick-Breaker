@@ -29,6 +29,12 @@ public class Wall {
 
     private Rectangle area;
 
+    /*
+    REFACTOR (ENCAPSULATION):
+    I changed the access modifier of the variables to "private"
+    and add getter and setter for the variables
+    so that encapsulation is achieved.
+     */
     private Brick[] bricks;
     private Ball ball;
     private Player player;
