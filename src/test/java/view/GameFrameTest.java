@@ -36,7 +36,7 @@ class GameFrameTest {
     }
 
     /**
-     * This method tests for setGming and isGaming method.
+     * This method tests for setGaming and isGaming method.
      */
     @Test
     public void setAndGetGamingTest() {
