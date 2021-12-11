@@ -11,8 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 /**This is test class for DebugPanel class*/
 class DebugPanelTest {
 
+    /**Wall object*/
     Wall wall = new Wall(new Rectangle(0,0,600,450),new Point(300,430));
+    /**Level object*/
     Level level = new Level(new Rectangle(0,0,600,450),30,3, 3, wall);
+    /**DebugPanel object*/
     DebugPanel debugPanel = new DebugPanel(wall,level);
 
     /**

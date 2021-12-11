@@ -57,7 +57,7 @@ public class Audio {
 
     /**
      * This method plays music specified by the calling method.
-     *
+     * @param file audio file that is going to be played
      * @throws UnsupportedAudioFileException an exception indicating that an operation failed because a file did not contain valid data of a recognised file type and format
      * @throws IOException I/O exception of some sort has occurred
      * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable

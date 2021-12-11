@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**This is test class for SlowBrick class*/
 class SlowBrickTest {
 
+    /**SlowBrick object*/
     SlowBrick slowBrick = new SlowBrick(new Point(60,0), new Dimension(60,20));
 
     /*

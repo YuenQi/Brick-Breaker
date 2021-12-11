@@ -18,7 +18,9 @@ and test it as I think it's a better testing for this type of class (graphics in
 /**This is test class for Crack class*/
 class CrackTest {
 
+    /**CementBrick object*/
     CementBrick cementBrick = new CementBrick(new Point(60,0), new Dimension(60,20));
+    /**Crack object*/
     Crack crack = new Crack(cementBrick, CementBrick.CRACK_DEPTH, CementBrick.STEPS);
 
     /**

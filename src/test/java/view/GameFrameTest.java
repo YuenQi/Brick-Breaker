@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**This is test class for GameFrame class*/
 class GameFrameTest {
 
+    /**GameFrame object*/
     GameFrame gameFrame = new GameFrame();
 
     /**

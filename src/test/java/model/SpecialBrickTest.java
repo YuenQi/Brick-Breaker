@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**This is test class for SpecialBrick class*/
 class SpecialBrickTest {
 
+    /**SpecialBrick object*/
     SpecialBrick specialBrick = new SpecialBrick(new Point(570,20), new Dimension(60,20));
 
     /**

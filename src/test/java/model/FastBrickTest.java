@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**This is test class for FastBrick class*/
 class FastBrickTest {
 
+    /**FastBrick object*/
     FastBrick fastBrick = new FastBrick(new Point(0,0), new Dimension(60,20));
 
     /*

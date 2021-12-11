@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**This is test class for Wall class*/
 class WallTest {
 
+    /**Wall object*/
     Wall wall = new Wall(new Rectangle(0,0,600,450),new Point(300,430));
 
     /**

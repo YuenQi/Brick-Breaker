@@ -8,7 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 /**This is test class for GameBoardView class*/
 class GameBoardViewTest {
 
+    /**GameBoardModel object*/
     GameBoardModel gameBoardModel = new GameBoardModel(new GameFrame());
+    /**GameBoardView object*/
     GameBoardView gameBoardView = new GameBoardView(gameBoardModel);
 
     /**
