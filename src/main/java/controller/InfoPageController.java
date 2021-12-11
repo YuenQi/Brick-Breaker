@@ -43,6 +43,5 @@ public class InfoPageController {
             infoPageView.dispose();
             new GameFrame();
         }
-
     }
 }

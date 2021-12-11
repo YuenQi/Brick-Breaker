@@ -4,9 +4,9 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
-//ADDITION: add Audio class to play music to reward or give penalty to player
+//ADDITION: add Audio class to play music to give reward or penalty to player
 /**
- * This is Audio class which will play audio.
+ * This is Audio class which will play audio (to give reward or penalty to player).
  */
 public class Audio {
 

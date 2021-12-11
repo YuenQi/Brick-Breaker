@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
 public class BallFactory {
 
     /**
-     * This method is to return ball object to the calling method.
+     * This method is to return Ball object to the calling method.
      *
      * @param ballType type of ball to be created
      * @param center center point of ball

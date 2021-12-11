@@ -393,7 +393,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
     }
 
     /**
-     * This method repaints the button
+     * This method repaints the button.
      * @param button button
      */
     public void repaintButton (Rectangle button) {

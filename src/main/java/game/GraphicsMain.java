@@ -22,7 +22,7 @@ import view.GameFrame;
 import java.awt.*;
 
 /**
- * This is the Main Class of Brick Breaker game
+ * This is the Main Class of Brick Breaker game.
  * @author Heng Yuen Qi
  * @version 2.0
  * @since 30/11/2021
