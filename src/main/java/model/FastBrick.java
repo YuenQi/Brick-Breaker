@@ -12,9 +12,13 @@ import java.awt.geom.Point2D;
  */
 public class FastBrick extends Brick {
 
+    /**name of brick*/
     private static final String NAME = "Fast Brick";
+    /**inner color of brick*/
     private static final Color INNER_COLOR = new Color(0x8bd2d9);
+    /**border color of brick*/
     private static final Color BORDER_COLOR = new Color(0x1815bd);
+    /**full strength of fast brick*/
     private static final int FAST_BRICK_STRENGTH = 1;
 
     /**

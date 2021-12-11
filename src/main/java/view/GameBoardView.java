@@ -34,19 +34,30 @@ import java.io.IOException;
  */
 public class GameBoardView extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
+    /**Text of the so-called continue button*/
     private static final String CONTINUE = "Continue";
+    /**Text of the so-called restart button*/
     private static final String RESTART = "Restart";
+    /**Text of the so-called exit button*/
     private static final String EXIT = "Exit";
+    /**Title of pause menu*/
     private static final String PAUSE = "Pause Menu";
+    /**size of text*/
     private static final int TEXT_SIZE = 30;
+    /**color of menu*/
     private static final Color MENU_COLOR = new Color(0,255,0);
 
+    /**width of game board*/
     private static final int DEF_WIDTH = 600;
+    /**height of game board*/
     private static final int DEF_HEIGHT = 450;
 
+    /**background color of game board*/
     private static final Color BACKGROUND_COLOR = Color.WHITE;
 
+    /**GameBoardController object*/
     private GameBoardController gameBoardController;
+    /**GameBoardModel object*/
     private GameBoardModel gameBoardModel;
 
     /**

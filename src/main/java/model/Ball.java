@@ -13,7 +13,10 @@ import java.awt.geom.RectangularShape;
  */
 abstract public class Ball {
 
+    /**shape of ball*/
     private Shape ballFace;
+
+    /**center point of ball*/
     private Point2D center;
 
     /*
@@ -22,15 +25,23 @@ abstract public class Ball {
     and add getter and setter for the variables
     so that encapsulation is achieved.
      */
+    /**point on the top of the ball*/
     private Point2D up;
+    /**point on the bottom of the ball*/
     private Point2D down;
+    /**point on the left of the ball*/
     private Point2D left;
+    /**point on the right of the ball*/
     private Point2D right;
 
+    /**border color of ball*/
     private Color borderColor; //REFACTOR: change name from border to borderColor
+    /**inner color of ball*/
     private Color innerColor; //REFACTOR: change name from inner to innerColor
 
+    /**speed of ball in x direction*/
     private int speedX;
+    /**speed of ball in y direction*/
     private int speedY;
 
     /**

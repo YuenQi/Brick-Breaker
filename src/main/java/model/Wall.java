@@ -27,6 +27,7 @@ import java.io.*;
  */
 public class Wall {
 
+    /**draw area to draw brick / player bar*/
     private Rectangle area;
 
     /*
@@ -35,22 +36,35 @@ public class Wall {
     and add getter and setter for the variables
     so that encapsulation is achieved.
      */
+    /**1D array representation of bricks*/
     private Brick[] bricks;
+    /**Ball object*/
     private Ball ball;
+    /**Player object*/
     private Player player;
+    /**BallFactory object*/
     private BallFactory ballFactory;
 
+    /**original position of player bar and ball*/
     private Point startPoint;
+    /**number of brick left*/
     private int brickCount;
+    /**number of ball left*/
     private int ballCount;
+    /**flag to determine whether ball is lost*/
     private boolean ballLost;
 
+    /**speed of ball in x direction*/
     private int ballSpeedX;
+    /**speed of ball in y direction*/
     private int ballSpeedY;
 
+    /**current score obtained by user*/
     private int score = 0;
+    /**highest score*/
     private String highScore = "";
 
+    /**GameTimer object*/
     private GameTimer timer;
 
     /**

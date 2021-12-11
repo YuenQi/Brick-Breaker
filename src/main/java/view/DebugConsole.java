@@ -31,12 +31,18 @@ import java.awt.event.WindowListener;
  */
 public class DebugConsole extends JDialog implements WindowListener{
 
+    /**title of dialog window*/
     private static final String TITLE = "Debug Console";
 
+    /**owner (like a window/container to hold everything)*/
     private JFrame owner;
+    /**DebugPanel object*/
     private DebugPanel debugPanel;
+    /**GameBoardView object*/
     private GameBoardView gameBoardView;
+    /**Wall object*/
     private Wall wall;
+    /**Level object*/
     private Level level;
 
     /**

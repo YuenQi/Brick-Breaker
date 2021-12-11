@@ -14,11 +14,16 @@ import java.awt.geom.Point2D;
  */
 public class SpecialBrick extends Brick {
 
+    /**name of brick*/
     private static final String NAME = "Special Brick";
+    /**inner color of brick*/
     private static final Color INNER_COLOR = new Color(0x7de893);
+    /**border color of brick*/
     private static final Color BORDER_COLOR = new Color(0x006b15);
+    /**full strength of brick*/
     private static final int SPECIAL_BRICK_STRENGTH = 1;
 
+    /**GameTimer object*/
     private GameTimer timer;
 
     /**

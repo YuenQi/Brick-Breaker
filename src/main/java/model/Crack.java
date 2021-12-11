@@ -10,18 +10,28 @@ import java.awt.geom.Point2D;
  */
 public class Crack{
 
+    /**direction of crack - LEFT*/
     public static final int LEFT = 10;
+    /**direction of crack - RIGHT*/
     public static final int RIGHT = 20;
+    /**direction of crack - UP*/
     public static final int UP = 30;
+    /**direction of crack - DOWN*/
     public static final int DOWN = 40;
+    /**direction of crack - VERTICAL*/
     public static final int VERTICAL = 100;
+    /**direction of crack - HORIZONTAL*/
     public static final int HORIZONTAL = 200;
 
+    /**Brick object*/
     private Brick brick;
 
+    /**crack*/
     private GeneralPath crack;
 
+    /**depth of crack*/
     private int crackDepth;
+    /**something like a step of staircase (which is later used to draw crack on brick)*/
     private int steps;
 
     /**

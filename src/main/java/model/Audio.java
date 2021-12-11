@@ -10,8 +10,13 @@ import java.io.IOException;
  */
 public class Audio {
 
+    /**Audio file*/
     private File file;
+
+    /**AudioInputStream object*/
     private AudioInputStream audioStream;
+
+    /**Clip object*/
     private Clip clip;
 
     /**

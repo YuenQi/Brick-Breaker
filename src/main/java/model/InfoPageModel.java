@@ -10,15 +10,21 @@ import javax.swing.*;
  */
 public class InfoPageModel {
 
+    /**label*/
     private JLabel label;
 
+    /**start button*/
     private JButton startButton;
+    /**back button*/
     private JButton backButton;
 
+    /**background image of info screen*/
     private ImageIcon infoPage;
 
+    /**put background image inside JLabel*/
     private JLabel background;
 
+    /**owner (like a window/container to hold everything)*/
     private GameFrame owner;
 
     /**

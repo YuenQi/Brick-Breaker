@@ -9,12 +9,18 @@ import java.awt.geom.Point2D;
  */
 public class CementBrick extends Brick {
 
+    /**name of brick*/
     private static final String NAME = "Cement Brick";
+    /**inner color of brick*/
     private static final Color INNER_COLOR = new Color(147, 147, 147); //REFACTOR: change "DEF_INNER" to "INNER_COLOR"
+    /**bordor color of brick*/
     private static final Color BORDER_COLOR = new Color(217, 199, 175); //REFACTOR: change "DEF_BORDER" to "BORDER_COLOR"
+    /**full strength of cement brick*/
     private static final int CEMENT_STRENGTH = 2;
 
+    /**Crack object*/
     private Crack crack;
+    /**shape of brick*/
     private Shape brickFace;
 
     /**

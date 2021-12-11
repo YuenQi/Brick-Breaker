@@ -8,19 +8,30 @@ import java.awt.*;
  */
 public class Level {
 
+    /**total number of levels*/
     private static final int LEVELS_COUNT = 5;
 
+    /**representation of clay brick in number*/
     private static final int CLAY = 1;
+    /**representation of steel brick in number*/
     private static final int STEEL = 2;
+    /**representation of cement brick in number*/
     private static final int CEMENT = 3;
+    /**representation of fast brick in number*/
     private static final int FAST_BRICK = 4;
+    /**representation of slow brick in number*/
     private static final int SLOW_BRICK = 5;
+    /**representation of special brick in number*/
     private static final int SPECIAL = 6;
 
+    /**level in 2D array representation*/
     private Brick[][] levels;
+    /**level*/
     private int level;
 
+    /**Wall object*/
     private static Wall wall;
+    /**BrickFactory object*/
     private BrickFactory brickFactory = new BrickFactory();
 
     /**

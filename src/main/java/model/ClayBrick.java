@@ -8,9 +8,13 @@ import java.awt.Point;
  */
 public class ClayBrick extends Brick {
 
+    /**name of brick*/
     private static final String NAME = "Clay Brick";
+    /**inner color of brick*/
     private static final Color INNER_COLOR = new Color(178, 34, 34).darker();
+    /**border color of brick*/
     private static final Color BORDER_COLOR = Color.GRAY;
+    /**full strength of clay brick*/
     private static final int CLAY_STRENGTH = 1;
 
     /**

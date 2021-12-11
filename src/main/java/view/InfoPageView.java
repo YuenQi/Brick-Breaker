@@ -13,10 +13,14 @@ import java.awt.event.ActionListener;
  */
 public class InfoPageView extends JFrame implements ActionListener {
 
+    /**width of frame*/
     private static final int FRAME_WIDTH = 600;
+    /**height of frame*/
     private static final int FRAME_HEIGHT = 500;
 
+    /**InfoPageController object*/
     private InfoPageController infoPageController;
+    /**InfoPageModel object*/
     private InfoPageModel infoPageModel;
 
     /**

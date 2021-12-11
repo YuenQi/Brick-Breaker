@@ -11,31 +11,49 @@ import java.awt.*;
  * to get and set value for GameBoardView object.
  */
 public class GameBoardModel {
+    /**Timer object*/
     private Timer timer;
 
+    /**Wall object*/
     private Wall wall;
+    /**Level object*/
     private Level level;
+    /**HighScoreView object*/
     private HighScoreView highScoreView;
 
+    /**GameTimer object*/
     private GameTimer gameTimer;
+    /**Audio object*/
     private Audio audio;
 
+    /**message to be shown on screen*/
     private String message;
+    /**score message*/
     private String scoreMessage;
+    /**highScoreMessage*/
     private String highScoreMessage;
+    /**timeMessage*/
     private String timeMessage;
 
+    /**whether the pause menu needs to be shown*/
     private boolean showPauseMenu;
 
+    /**font of menu*/
     private Font menuFont;
 
+    /**something like a continue button*/
     private Rectangle continueButtonRect;
+    /**something like an exit button*/
     private Rectangle exitButtonRect;
+    /**something like a restart button*/
     private Rectangle restartButtonRect;
+    /**length of string message*/
     private int strLen;
 
+    /**DebugConsole object*/
     private DebugConsole debugConsole;
 
+    /**owner (like a window/container to hold everything)*/
     private JFrame owner;
 
     /**

@@ -16,31 +16,45 @@ import java.util.Random;
  */
 abstract public class Brick  {
 
+    /**depth of crack*/
     public static final int CRACK_DEPTH = 1;
+    /**something like a step of staircase (which is later used to draw crack on brick)*/
     public static final int STEPS = 35;
 
+    /**up impact of brick (when ball hits it)*/
     public static final int UP_IMPACT = 100;
+    /**down impact of brick (when ball hits it)*/
     public static final int DOWN_IMPACT = 200;
+    /**left impact of brick (when ball hits it)*/
     public static final int LEFT_IMPACT = 300;
+    /**right impact of brick (when ball hits it)*/
     public static final int RIGHT_IMPACT = 400;
 
+    /**random value generated*/
     private static Random rnd;
 
+    /**name of brick*/
     private String name;
 
     /* REFACTOR (ENCAPSULATION):
     make the access modifier of brickFace protected so that its child
     class and the class inside the same package with Brick class can use this variable
      */
+    /**shape of brick*/
     protected Shape brickFace;
 
+    /**border color of brick*/
     private Color borderColor; //REFACTOR: change name from border to borderColor
+    /**inner color of brick*/
     private Color innerColor; //REFACTOR: change name from inner to innerColor
 
+    /**full strength of brick (how many times ball needs to hit it for it to be broken*/
     private int fullStrength;
 
+    /**strength of brick (used for calculation purpose)*/
     private int strength;
 
+    /**broken state of brick (whether it's broken or not broken)*/
     private boolean broken;
 
     /**

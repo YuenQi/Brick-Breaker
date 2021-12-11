@@ -10,11 +10,17 @@ import java.util.Timer;
  */
 public class GameTimer {
 
+    /**time taken by user to play the game*/
     private static int gameTime;
+    /**time taken by user to play the game (in seconds)*/
     private int seconds;
+    /**time taken by user to play the game (in minutes)*/
     private int minutes;
+    /**Timer object*/
     private Timer timer;
+    /**task that is to be performed*/
     private TimerTask task;
+    /**flag of whether the user is playing the game*/
     private boolean gaming = false;
 
     /**

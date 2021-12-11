@@ -33,18 +33,29 @@ import java.awt.geom.Rectangle2D;
  */
 public class HomeMenuView extends JComponent implements MouseListener, MouseMotionListener {
 
+    /**greetings text*/
     private static final String GREETINGS = "Welcome to:";
+    /**game title*/
     private static final String GAME_TITLE = "Brick Destroy";
+    /**credits text*/
     private static final String CREDITS = "Version 2.0";
+    /**text of the so-call start button*/
     private static final String START_TEXT = "Start";
+    /**text of the so-call exit button*/
     private static final String EXIT_TEXT = "Exit"; //REFACTOR: change MENU_TEXT to EXIT_TEXT
+    /**text of the so-call info button*/
     private static final String INFO_TEXT = "Info";
 
+    /**color of text*/
     private static final Color TEXT_COLOR = Color.BLACK;
+    /**color button when it's clicked*/
     private static final Color CLICKED_BUTTON_COLOR = Color.WHITE;
+    /**color of text when button is clicked*/
     private static final Color CLICKED_TEXT_COLOR = Color.WHITE;//REFACTOR: change CLICKED_TEXT_COLOR to CLICKED_TEXT_COLOR
 
+    /**HomeMenuModel object*/
     private HomeMenuModel homeMenuModel;
+    /**HomeMenuController object*/
     private HomeMenuController homeMenuController;
 
     /**

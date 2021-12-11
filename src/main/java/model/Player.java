@@ -24,15 +24,23 @@ import java.awt.*;
  */
 public class Player {
 
+    /**border color of player bar*/
     public static final Color BORDER_COLOR = Color.GREEN.darker().darker();
+    /**inner color of player bar*/
     public static final Color INNER_COLOR = Color.GREEN;
 
+    /**move amount of player bar (constant fixed value that is used to define movement)*/
     private static final int MOVE_AMOUNT = 5;
 
+    /**shape of player bar*/
     private Rectangle playerFace;
+    /**center point of ball*/
     private Point ballPoint;
+    /**move amount of player bar*/
     private int moveAmount;
+    /**minimum move amount of player bar*/
     private int min;
+    /**maximum move amount of player bar*/
     private int max;
 
     /**

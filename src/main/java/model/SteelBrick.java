@@ -26,15 +26,23 @@ import java.util.Random;
  */
 public class SteelBrick extends Brick {
 
+    /**name of brick*/
     private static final String NAME = "Steel Brick";
+    /**inner color of brick*/
     private static final Color INNER_COLOR = new Color(203, 203, 201);
+    /**border color of brick*/
     private static final Color BORDER_COLOR = Color.BLACK;
+    /**full strength of steel brick*/
     private static final int STEEL_STRENGTH = 1;
+    /**broken probability of steel brick*/
     private static final double STEEL_PROBABILITY = 0.4;
 
+    /**random value generated*/
     private Random rnd;
+    /**shape of brick*/
     private Shape brickFace;
 
+    /**random broken probability of steel brick*/
     private double randomProbability;
 
     /**

@@ -19,7 +19,9 @@ public class HighScoreView extends JFrame implements ActionListener {
     to reduce errors that might occur.
     This is good programming practice.
      */
+    /**width of frame*/
     private static final int FRAME_WIDTH = 450;
+    /**height of frame*/
     private static final int FRAME_HEIGHT = 300;
 
     /*
@@ -27,16 +29,26 @@ public class HighScoreView extends JFrame implements ActionListener {
     "private" access modifier, respective getter and setter for the variables
     is used so that encapsulation is achieved.
     */
+    /**quit game button*/
     private JButton quitGameButton;
+    /**text label 1*/
     private JLabel label1;
+    /**text label 2*/
     private JLabel label2;
+    /**text label 3*/
     private JLabel label3;
+    /**text label 4*/
     private JLabel label4;
+    /**Wall object*/
     private Wall wall;
+    /**highest score record*/
     private String highScoreRecord;
+    /**background image*/
     private ImageIcon gameOver;
+    /**JLabel to put background image*/
     private JLabel background;
 
+    /**HighScoreController object*/
     private HighScoreController highScoreController;
 
     /**

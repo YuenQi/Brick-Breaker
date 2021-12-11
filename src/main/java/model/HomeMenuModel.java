@@ -10,23 +10,37 @@ import java.awt.*;
  */
 public class HomeMenuModel {
 
+    /**owner (like a window/container to hold everything)*/
     private GameFrame owner;
+    /**area (width and height) of home menu)*/
     private Dimension area;
 
+    /**home menu*/
     private Rectangle menuFace;
+    /**something like a start button*/
     private Rectangle startButton;
+    /**something like an exit button*/
     private Rectangle exitButton;//REFACTOR: change menuButton to exitButton
+    /**something like an info button*/
     private Rectangle infoButton;
 
+    /**font of greeting text*/
     private Font greetingsFont;
+    /**font of game title*/
     private Font gameTitleFont;
+    /**font of credits*/
     private Font creditsFont;
+    /**font of button*/
     private Font buttonFont;
 
+    /**flag to determine whether the so-called start button is clicked*/
     private boolean startClicked;
+    /**flag to determine whether the so-called exit button is clicked*/
     private boolean exitClicked;//REFACTOR: change menuClicked to exitClicked
+    /**flag to determine whether the so-called info button is clicked*/
     private boolean infoClicked;
 
+    /**background image*/
     private Image background;
 
     /**

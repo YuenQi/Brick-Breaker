@@ -12,9 +12,13 @@ import java.awt.geom.Point2D;
  */
 public class SlowBrick extends Brick {
 
+    /**name of slow brick*/
     private static final String NAME = "Slow Brick";
+    /**inner color of brick*/
     private static final Color INNER_COLOR = new Color(0xa995e8);
+    /**border color of brick*/
     private static final Color BORDER_COLOR = new Color(0x8932a8);
+    /**full strength of brick*/
     private static final int SLOW_BRICK_STRENGTH = 1;
 
     /**

@@ -31,15 +31,22 @@ import java.awt.event.ActionListener;
  */
 public class DebugPanel extends JPanel {
 
+    /**background color of debug panel*/
     private static final Color DEF_BKG = Color.WHITE;
 
+    /**skip level butto*/
     private JButton skipLevel;
+    /**reset ball button*/
     private JButton resetBalls;
 
+    /**slider to adjust speed of ball in x direction*/
     private JSlider ballXSpeed;
+    /**slider to adjust speed of ball in y direction*/
     private JSlider ballYSpeed;
 
+    /**Wall object*/
     private Wall wall;
+    /**Level object*/
     private Level level;
 
     /**
