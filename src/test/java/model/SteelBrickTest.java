@@ -97,4 +97,28 @@ class SteelBrickTest {
     public void getBorderColorTest(){
         assertEquals(Color.BLACK,steelBrick.getBorderColor());
     }
+
+    @Test
+    public void findLeftImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(0.0, 10.0));
+        assertEquals(SteelBrick.LEFT_IMPACT,steelBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findRightImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(60.0, 10.0));
+        assertEquals(SteelBrick.RIGHT_IMPACT,steelBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findDownImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(30.0, 20.0));
+        assertEquals(SteelBrick.DOWN_IMPACT,steelBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findNoImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(100.0, 30.0));
+        assertEquals(0,steelBrick.findImpact(ball));
+    }
 }

@@ -50,4 +50,29 @@ class FastBrickTest {
     public void getBorderColorTest(){
         assertEquals(new Color(0x1815bd),fastBrick.getBorderColor());
     }
+
+    @Test
+    public void findLeftImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(0.0, 10.0));
+        assertEquals(FastBrick.LEFT_IMPACT,fastBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findRightImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(60.0, 10.0));
+        assertEquals(FastBrick.RIGHT_IMPACT,fastBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findDownImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(30.0, 20.0));
+        assertEquals(FastBrick.DOWN_IMPACT,fastBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findNoImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(100.0, 30.0));
+        assertEquals(0,fastBrick.findImpact(ball));
+    }
+
 }

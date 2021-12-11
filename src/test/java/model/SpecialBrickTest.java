@@ -57,4 +57,22 @@ class SpecialBrickTest {
     public void getBorderColorTest(){
         assertEquals(new Color(0x006b15),specialBrick.getBorderColor());
     }
+
+    @Test
+    public void findLeftImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(570.0, 30.0));
+        assertEquals(SpecialBrick.LEFT_IMPACT,specialBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findDownImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(590.0, 40.0));
+        assertEquals(SpecialBrick.DOWN_IMPACT,specialBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findNoImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(100.0, 30.0));
+        assertEquals(0,specialBrick.findImpact(ball));
+    }
 }

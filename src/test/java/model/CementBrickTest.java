@@ -97,4 +97,28 @@ class CementBrickTest {
     public void getBorderColorTest(){
         assertEquals(new Color(217, 199, 175),cementBrick.getBorderColor());
     }
+
+    @Test
+    public void findLeftImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(60.0, 10.0));
+        assertEquals(CementBrick.LEFT_IMPACT,cementBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findRightImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(120.0, 10.0));
+        assertEquals(CementBrick.RIGHT_IMPACT,cementBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findDownImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(90.0, 20.0));
+        assertEquals(CementBrick.DOWN_IMPACT,cementBrick.findImpact(ball));
+    }
+
+    @Test
+    public void findNoImpactTest(){
+        Ball ball = new RubberBall(new Point2D.Double(100.0, 30.0));
+        assertEquals(0,cementBrick.findImpact(ball));
+    }
 }
