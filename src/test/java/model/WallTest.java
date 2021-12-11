@@ -31,7 +31,7 @@ class WallTest {
     }
 
     @Test
-    public void move() {
+    public void moveTest() {
         wall.move();
         /*
         As move amount of player bar is 0 at the beginning, the position of player bar does not change.
