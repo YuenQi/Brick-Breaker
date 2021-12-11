@@ -493,6 +493,7 @@ public class Wall {
 
     /**
      * This method returns the highest score.
+     * @return the highest score
      */
     public String getHighScore() {
         return highScore;

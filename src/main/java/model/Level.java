@@ -166,7 +166,7 @@ public class Level {
 
     /**
      * This method is to make levels (either single type or chessboard type).
-     *
+     * @param drawArea draw area to draw the bricks
      * @param brickCount number of bricks
      * @param lineCount row of bricks to be drawn
      * @param brickDimensionRatio width of brick : height of brick ratio
