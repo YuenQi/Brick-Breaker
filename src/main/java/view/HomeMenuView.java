@@ -139,19 +139,9 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
      * @param g2d Graphics2D object
      */
     private void drawContainer(Graphics2D g2d){
-
         //ADDITION: A start screen displaying a picture related to the game
-        /*
-        reading the image inside the if statement to save resources,
-        the image will only be loaded if it has not yet been loaded
-         */
-        if (homeMenuModel.getBackground() == null){
-            homeMenuModel.setBackground(new ImageIcon("src/main/resources/background.png").getImage());
-        }
-
-
+        homeMenuModel.setBackground(new ImageIcon(getClass().getResource("/background.png")).getImage());
         g2d.drawImage(homeMenuModel.getBackground(), 0,0,450,300,null);
-
     }
 
     /**

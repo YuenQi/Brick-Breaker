@@ -1,8 +1,8 @@
 package model;
 
 import javax.sound.sampled.*;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 //ADDITION: add Audio class to play music to give reward or penalty to player
 /**
@@ -10,14 +10,14 @@ import java.io.IOException;
  */
 public class Audio {
 
-    /**Audio file*/
-    private File file;
-
     /**AudioInputStream object*/
     private AudioInputStream audioStream;
 
     /**Clip object*/
     private Clip clip;
+
+    /**audio file name*/
+    URL gameOverUrl, allWallDestroyedUrl, nextLevelUrl;
 
     /**
      * This method plays "gameOver.wav" melancholy music when the user loses all the balls to give some sort of penalty to user.
@@ -27,8 +27,8 @@ public class Audio {
      * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable
      */
     public void playGameOver() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        file = new File("src/main/resources/gameOver.wav");
-        playMusic(file);
+        gameOverUrl = getClass().getResource("/gameOver.wav");
+        playMusic(gameOverUrl);
     }
 
     /**
@@ -39,8 +39,8 @@ public class Audio {
      * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable
      */
     public void playAllWallDestroyed() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        file = new File("src/main/resources/allWallDestroyed.wav");
-        playMusic(file);
+        allWallDestroyedUrl = getClass().getResource("/allWallDestroyed.wav");
+        playMusic(allWallDestroyedUrl);
     }
 
     /**
@@ -51,8 +51,8 @@ public class Audio {
      * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable
      */
     public void playNextLevel() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        file = new File("src/main/resources/nextLevel.wav");
-        playMusic(file);
+        nextLevelUrl = getClass().getResource("/nextLevel.wav");
+        playMusic(nextLevelUrl);
     }
 
     /**
@@ -62,7 +62,7 @@ public class Audio {
      * @throws IOException I/O exception of some sort has occurred
      * @throws LineUnavailableException indicating that a line cannot be opened because it is unavailable
      */
-    public void playMusic(File file) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public void playMusic(URL file) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         audioStream = AudioSystem.getAudioInputStream(file);
         clip = AudioSystem.getClip();
         clip.open(audioStream);

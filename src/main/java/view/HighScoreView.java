@@ -80,7 +80,7 @@ public class HighScoreView extends JFrame implements ActionListener {
      * This method adds background image to this frame.
      */
     private void addBackgroundImage() {
-        gameOver = new ImageIcon("src/main/resources/gameOver.jpeg");
+        gameOver = new ImageIcon(getClass().getResource("/gameOver.jpeg"));
         background = new JLabel(gameOver);
         background.setSize(FRAME_WIDTH,FRAME_HEIGHT);
         background.add(label1);

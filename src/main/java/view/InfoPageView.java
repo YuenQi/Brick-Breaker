@@ -52,7 +52,7 @@ public class InfoPageView extends JFrame implements ActionListener {
      * This method adds background image to this frame.
      */
     private void addBackgroundImage() {
-        infoPageModel.setInfoPage(new ImageIcon("src/main/resources/infoPageBackground.jpg"));
+        infoPageModel.setInfoPage(new ImageIcon(getClass().getResource("/infoPageBackground.jpg")));
         infoPageModel.setBackground(new JLabel(infoPageModel.getInfoPage()));
         infoPageModel.getBackground().setSize(FRAME_WIDTH,FRAME_HEIGHT);
         infoPageModel.getBackground().add(infoPageModel.getLabel());
