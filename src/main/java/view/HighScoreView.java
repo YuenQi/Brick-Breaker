@@ -134,7 +134,7 @@ public class HighScoreView extends JFrame implements ActionListener {
         label4.setText(highScoreRecord);
         label4.setBounds(195,170,100,50);
         label4.setForeground(Color.WHITE);
-        label4.setFont(new Font(null, Font.PLAIN, 20));
+        label4.setFont(new Font(null, Font.PLAIN, 15));
     }
 
     /**
