@@ -9,6 +9,10 @@ import java.awt.geom.Point2D;
  * This is SlowBrick class which inherits Brick class.
  * Slow brick means if the ball hits the brick, the speed of the ball
  * will become slower.
+ * This SlowBrick is for additional playable level.
+ * SlowBrick will change the speed of ball in x direction to 1 and
+ * speed of ball in y direction to 1 to make the ball moves slower when
+ * the ball hits the brick.
  */
 public class SlowBrick extends Brick {
 

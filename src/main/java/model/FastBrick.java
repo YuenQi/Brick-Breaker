@@ -9,6 +9,10 @@ import java.awt.geom.Point2D;
  * This is FastBrick class which inherits Brick class.
  * Fast brick means if the ball hits the brick, the speed of the ball
  * will become faster.
+ * This FastBrick is for additional playable level.
+ * FastBrick will change the speed of ball in x direction to 4 and
+ * speed of ball in y direction to 3 to make the ball moves faster when
+ * the ball hits the brick.
  */
 public class FastBrick extends Brick {
 

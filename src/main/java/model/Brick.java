@@ -40,7 +40,12 @@ abstract public class Brick  {
     make the access modifier of brickFace protected so that its child
     class and the class inside the same package with Brick class can use this variable
      */
-    /**shape of brick*/
+    /**
+     * This is shape of brick.
+     * The access modifier of brickFace is made "protected" so that its child
+     * class and the class inside the same package with Brick class can use this variable
+     * to achieve encapsulation.
+     */
     protected Shape brickFace;
 
     /**border color of brick*/

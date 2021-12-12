@@ -4,10 +4,16 @@ import view.HighScoreView;
 
 import java.awt.event.ActionEvent;
 
+//REFACTOR: MVC design pattern
 /**
  * This is HighScoreController class which receives
  * an input from the user via the HighScoreView, then processes the user's data
  * and updates HighScoreView.
+ * MVC design pattern:
+ * Basically, HighScoreView class will render the view,
+ * HighScoreController class is in charge of notifying the HighScoreView.
+ * ActionListener is inside HighScoreView class. When the listener captures event,
+ * it passes the events to HighScoreController class through HighScoreView class to handle action.
  */
 public class HighScoreController {
 

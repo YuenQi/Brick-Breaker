@@ -7,6 +7,9 @@ import java.util.Timer;
 /**
  * This is GameTimer class which is used to calculate the time taken by the user
  * to play the game.
+ * A timer is added so that user can see how much time he/she takes to finish the game.
+ * The purpose of the timer is also to give additional reward to the user.
+ * The rewarding scheme is in javadocs of reward method in Wall class.
  */
 public class GameTimer {
 

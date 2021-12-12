@@ -8,10 +8,17 @@ import view.InfoPageView;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+//REFACTOR: MVC design pattern
 /**
  * This is HomeMenuController class which receives
  * an input from the user via the HomeMenuView, then processes the user's data with
  * the help of HomeMenuModel and updates HomeMenuView.
+ * MVC design pattern:
+ * Basically, HomeMenuView class will render the view,
+ * HomeMenuModel class consists of dumb entities (POJO) and
+ * HomeMenuController class is in charge of changing the HomeMenuModel’s state and notify the HomeMenuView.
+ * Listeners are inside HomeMenuView class. When the listeners capture event,
+ * they pass the events to HomeMenuController class through HomeMenuView class to handle action.
  */
 public class HomeMenuController {
 

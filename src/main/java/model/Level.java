@@ -5,6 +5,10 @@ import java.awt.*;
 //REFACTOR: extract Level class from Wall class to ensure SOLID principle is adhered.
 /**
  * This is Level class to define different levels in this game.
+ * Level class is created by extracting it out from Wall class.
+ * Level class is responsible for making levels while Wall class
+ * handles most of the things happen to the wall. By separating
+ * Level class out, single responsibility principle is adhered.
  */
 public class Level {
 

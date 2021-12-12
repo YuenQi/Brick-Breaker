@@ -4,6 +4,10 @@ import java.awt.geom.Point2D;
 
 //REFACTOR: Use factory design pattern to create ball
 /**
+ * BallFactory class is used to create different types of Ball objects,
+ * in case future developers want to create other balls like steel
+ * ball to straight away break the cement break when it first hits
+ * the cement brick which I don’t have time to implement.
  * This class abstracts the ball object instantiation process.
  */
 public class BallFactory {

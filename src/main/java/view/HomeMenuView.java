@@ -28,8 +28,15 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
+//REFACTOR: MVC design pattern
 /**
  * This is HomeMenuView class which displays home menu.
+ * MVC design pattern:
+ * Basically, HomeMenuView class will render the view,
+ * HomeMenuModel class consists of dumb entities (POJO) and
+ * HomeMenuController class is in charge of changing the HomeMenuModel’s state and notify the HomeMenuView.
+ * Listeners are inside HomeMenuView class. When the listeners capture event,
+ * they pass the events to HomeMenuController class through HomeMenuView class to handle action.
  */
 public class HomeMenuView extends JComponent implements MouseListener, MouseMotionListener {
 
@@ -187,6 +194,7 @@ public class HomeMenuView extends JComponent implements MouseListener, MouseMoti
 
     /**
      * This method draws button on the home menu screen.
+     * A button that provides access to INFO screen is added.
      *
      * @param g2d Graphics2D object
      */

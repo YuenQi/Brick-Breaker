@@ -4,9 +4,16 @@ import view.GameFrame;
 
 import javax.swing.*;
 
+//REFACTOR: MVC design pattern
 /**
  * This is InfoPageModel class which is used to define info page model and allows other classes
  * to get and set value for InfoPageView object.
+ * MVC design pattern:
+ * Basically, InfoPageView class will render the view,
+ * InfoPageModel class consists of dumb entities (POJO) and
+ * InfoPageController class is in charge of changing the InfoPageModel’s state and notify the InfoPageView.
+ * ActionListener is inside InfoPageView class. When the listener captures event,
+ * it passes the events to InfoPageController class through InfoPageView class to handle action.
  */
 public class InfoPageModel {
 

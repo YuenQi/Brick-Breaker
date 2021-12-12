@@ -6,9 +6,16 @@ import view.HighScoreView;
 import javax.swing.*;
 import java.awt.*;
 
+//REFACTOR: MVC design pattern
 /**
  * This is GameBoardModel class which is used to define game board model and allows other classes
  * to get and set value for GameBoardView object.
+ * MVC design pattern:
+ * Basically, GameBoardView class will render the view,
+ * GameBoardModel class consists of dumb entities (POJO) and
+ * GameBoardController class is in charge of changing the GameBoardModel’s state and notify the GameBoardView.
+ * Listeners are inside GameBoardView class. When the listeners capture event,
+ * they pass the events to GameBoardController class through GameBoardView class to handle action.
  */
 public class GameBoardModel {
     /**Timer object*/

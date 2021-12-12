@@ -8,9 +8,24 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
+//REFACTOR: MVC design pattern
 //ADDITION: current score and highest score screen
 /**
  * This is HighScoreView class which displays current score and high score board on the screen.
+ *
+ * At the end of the game, whether the user breaks the higher record or not, a high score
+ * screen will pop out and display the current score, the highest score and name of the
+ * highest score record holder.
+ * Audio will be played accordingly to give some sort of reward or penalty to user.
+ * Reward is to play cheering music. Penalty is to play melancholy music.
+ * A quit game button is also added on the high score screen so user can click on
+ * the button to exit the game.
+ *
+ * MVC design pattern:
+ * Basically, HighScoreView class will render the view,
+ * HighScoreController class is in charge of notifying the HighScoreView.
+ * ActionListener is inside HighScoreView class. When the listener captures event,
+ * it passes the events to HighScoreController class through HighScoreView class to handle action.
  */
 public class HighScoreView extends JFrame implements ActionListener {
 

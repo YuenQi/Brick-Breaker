@@ -7,10 +7,17 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+//REFACTOR: MVC design pattern
 /**
  * This is GameBoardController class which receives
  * an input from the user via the GameBoardView, then processes the user's data with
  * the help of GameBoardModel and updates GameBoardView.
+ * MVC design pattern:
+ * Basically, GameBoardView class will render the view,
+ * GameBoardModel class consists of dumb entities (POJO) and
+ * GameBoardController class is in charge of changing the GameBoardModel’s state and notify the GameBoardView.
+ * Listeners are inside GameBoardView class. When the listeners capture event,
+ * they pass the events to GameBoardController class through GameBoardView class to handle action.
  */
 public class GameBoardController {
 

@@ -4,9 +4,16 @@ import view.GameFrame;
 
 import java.awt.*;
 
+//REFACTOR: MVC design pattern
 /**
  * This is HomeMenuModel class which is used to define home menu model and allows other classes
  * to get and set value for HomeMenuView object.
+ * MVC design pattern:
+ * Basically, HomeMenuView class will render the view,
+ * HomeMenuModel class consists of dumb entities (POJO) and
+ * HomeMenuController class is in charge of changing the HomeMenuModel’s state and notify the HomeMenuView.
+ * Listeners are inside HomeMenuView class. When the listeners capture event,
+ * they pass the events to HomeMenuController class through HomeMenuView class to handle action.
  */
 public class HomeMenuModel {
 

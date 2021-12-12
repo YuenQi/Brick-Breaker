@@ -104,6 +104,15 @@ public class DebugPanel extends JPanel {
      * and maximum value, add a ChangeListener to the slider created and return the
      * slider to the calling method.
      *
+     * Speed of ball is shown on sliders to enhance user experience. Also, user
+     * can adjust the speed easily and can adjust accordingly
+     * to find his / her strategy to win the game.
+     * One way I can think of is to hit the ball vertically first then horizontally.
+     * This way will make sure user takes shorter time to win the game but the FastBrick
+     * and SlowBrick level defeats this as the speed is changed when the ball hits the bricks.
+     * This additional level is meant to not let the user always adjust the speed (It's still
+     * possible to adjust of course, but it will be a bit annoying xD).
+     *
      * @param min minimum value of the slider
      * @param max maximum value of the slider
      * @param e listener which determines if a state has changed in the event source

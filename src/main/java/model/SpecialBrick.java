@@ -11,6 +11,7 @@ import java.awt.geom.Point2D;
  * to play the game will be reduced by 60 seconds. This is to give
  * reward to the user so that they stand a higher chance to gain the additional
  * point if the time taken for them to complete the game is less than specified minutes.
+ * Each level will only have one special brick.
  */
 public class SpecialBrick extends Brick {
 

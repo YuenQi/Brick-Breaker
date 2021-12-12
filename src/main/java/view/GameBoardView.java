@@ -28,9 +28,16 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.io.IOException;
 
+//REFACTOR: MVC design pattern
 /**
  * This is GameBoardView class which displays the game board.
  * It will also display pause menu if "esc" key is pressed.
+ * MVC design pattern:
+ * Basically, GameBoardView class will render the view,
+ * GameBoardModel class consists of dumb entities (POJO) and
+ * GameBoardController class is in charge of changing the GameBoardModel’s state and notify the GameBoardView.
+ * Listeners are inside GameBoardView class. When the listeners capture event,
+ * they pass the events to GameBoardController class through GameBoardView class to handle action.
  */
 public class GameBoardView extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 

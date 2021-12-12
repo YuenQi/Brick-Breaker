@@ -4,7 +4,8 @@ import java.awt.*;
 
 //REFACTOR: Use factory design pattern to create brick
 /**
- * This class abstracts the brick object instantiation process.
+ * BrickFactory class is used to create different types of Brick objects.
+ * It abstracts the brick object instantiation process.
  */
 public class BrickFactory {
 

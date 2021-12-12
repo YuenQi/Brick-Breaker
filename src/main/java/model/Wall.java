@@ -24,6 +24,14 @@ import java.io.*;
 
 /**
  * This is Wall class which handles most of the things happen to the wall.
+ * It also calculates the highest score.
+ *
+ * The highest score is stored in a .dat file.
+ * Whenever a game finishes, the current score that user obtained will be compared with
+ * the highest score in the file. If the current score is higher than the highest score
+ * in the file, the highest score will be replaced by the current score together with
+ * the name of the new record holder (A dialog window will be popped out to ask user
+ * to input his/her name).
  */
 public class Wall {
 
@@ -125,6 +133,7 @@ public class Wall {
 
     /**
      * This method is to set initial speed in x and y direction of ball.
+     * Initial speed of ball is fixed to enhance user experience.
      */
     private void initialiseSpeed() {
         ballSpeedX = 2;
@@ -225,14 +234,14 @@ public class Wall {
                 //Horizontal Impact
                 case Brick.LEFT_IMPACT:
                     ball.reverseX();
-                    /*
+                    /* (fix wrong logic)
                     REFACTOR: change Crack.RIGHT to Crack.LEFT so that
                     crack can be made when the ball hits the left side of the brick
                      */
                     return b.setImpact(ball.getRight(),Crack.LEFT);
                 case Brick.RIGHT_IMPACT:
                     ball.reverseX();
-                    /*
+                    /* (fix wrong logic)
                     REFACTOR: change Crack.LEFT to Crack.RIGHT so that
                     crack can be made when the ball hits the right side of the brick
                      */

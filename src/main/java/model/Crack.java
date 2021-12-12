@@ -7,6 +7,11 @@ import java.awt.geom.Point2D;
 //REFACTOR: separate Crack class from Brick class so that SOLID principle is adhered
 /**
  * This is Crack class which is used to define crack operations.
+ * SOLID principle:
+ * Crack class is separated from Brick class.
+ * Crack class is responsible for making crack on bricks whereas
+ * Brick class defines characteristic of bricks, so I think it’s better to separate
+ * it to ensure single responsibility principle is adhered.
  */
 public class Crack{
 

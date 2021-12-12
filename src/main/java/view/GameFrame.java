@@ -51,6 +51,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
      * This is a constructor to initialise some variables in GameFrame class and create
      * GameBoardView and HomeMenuView objects. It also sets the LayoutManager as BorderLayout,
      * add HomeMenuView components to this container and enables decorations for this frame.
+     * Logo is added to game to make the game looks more superior.
      */
     public GameFrame(){
         super();
