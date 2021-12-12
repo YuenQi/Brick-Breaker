@@ -59,6 +59,7 @@ public class GameBoardView extends JComponent implements KeyListener,MouseListen
     /**height of game board*/
     private static final int DEF_HEIGHT = 450;
 
+    //REFACTOR (change to more meaningful name): change BG_COLOR to BACKGROUND_COLOR
     /**background color of game board*/
     private static final Color BACKGROUND_COLOR = Color.WHITE;
 
