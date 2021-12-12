@@ -8,8 +8,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//REFACTOR: MVC design pattern
 /**
  * This is InfoPageView class which displays the description of the game and instruction.
+ * MVC design pattern:
+ * Basically, InfoPageView class will render the view,
+ * InfoPageModel class consists of dumb entities (POJO) and
+ * InfoPageController class is in charge of changing the InfoPageModel’s state and notify the InfoPageView.
+ * ActionListener is inside InfoPageView class. When the listener captures event,
+ * it passes the events to InfoPageController class through InfoPageView class to handle action.
  */
 public class InfoPageView extends JFrame implements ActionListener {
 
@@ -84,7 +91,7 @@ public class InfoPageView extends JFrame implements ActionListener {
         String text = "<html><h2 align = 'center'>GAME DESCRIPTION</h2>";
         text = text + "This is a brick destroy game.<br/>";
         text = text + "You can win the game by breaking all the bricks using the balls.<br/>";
-        text = text + "There are only 3 balls. If you lose all the ball, <b><i>GAME OVER</i></b>.<br/><br/>";
+        text = text + "There are only 3 balls. If you lose all the ball, <b><i>GAME OVER</i></b><br/>";
 
         text = text + "<h2 align = 'center'>INSTRUCTION</h2>";
         text = text + "1. Move LEFT using <b>A</b> key.<br/>";
@@ -95,7 +102,9 @@ public class InfoPageView extends JFrame implements ActionListener {
 
         text = text + "You can adjust the speed on debug console. <br/>";
         text = text + "The slider on the left is the speed of ball in x direction. <br/>";
+        text = text + "<b>-x</b> means go to left, <b>+x</b> means go to right, <b>0</b> means stop. <br/>";
         text = text + "The slider on the right is the speed of ball in y direction. <br/>";
+        text = text + "<b>-y</b> means go up, <b>+y</b> means go down, <b>0</b> means stop. <br/>";
         text = text + "Adjust accordingly and plan your strategy to win your game.<br/>";
 
         text = text + "<h3 align = 'center'>Enjoy your game!</h3>";
