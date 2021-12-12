@@ -35,7 +35,7 @@ import java.io.IOException;
  * MVC design pattern:
  * Basically, GameBoardView class will render the view,
  * GameBoardModel class consists of dumb entities (POJO) and
- * GameBoardController class is in charge of changing the GameBoardModel’s state and notify the GameBoardView.
+ * GameBoardController class is in charge of changing the state of GameBoardModel and notify the GameBoardView.
  * Listeners are inside GameBoardView class. When the listeners capture event,
  * they pass the events to GameBoardController class through GameBoardView class to handle action.
  */

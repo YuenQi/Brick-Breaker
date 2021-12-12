@@ -16,7 +16,7 @@ import java.awt.event.MouseEvent;
  * MVC design pattern:
  * Basically, HomeMenuView class will render the view,
  * HomeMenuModel class consists of dumb entities (POJO) and
- * HomeMenuController class is in charge of changing the HomeMenuModel’s state and notify the HomeMenuView.
+ * HomeMenuController class is in charge of changing the state of HomeMenuModel and notify the HomeMenuView.
  * Listeners are inside HomeMenuView class. When the listeners capture event,
  * they pass the events to HomeMenuController class through HomeMenuView class to handle action.
  */

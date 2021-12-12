@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  * MVC design pattern:
  * Basically, InfoPageView class will render the view,
  * InfoPageModel class consists of dumb entities (POJO) and
- * InfoPageController class is in charge of changing the InfoPageModel’s state and notify the InfoPageView.
+ * InfoPageController class is in charge of changing the InfoPageModel's state and notify the InfoPageView.
  * ActionListener is inside InfoPageView class. When the listener captures event,
  * it passes the events to InfoPageController class through InfoPageView class to handle action.
  */
