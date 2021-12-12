@@ -100,7 +100,7 @@ public class Player {
         moveAmount = -MOVE_AMOUNT;
     }
 
-
+    //REFACTOR: correct spelling mistake (change "movRight to moveRight")
     /**
      * This method moves the player bar to the right.
      */
