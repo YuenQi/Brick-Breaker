@@ -15,14 +15,6 @@ class HomeMenuModelTest {
     HomeMenuModel homeMenuModel = new HomeMenuModel(new GameFrame(),new Dimension(450,300));
 
     /**
-     * This method tests for getOwner method.
-     */
-    @Test
-    public void getOwnerTest() {
-        assertEquals("view.GameFrame[frame0,0,0,0x0,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]",homeMenuModel.getOwner().toString());
-    }
-
-    /**
      * This method tests for getArea method.
      */
     @Test

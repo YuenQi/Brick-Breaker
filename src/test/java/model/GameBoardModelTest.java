@@ -113,11 +113,4 @@ class GameBoardModelTest {
         assertEquals(184,gameBoardModel.getStrLen());
     }
 
-    /**
-     * This method tests for getOwner method.
-     */
-    @Test
-    public void getOwnerTest() {
-        assertEquals("view.GameFrame[frame0,0,0,0x0,invalid,hidden,layout=java.awt.BorderLayout,title=,resizable,normal,defaultCloseOperation=HIDE_ON_CLOSE,rootPane=javax.swing.JRootPane[,0,0,0x0,invalid,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]",gameBoardModel.getOwner().toString());
-    }
 }
